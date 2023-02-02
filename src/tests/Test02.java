@@ -1,9 +1,21 @@
+// Suma las areas totales.
 package tests;
 
 import modelo.Circulo;
 import modelo.Rectangulo;
 
 public class Test02 {
+	public static double sumaAreas(Rectangulo[] rr, Circulo[] cc) {
+		double res = 0;
+		for (int i = 0; i < rr.length; i++) {
+			res += rr[i].area();
+		}
+		for (int i = 0; i < cc.length; i++) {
+			res += cc[i].area();
+		}
+		return res;
+	}
+	
 	public static void main(String[] args) {
 		Rectangulo[] rectangulos = new Rectangulo[5];
 		rectangulos[0] = new Rectangulo(1, 2, 3, 4);
@@ -19,16 +31,5 @@ public class Test02 {
 		};
 		
 		System.out.println(sumaAreas(rectangulos, circulos));
-	}
-	
-	public static double sumaAreas(Rectangulo[] rr, Circulo[] cc) {
-		double res = 0;
-		for (int i = 0; i < rr.length; i++) {
-			res += rr[i].area();
-		}
-		for (int i = 0; i < cc.length; i++) {
-			res += cc[i].area();
-		}
-		return res;
 	}
 }
