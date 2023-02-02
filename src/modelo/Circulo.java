@@ -9,10 +9,14 @@ public class Circulo extends Figura{
 	}
 	
 	public String toString() {
-		return "Circ[" + x + ", " + y + "; " + r + "]";
+		return "Circulo[" + x + ", " + y + "; " + r + "]";
 	}
 	
 	public double area() {
 		return Math.PI * Math.pow(r, 2);
+	}
+	
+	public double perimetro() {
+		return 2 * Math.PI * r;
 	}
 }

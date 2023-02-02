@@ -11,10 +11,14 @@ public class Rectangulo extends Figura{
 	}
 	
 	public String toString() {
-		return "Rect[" + x + ", " + y + "; " + l1 + ", " + l2 + "]";
+		return "Rectángulo[" + x + ", " + y + "; " + l1 + ", " + l2 + "]";
 	}
 	
 	public double area() {
 		return l1 * l2;
+	}
+	
+	public double perimetro() {
+		return 2 * l1 + 2 * l2;
 	}
 }

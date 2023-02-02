@@ -1,4 +1,4 @@
-// Suma las areas totales.
+// Suma las areas totales. Este ejercicio está obsoleto y es feo: ver Test3
 package tests;
 
 import modelo.Circulo;
