@@ -1,6 +1,8 @@
 package modelo;
 
-public class Cuadrado extends Rectangulo {
+import modelo.interfaces.Pintable;
+
+public class Cuadrado extends Rectangulo implements Pintable {
 	
 	public Cuadrado(double x, double y, double lado) {
 		super(x, y, lado, lado);
@@ -17,5 +19,11 @@ public class Cuadrado extends Rectangulo {
 	public void setLado(double lado) {
 		setL1(lado);
 		setL2(lado);
+	}
+
+	@Override
+	public void pintar() {
+		// TODO Auto-generated method stub
+		
 	}
 }
