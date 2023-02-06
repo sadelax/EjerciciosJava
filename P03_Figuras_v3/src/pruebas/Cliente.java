@@ -14,6 +14,8 @@ public class Cliente implements Pintable {
 	private double saldo;
 	private LocalDate fechaUltimaCompra;
 	
+	public Cliente() {}
+	
 	// usando el generador de eclipse
 	public Cliente(int id, String nombre, String apellido1, String apellido2) {
 		super();
