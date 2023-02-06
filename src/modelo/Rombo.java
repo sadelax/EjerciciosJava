@@ -18,6 +18,12 @@ public class Rombo extends Figura{
 		return 4 * Math.sqrt(Math.pow(d1/2, 2) + Math.pow(d2/2, 2));
 	}
 	
+	public boolean equals(Object o) {
+		if(!super.equals(o)) return false;
+		Rombo otro = (Rombo)o;
+		return (this.d1 == otro.d1 && this.d2 == otro.d2) || (this.d1 == otro.d2 && this.d2 == otro.d1);
+	}
+	
 	public String toString() {
 		return "Rombo[" + x + ", " + y + "; " + d1 + "; " + d2 +  "]";
 	}

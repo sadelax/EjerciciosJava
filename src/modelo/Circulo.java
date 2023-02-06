@@ -19,4 +19,10 @@ public class Circulo extends Figura{
 	public double perimetro() {
 		return 2 * Math.PI * r;
 	}
+	
+	public boolean equals(Object o) {
+		if (!super.equals(o)) return false;
+		Circulo otro = (Circulo)o;
+		return this.r == otro.r;
+	}
 }
