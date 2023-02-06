@@ -1,6 +1,8 @@
 package modelo;
 
-public class Rombo extends Figura{
+import modelo.interfaces.Pintable;
+
+public class Rombo extends Figura implements Pintable {
 	private double d1;
 	private double d2;
 	
@@ -42,6 +44,11 @@ public class Rombo extends Figura{
 	
 	public void setD2(double d2) {
 		this.d2 = d2;
+	}
+
+	@Override
+	public void pintar() {
+		System.out.println("este rombo es de color verde xd");
 	}
 }
 
