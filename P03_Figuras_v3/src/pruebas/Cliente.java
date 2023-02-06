@@ -3,7 +3,9 @@ package pruebas;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Cliente {
+import modelo.interfaces.Pintable;
+
+public class Cliente implements Pintable {
 	private int id;
 	private String nombre;
 	private String apellido1;
@@ -90,6 +92,9 @@ public class Cliente {
 		Cliente other = (Cliente) obj;
 		return id == other.id;
 	}
-	
-	
+
+	@Override
+	public void pintar() {
+		System.out.println("pintandole una a un cliente.");
+	}
 }

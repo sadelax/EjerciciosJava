@@ -23,7 +23,7 @@ public class Cuadrado extends Rectangulo implements Pintable {
 
 	@Override
 	public void pintar() {
-		// TODO Auto-generated method stub
+		System.out.println("estoy pintando un cuadrado.");
 		
 	}
 }
