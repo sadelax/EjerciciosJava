@@ -2,11 +2,13 @@ package agenda.negocio;
 
 import agenda.modelo.Contacto;
 import agenda.persistencia.ContactoDao;
-import agenda.persistencia.ContactoDaoSimulado;
+import agenda.persistencia.ContactoDaoSQL;
+//import agenda.persistencia.ContactoDaoSimulado;
 
 public class Agenda {
 	
-	private ContactoDao cDao = new ContactoDaoSimulado();
+//	private ContactoDao cDao = new ContactoDaoSimulado();
+	private ContactoDao cDao = new ContactoDaoSQL();
 		
 	public void insertarContacto(Contacto c) {
 		cDao.insertar(c);

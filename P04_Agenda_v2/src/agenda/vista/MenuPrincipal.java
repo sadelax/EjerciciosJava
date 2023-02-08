@@ -26,7 +26,7 @@ public class MenuPrincipal {
 			System.out.println("1 - nuevo contacto");
 			System.out.println("2 - buscar contacto");
 			System.out.println("9 - salir");
-			System.out.print(">");
+			System.out.print(">fff ");
 			opcion = Integer.parseInt(tec.nextLine());
 			
 			switch(opcion) {
@@ -47,8 +47,8 @@ public class MenuPrincipal {
 	}
 	
 	private void nuevo() {
-		System.out.println("\n\nNuevo Contacto");
-		System.out.println("Ingresa los datos del nuevo contacto");
+		System.out.println("\nNuevo Contacto");
+		System.out.println("Ingresa los datos del nuevo contacto.");
 		System.out.println("Nombre: ");
 		String nom = tec.nextLine();
 		System.out.println("Apodo: ");
