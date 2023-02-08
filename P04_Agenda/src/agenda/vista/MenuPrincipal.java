@@ -26,7 +26,7 @@ public class MenuPrincipal {
 			System.out.println("1 - nuevo contacto");
 			System.out.println("2 - buscar contacto");
 			System.out.println("9 - salir");
-			System.out.print(">");
+			System.out.print("> ");
 			opcion = tec.nextInt();
 			
 			switch(opcion) {
