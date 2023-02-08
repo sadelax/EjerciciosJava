@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 import agenda.modelo.Contacto;
 import agenda.negocio.Agenda;
+import agenda.negocio.AgendaImpl;
 
 public class MenuPrincipal {
 	
-	private Agenda neg = new Agenda();
+	private Agenda neg = new AgendaImpl();
 	
 	private Scanner tec = new Scanner(System.in);
 	
@@ -26,7 +27,7 @@ public class MenuPrincipal {
 			System.out.println("1 - nuevo contacto");
 			System.out.println("2 - buscar contacto");
 			System.out.println("9 - salir");
-			System.out.print(">fff ");
+			System.out.print("> ");
 			opcion = Integer.parseInt(tec.nextLine());
 			
 			switch(opcion) {
@@ -49,13 +50,16 @@ public class MenuPrincipal {
 	private void nuevo() {
 		System.out.println("\nNuevo Contacto");
 		System.out.println("Ingresa los datos del nuevo contacto.");
-		System.out.println("Nombre: ");
+		System.out.print("Nombre: ");
 		String nom = tec.nextLine();
-		System.out.println("Apodo: ");
+		System.out.print("Apellidos: ");
+		String ape = tec.nextLine();
+		System.out.print("Apodo: ");
 		String apodo = tec.nextLine();
 		
 		Contacto nuevo = new Contacto();
 		nuevo.setNombre(nom);
+		nuevo.setApellidos(ape);
 		nuevo.setApodo(apodo);
 		
 		neg.insertarContacto(nuevo);

@@ -7,7 +7,7 @@ public class ContactoDaoSQL implements ContactoDao {
 	@Override
 	public void insertar(Contacto c) {
 		System.out.println("insert into contactos ...");
-		System.out.println("se ha guardado en Mysql");
+		System.out.println(c + " se ha guardado en Mysql");
 		
 	}
 
