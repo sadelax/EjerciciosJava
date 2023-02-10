@@ -1,5 +1,7 @@
 package colecciones.genericos.listas;
 
+import java.util.Iterator;
+
 public class ListaEnlazada<E> implements Lista<E> {
 	
 	private Nodo primero;
@@ -58,5 +60,11 @@ public class ListaEnlazada<E> implements Lista<E> {
 			this(dato); // esto es lo mismo que this.dato = dato;
 			this.proximo = proximo;
 		}
+	}
+
+	@Override
+	public Iterator<E> iterador() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

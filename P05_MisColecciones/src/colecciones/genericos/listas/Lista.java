@@ -1,5 +1,7 @@
 package colecciones.genericos.listas;
 
+import java.util.Iterator;
+
 public interface Lista <E> {
 	
 	void agregar(E dato);
@@ -11,4 +13,6 @@ public interface Lista <E> {
 	boolean estaVacia();
 	
 	int tamanyo();
+
+	Iterator<E> iterador();
 }
