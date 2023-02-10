@@ -1,5 +1,7 @@
 package colecciones.genericos.tests;
 
+import java.util.Iterator;
+
 import colecciones.genericos.listas.Lista;
 import colecciones.genericos.listas.ListaArray;
 
@@ -24,12 +26,21 @@ public class TestListaGenericos {
 		
 		recorre(la);
 		System.out.println();
-		recorre(le);	
+		recorre(le);
+		System.out.println();
+		recorreIter(la);
 	}
 	
 	public static void recorre(Lista<Integer> lista) {
 		for (int i = 0; i < lista.tamanyo(); i++) {
 			System.out.println(lista.buscar(i));
+		}
+	}
+	
+	public static void recorreIter(Lista<Integer> lista) {
+		Iterator<Integer>  it = lista.iterador();
+		while(it.hasNext()) {
+			System.out.println(it.next());
 		}
 	}
 }
