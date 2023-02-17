@@ -1,6 +1,11 @@
 package agenda.modelo;
 
-public class Contacto {
+import java.text.Collator;
+import java.util.Locale;
+
+//import java.util.Objects;
+
+public class Contacto implements Comparable<Contacto> {
 	
 	private int idContacto;
 	private String nombre;
@@ -109,11 +114,39 @@ public class Contacto {
 		Contacto otro = (Contacto)o;
 		return this.idContacto == otro.idContacto;
 	}
+	
+	@Override
+	public int hashCode() {
+		return idContacto;
+	}
 
 	@Override
 	public String toString() {
 		return "[" + idContacto + ", " + nombre + ", " + apellidos + ", " + apodo + "]";
 	}
+
+//	Compara OK independientemente de las mayus o minus
+//		no ordena correctamente los caracteres especiales á ñ etc
+//	@Override
+//	public int compareTo(Contacto o) {
+////		ordenar por contacto: 
+////		return this.idContacto - o.idContacto;
+//		
+//		if(this.equals(o)) return 0;
+//		
+////		ordenar por nombre, a lo beshtia:
+////		return this.nombre.compareTo(o.nombre);
+//		
+////		ordenar por nombre pero bien:
+//		return (this.nombre + this.idContacto).toLowerCase().compareTo((o.nombre + o.idContacto).toLowerCase());
+//	}
 	
+	@Override
+	public int compareTo(Contacto o) {
+		if(this.equals(o)) return 0;
+		Collator col = Collator.getInstance(new Locale("es"));
+		
+		return col.compare(this.nombre + this.idContacto, o.nombre +  o.idContacto);
+	}
 	
 }
