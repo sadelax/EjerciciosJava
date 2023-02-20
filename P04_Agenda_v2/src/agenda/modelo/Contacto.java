@@ -1,6 +1,7 @@
 package agenda.modelo;
 
 import java.text.Collator;
+import java.util.Comparator;
 import java.util.Locale;
 
 //import java.util.Objects;
@@ -155,6 +156,17 @@ public class Contacto implements Comparable<Contacto> {
 		Collator col = Collator.getInstance(new Locale("es"));	// new Locale es un objeto anónimo
 		
 		return col.compare(this.nombre + this.idContacto, o.nombre +  o.idContacto);
+	}
+	
+	public Comparator<Contacto> getComparatorId(){
+		return new IdComparator();
+	}
+	
+	private class IdComparator implements Comparator<Contacto>{
+		@Override
+		public int compare(Contacto o1, Contacto o2) {
+			return o1.getIdContacto()-o2.getIdContacto();
+		}
 	}
 	
 }
