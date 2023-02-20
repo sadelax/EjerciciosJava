@@ -158,11 +158,11 @@ public class Contacto implements Comparable<Contacto> {
 		return col.compare(this.nombre + this.idContacto, o.nombre +  o.idContacto);
 	}
 	
-	public Comparator<Contacto> getComparatorId(){
+	public static Comparator<Contacto> getIdComparator(){
 		return new IdComparator();
 	}
 	
-	private class IdComparator implements Comparator<Contacto>{
+	private static class IdComparator implements Comparator<Contacto>{
 		@Override
 		public int compare(Contacto o1, Contacto o2) {
 			return o1.getIdContacto()-o2.getIdContacto();
