@@ -5,22 +5,17 @@ package ejercicios05b;
 public class Ej14 {
 	public static int cantidadDeCortas(String frase) {
 		int cont = 0;
-		int cant = 0;
+		frase = frase.trim().replaceAll(" +", " ");
+		int pos = frase.indexOf(" ");
+		
 		for(int i = 0; i < frase.length(); i++) {
-			if(frase.charAt(i) != ' ' && cont < 3) {
-				cont++;
-				System.out.println("cont"+cont);
-			}
+			
 		}
-		return cant;
+		return cont;
 	}
 	
 	public static void main(String[] args) {
-		String frase = "son las seis de la tarde";
-//		String aaa = "a aa aa aaa aaaa aaaaa";
-//		String a = "a a a a a a a a";
+		String frase = "    son las seis de la tarde";
 		System.out.println(cantidadDeCortas(frase));
-//		System.out.println(cantidadDeCortas(aaa));
-//		System.out.println(cantidadDeCortas(a));
 	}
 }
