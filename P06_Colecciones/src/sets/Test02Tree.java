@@ -67,5 +67,12 @@ public class Test02Tree {
 		for (Contacto contacto : contactos) {
 			System.out.println(contacto);
 		}
+		
+		Set<Contacto> contactosNuevo = new TreeSet<>(new ContactoIdComparator());
+		contactosNuevo.addAll(contactos);
+		for (Contacto contacto : contactosNuevo) {
+			System.out.println(contacto);	
+		}
+
 	}
 }
