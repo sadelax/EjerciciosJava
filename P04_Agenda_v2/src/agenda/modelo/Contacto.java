@@ -23,6 +23,14 @@ public class Contacto implements Comparable<Contacto> {
 		telefonos = new String[10];
 		correos = new String[10];
 	}
+	
+	// (Constructor para estudiar el Comparator) Con esto creo contactos rápidamente
+	public Contacto(int idContacto, String nombre, String apodo) {
+		this();
+		this.idContacto = idContacto;
+		this.nombre = nombre;
+		this.apodo = apodo;
+	}
 
 	public int getIdContacto() {
 		return idContacto;
@@ -144,7 +152,7 @@ public class Contacto implements Comparable<Contacto> {
 	@Override
 	public int compareTo(Contacto o) {
 		if(this.equals(o)) return 0;
-		Collator col = Collator.getInstance(new Locale("es"));
+		Collator col = Collator.getInstance(new Locale("es"));	// new Locale es un objeto anónimo
 		
 		return col.compare(this.nombre + this.idContacto, o.nombre +  o.idContacto);
 	}
