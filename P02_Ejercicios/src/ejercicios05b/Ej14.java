@@ -7,10 +7,9 @@ public class Ej14 {
 		int cont = 0;
 		frase = frase.trim().replaceAll(" +", " ");
 		int pos = frase.indexOf(" ");
+		int primer = 0;
+
 		
-		for(int i = 0; i < frase.length(); i++) {
-			
-		}
 		return cont;
 	}
 	
