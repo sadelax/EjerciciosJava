@@ -1,9 +1,7 @@
 package agenda.persistencia;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -24,14 +22,15 @@ public class ContactoDaoMem implements ContactoDao {
 
 	@Override
 	public boolean eliminar(int idContacto) {
-		
-		return false;
+		Contacto c = new Contacto();
+		c = almacen.remove(idContacto);
+		if(c != null) return true;
+		else return false;
 	}
 
 	@Override
 	public Contacto buscar(int idContacto) {
-		
-		return null;
+		return almacen.get(idContacto);
 	}
 
 	@Override
@@ -41,11 +40,17 @@ public class ContactoDaoMem implements ContactoDao {
 
 	@Override
 	public Set<Contacto> buscar(String nom) {
-		for (Contacto contacto : almacen.values()) {
-			
+		Set<Contacto> c = new HashSet<>();
+		nom = nom.toLowerCase();
+		for (Contacto iContacto : almacen.values()) {
+			if (
+				(iContacto.getNombre().toLowerCase().indexOf(nom) != -1) || 
+				(iContacto.getApellidos().toLowerCase().indexOf(nom) != -1) ||
+				(iContacto.getApodo().toLowerCase().indexOf(nom) != -1)) {
+					c.add(iContacto);
+			}
 		}
-		
-		return contacto;
+		return c;
 	}
 
 	@Override
