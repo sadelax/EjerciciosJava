@@ -4,8 +4,6 @@ import java.text.Collator;
 import java.util.Comparator;
 import java.util.Locale;
 
-//import java.util.Objects;
-
 public class Contacto implements Comparable<Contacto> {
 	
 	private int idContacto;
@@ -25,11 +23,11 @@ public class Contacto implements Comparable<Contacto> {
 		correos = new String[10];
 	}
 	
-	// (Constructor para estudiar el Comparator) Con esto creo contactos rápidamente
-	public Contacto(int idContacto, String nombre, String apodo) {
+	// Con este constructor creo contactos rápidamente
+	public Contacto(String nombre, String apellidos, String apodo) {
 		this();
-		this.idContacto = idContacto;
 		this.nombre = nombre;
+		this.apellidos = apellidos;
 		this.apodo = apodo;
 	}
 
