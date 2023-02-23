@@ -38,9 +38,17 @@ public class TestListaGenericos {
 	}
 	
 	public static void recorreIter(Lista<Integer> lista) {
-		Iterator<Integer>  it = lista.iterador();
+		Iterator<Integer> it = lista.iterator();
 		while(it.hasNext()) {
-			System.out.println(it.next());
+			Integer elemento = it.next();
+			System.out.println(elemento);
 		}
 	}
+	
+	public static void recorreForEach(Lista<Integer> lista) {
+		for(Integer elemento : lista) {
+			System.out.println(elemento);
+		}
+	}
+
 }

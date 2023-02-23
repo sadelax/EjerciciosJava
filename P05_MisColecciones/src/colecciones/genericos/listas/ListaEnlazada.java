@@ -51,6 +51,7 @@ public class ListaEnlazada<E> implements Lista<E> {
 	private class Nodo {
 		E dato;
 		Nodo proximo;
+		Nodo siguiente;
 		
 		public Nodo(E dato) {
 			this.dato = dato;
@@ -63,8 +64,26 @@ public class ListaEnlazada<E> implements Lista<E> {
 	}
 
 	@Override
-	public Iterator<E> iterador() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<E> iterator() {
+		return new IterEnlazada();
 	}
+	
+	private class IterEnlazada implements Iterator<E>{
+		
+		private Nodo proximo = primero;
+		
+		@Override
+		public boolean hasNext() {
+			return proximo != null;
+		}
+
+		@Override
+		public E next() {
+			E dato = proximo.dato;
+			proximo = proximo.siguiente;
+			return dato;
+		}
+		
+	}
+
 }

@@ -57,7 +57,7 @@ public class ListaArray<E> implements Lista<E> {
 	}
 	
 	@Override
-	public Iterator<E> iterador(){
+	public Iterator<E> iterator(){
 		return new IterArray();
 	}
 	

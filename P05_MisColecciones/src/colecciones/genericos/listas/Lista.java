@@ -2,7 +2,7 @@ package colecciones.genericos.listas;
 
 import java.util.Iterator;
 
-public interface Lista <E> {
+public interface Lista <E> extends Iterable<E> {
 	
 	void agregar(E dato);
 		
@@ -14,5 +14,5 @@ public interface Lista <E> {
 	
 	int tamanyo();
 
-	Iterator<E> iterador();
+	Iterator<E> iterator();
 }
