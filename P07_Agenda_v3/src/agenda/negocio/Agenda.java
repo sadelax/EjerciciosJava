@@ -1,5 +1,6 @@
 package agenda.negocio;
 
+import java.io.FileNotFoundException;
 import java.util.Set;
 
 import agenda.modelo.Contacto;
@@ -16,4 +17,8 @@ public interface Agenda {
 	
 	// Debe retornar los contactos ordenados por apodo
 	public Set<Contacto> buscarTodos();
+	
+	Set<Contacto> buscarContactoPorNombre(String nombre);
+	
+	int importarCSV(String fichero) throws FileNotFoundException;
 }
