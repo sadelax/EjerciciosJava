@@ -2,7 +2,9 @@ package agenda.modelo;
 
 import java.text.Collator;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class Contacto implements Comparable<Contacto> {
 	
@@ -11,16 +13,13 @@ public class Contacto implements Comparable<Contacto> {
 	private String apellidos;
 	private String apodo;
 	private Domicilio dom;
-	private String[] telefonos;
-	private String[] correos;
-	
-	private int cantTelefonos;
-	private int cantCorreos;
+	private Set<String> telefonos;
+	private Set<String> correos;
 	
 	public Contacto() {
 		dom = new Domicilio();
-		telefonos = new String[10];
-		correos = new String[10];
+		telefonos = new LinkedHashSet<>(); // LHS: bueno la búsqueda, y además respeta el orden de carga
+		correos = new LinkedHashSet<>();
 	}
 	
 	// Con este constructor creo contactos rápidamente
@@ -71,25 +70,25 @@ public class Contacto implements Comparable<Contacto> {
 		this.dom = dom;
 	}
 
-	public String[] getTelefonos() {
+	public Set<String> getTelefonos() {
 		return telefonos;
 	}
 
-	public void setTelefonos(String[] telefonos) {
+	public void setTelefonos(Set<String> telefonos) {
 		this.telefonos = telefonos;
 	}
 
-	public String[] getCorreos() {
+	public Set<String> getCorreos() {
 		return correos;
 	}
 
-	public void setCorreos(String[] correos) {
+	public void setCorreos(Set<String> correos) {
 		this.correos = correos;
 	}
 	
 	public void addTelefonos(String... telefonos) {
 		for(int i = 0; i < telefonos.length; i++) {
-			addTelefono(telefonos[i]);
+			this.telefonos.add(telefonos[i]);
 		}
 	}
 	
@@ -100,17 +99,11 @@ public class Contacto implements Comparable<Contacto> {
 	}
 	
 	public void addTelefono(String telefono) {
-		if (cantTelefonos < 10) {
-			telefonos[cantTelefonos] = telefono;
-			cantTelefonos++;
-		}
+		this.telefonos.add(telefono);
 	}
 	
-	public void addCorreo(String telefono) {
-		if (cantCorreos < 10) {
-			correos[cantCorreos] = telefono;
-			cantCorreos++;
-		}
+	public void addCorreo(String correo) {
+		this.correos.add(correo);
 	}
 	
 	@Override
