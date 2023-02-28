@@ -1,6 +1,7 @@
 package ejercicios05b;
 // Método que retorne cuántas palabras de menos de 3 letras tiene una frase, 
-// considerando como separador de palabras únicamente el inicio de cadena, el espacio y el fin de cadena.
+// considerando como separador de palabras únicamente el inicio de cadena, 
+// el espacio y el fin de cadena.
 
 public class Ej14 {
 	public static int cantidadDeCortas(String frase) {
@@ -8,7 +9,12 @@ public class Ej14 {
 		frase = frase.trim().replaceAll(" +", " ");
 		int pos = frase.indexOf(" ");
 		int primer = 0;
-		
+		if(pos != -1) {
+			while(frase.substring(primer, pos).length() <= 3) {
+				cont++;
+			}
+			primer = pos + 1;
+		}
 		
 		return cont;
 	}

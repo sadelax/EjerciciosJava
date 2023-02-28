@@ -3,7 +3,7 @@ package ejercicios05b;
 // Utilizar Character.toUpperCase(char c) y Character.toLowerCase(char c).
 public class Ej12 {
 	public static void main(String[] args) {
-		System.out.println(minusMayus("Hola que pasa"));
+		System.out.println(minusMayus("Hola que paa sa"));
 	}
 	public static String minusMayus(String frase) {
 		String nuevo = "";
