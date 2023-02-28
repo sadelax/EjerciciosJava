@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public class VInicial extends JFrame {
 	private DefaultTableModel modelo;
 	private String[][] datosTabla;// = new String[0][0];
 	private String[] titulosTabla = { "Nombre", "Apellidos", "Apodo",
-			"Tipo Via", "Via", "Número", "Piso", "Puerta", "Cod.Postal",
+			"Tipo Via", "Via", "Nï¿½mero", "Piso", "Puerta", "Cod.Postal",
 			"Ciudad", "Provincia" };
 	private Contacto contactoActual;
 	private int AGREGAR = 0;
@@ -281,7 +280,7 @@ public class VInicial extends JFrame {
 			int cant = 0;
 			try {
 				cant = agenda.importarCSV(f.getAbsolutePath());
-			} catch (FileNotFoundException e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}// probar el 2
 			JOptionPane.showMessageDialog(null,	"Se han importado " + cant + " contactos con Exito");
@@ -443,7 +442,7 @@ public class VInicial extends JFrame {
 			}
 			if (ev.getSource() == bSalir) {
 				if (JOptionPane.showConfirmDialog(null,
-						"Desea salir de la aplicación", "Salir de Agenda", 2) == 0){
+						"Desea salir de la aplicaciï¿½n", "Salir de Agenda", 2) == 0){
 //					try {
 //						control.grabar();
 //					} catch (IOException | SQLException e) {
@@ -453,7 +452,7 @@ public class VInicial extends JFrame {
 //						control.finalizar();
 //					} catch (IOException e) {
 //						JOptionPane.showMessageDialog(null,
-//								"No se pudo realizar la grabación de los datos");
+//								"No se pudo realizar la grabaciï¿½n de los datos");
 //						e.printStackTrace();
 //					} catch (SQLException e){
 //						e.printStackTrace();

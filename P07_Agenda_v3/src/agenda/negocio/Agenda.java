@@ -1,6 +1,6 @@
 package agenda.negocio;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Set;
 
 import agenda.modelo.Contacto;
@@ -20,5 +20,5 @@ public interface Agenda {
 	
 	Set<Contacto> buscarContactoPorNombre(String nombre);
 	
-	int importarCSV(String fichero) throws FileNotFoundException;
+	int importarCSV(String fichero) throws IOException;
 }

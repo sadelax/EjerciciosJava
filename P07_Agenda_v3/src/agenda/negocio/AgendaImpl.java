@@ -1,6 +1,7 @@
 package agenda.negocio;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import agenda.modelo.Contacto;
@@ -46,9 +47,15 @@ public class AgendaImpl implements Agenda{
 	}
 
 	@Override
-	public int importarCSV(String fichero) throws FileNotFoundException {
-		// TODO Auto-generated method stub
+	public int importarCSV(String fichero) throws IOException {
+		List<String> csv = leerFichero(fichero);
+		
 		return 0;
+	}
+
+	private List<String> leerFichero(String fichero) throws IOException {
+
+		return null;
 	}
 
 }
