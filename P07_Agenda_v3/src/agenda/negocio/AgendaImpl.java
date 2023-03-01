@@ -9,11 +9,11 @@ import java.util.Set;
 
 import agenda.modelo.Contacto;
 import agenda.persistencia.ContactoDao;
-import agenda.persistencia.ContactoDaoMem;
+import agenda.persistencia.ContactoDaoSerial;
 
 public class AgendaImpl implements Agenda{
 
-	private ContactoDao dao = new ContactoDaoMem();
+	private ContactoDao dao = new ContactoDaoSerial();
 	
 	@Override
 	public void insertarContacto(Contacto c) {
