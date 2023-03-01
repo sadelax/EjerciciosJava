@@ -1,12 +1,14 @@
 package agenda.modelo;
 
+import java.io.Serializable;
 import java.text.Collator;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
 
-public class Contacto implements Comparable<Contacto> {
+@SuppressWarnings("serial")
+public class Contacto implements Comparable<Contacto>, Serializable {
 	
 	private int idContacto;
 	private String nombre;
