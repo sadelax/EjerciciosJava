@@ -19,7 +19,9 @@ public class ContactoDaoSerial implements ContactoDao {
 	public ContactoDaoSerial() throws RuntimeException {
 		try(FileInputStream fis = new FileInputStream(NOMBRE_FICHERO)){
 			// "quiero q me de-serializes objetos de fis":
-			ObjectInputStream ois = new ObjectInputStream(fis); 
+			// "o más bien, convierte la ristra de bits de fis, a objeto ois":
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			// guardo el objeto ois en almacén (lo (down)casteo para q sea compatible con el tipo)
 			almacen = (Almacen)ois.readObject();
 			
 		} catch (FileNotFoundException e) {
@@ -33,7 +35,10 @@ public class ContactoDaoSerial implements ContactoDao {
 	
 	private void grabarAlmacen() throws RuntimeException {
 		try(FileOutputStream fos = new FileOutputStream(NOMBRE_FICHERO)){
+			// "quiero q me serializes objetos de fis":
+			// convierte la ristra de bits del fichero a un objeto...
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			// ... y SERIALÍZALO:
 			oos.writeObject(almacen);
 		} catch (Exception e) {
 			e.printStackTrace();
