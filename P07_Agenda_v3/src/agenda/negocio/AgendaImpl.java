@@ -7,13 +7,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import agenda.config.Config;
 import agenda.modelo.Contacto;
 import agenda.persistencia.ContactoDao;
 import agenda.persistencia.ContactoDaoSerial;
 
 public class AgendaImpl implements Agenda{
 
-	private ContactoDao dao = new ContactoDaoSerial();
+	private ContactoDao dao = Config.getContactoDao();
 	
 	@Override
 	public void insertarContacto(Contacto c) {
