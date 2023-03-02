@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -17,7 +18,8 @@ public class ContactoDaoSerial implements ContactoDao {
 	
 	public ContactoDaoSerial() throws RuntimeException {
 		try(FileInputStream fis = new FileInputStream(NOMBRE_FICHERO)){
-			ObjectInputStream ois = new ObjectInputStream(fis); // "quiero q me de-serializes objetos de fis"
+			// "quiero q me de-serializes objetos de fis":
+			ObjectInputStream ois = new ObjectInputStream(fis); 
 			almacen = (Almacen)ois.readObject();
 			
 		} catch (FileNotFoundException e) {
@@ -48,26 +50,36 @@ public class ContactoDaoSerial implements ContactoDao {
 
 	@Override
 	public boolean eliminar(int idContacto) {
-		// TODO Auto-generated method stub
-		return false;
+		Contacto c = new Contacto();
+		c = almacen.mapa.remove(idContacto);
+		if (c != null) return true;
+		else return false;
 	}
 
 	@Override
 	public Contacto buscar(int idContacto) {
-		// TODO Auto-generated method stub
-		return null;
+		return almacen.mapa.get(idContacto);
 	}
 
 	@Override
 	public void actualizar(Contacto contacto) {
-		// TODO Auto-generated method stub
-		
+		almacen.mapa.put(contacto.getIdContacto(), contacto);
 	}
 
 	@Override
 	public Set<Contacto> buscar(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Contacto> c = new HashSet<>();
+		nom = nom.toLowerCase();
+		
+		for (Contacto contacto : almacen.mapa.values()) {
+			if(
+				(contacto.getNombre().toLowerCase().indexOf(nom) != -1) ||
+				(contacto.getApellidos().toLowerCase().indexOf(nom) != -1) ||
+				(contacto.getApodo().toLowerCase().indexOf(nom) != -1)) {
+					c.add(contacto);
+			}
+		}
+		return c;
 	}
 
 	@Override
