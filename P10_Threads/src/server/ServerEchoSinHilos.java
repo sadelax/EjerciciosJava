@@ -7,15 +7,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerEcho {
+public class ServerEchoSinHilos {
 
 	private int puerto = 23;
 	
-	public ServerEcho() {
+	public ServerEchoSinHilos() {
 		iniciar();
 	}
 	
-	public ServerEcho(int puerto) {
+	public ServerEchoSinHilos(int puerto) {
 		this.puerto = puerto;
 		iniciar();
 	}
@@ -46,19 +46,19 @@ public class ServerEcho {
 	}
 	
 	public static void main(String[] args) {
-		new ServerEcho();
+		new ServerEchoSinHilos();
 	}
 	
-	private class AtiendeCliente extends Thread {
+	private class AtiendeCliente {
 		
 		private Socket socket;
 		
 		AtiendeCliente(Socket socket){
 			this.socket = socket;
-			start();
+			inicia();
 		}
 		
-		public void run() {
+		public void inicia() {
 			System.out.println("Nuevo cliente conectado");
 			
 			try(PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -66,19 +66,8 @@ public class ServerEcho {
 					out.println("Hola! Bienvenido al server tontaco!");
 					
 					String leido;
-					boolean sesion = true;
-					while((leido = in.readLine()) != null && sesion) {
-						switch(leido) {
-						case "quit":
-						case "salir":
-						case "adios":
-							sesion = false;
-							out.println("Hasta la vista baby!!");
-							break;
-						default:
-							System.out.println("SRV: " + leido);
-							out.println("SRV: " + leido);
-						}
+					while((leido = in.readLine()) != null) {
+						out.println("SRV: " + leido);
 					}
 					
 			} catch (IOException e) {

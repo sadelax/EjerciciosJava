@@ -7,15 +7,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerEcho {
+public class ServerEchoRunnable {
 
 	private int puerto = 23;
 	
-	public ServerEcho() {
+	public ServerEchoRunnable() {
 		iniciar();
 	}
 	
-	public ServerEcho(int puerto) {
+	public ServerEchoRunnable(int puerto) {
 		this.puerto = puerto;
 		iniciar();
 	}
@@ -46,16 +46,16 @@ public class ServerEcho {
 	}
 	
 	public static void main(String[] args) {
-		new ServerEcho();
+		new ServerEchoRunnable();
 	}
 	
-	private class AtiendeCliente extends Thread {
+	private class AtiendeCliente implements Runnable {
 		
 		private Socket socket;
 		
 		AtiendeCliente(Socket socket){
 			this.socket = socket;
-			start();
+			new Thread(this).start();
 		}
 		
 		public void run() {
