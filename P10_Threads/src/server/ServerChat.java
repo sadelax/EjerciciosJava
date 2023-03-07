@@ -41,10 +41,6 @@ public class ServerChat {
 		}
 	}
 
-	public static void main(String[] args) {
-		new ServerChat();
-	}
-
 	private class AtiendeCliente implements Runnable {
 		private Socket socket;
 		private String nick;
@@ -155,5 +151,9 @@ public class ServerChat {
 			}
 		}
 	}
+	
+	public static void main(String[] args) {
+		new ServerChat();
+	}
+	
 }
-
