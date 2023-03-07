@@ -57,11 +57,9 @@ public class Cliente {
 	
 	// clase para manejar la salida
 	private class ClienteOut extends Thread {
-		private Socket socket;
 		private PrintWriter out;
 		
 		public ClienteOut(Socket socket) {
-			this.socket = socket;
 			try {
 				out = new PrintWriter(socket.getOutputStream(), true);
 				start();
@@ -72,6 +70,7 @@ public class Cliente {
 		
 		public void run() {
 			String leido;
+			@SuppressWarnings("resource")
 			Scanner tec = new Scanner(System.in);
 			while(true) {
 				leido = tec.nextLine();
