@@ -2,7 +2,13 @@ package agenda.config;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.BasicDataSource;
 
 import agenda.persistencia.ContactoDao;
 import agenda.persistencia.ContactoDaoMem;
@@ -13,6 +19,8 @@ public class Config {
 	private static ContactoDao cDao;
 	
 	private static Properties prop;
+	
+	private static DataSource ds;
 	
 	// aplicando el patrón Singleton para que mi método solo devuelva un objeto
 	// véase que ContactoDao es una interfaz... EN REALIDAD engloba las clases que implementan ESTA INTERFAZ
@@ -50,12 +58,24 @@ public class Config {
 		}
 		return prop;
 	}
-	
+	 // método q lee las properties
 	public static String getProperty(String clave) {
 		String valor = getProp().getProperty(clave);
 		
 		if(valor == null) valor = "";
 		
 		return valor;
+	}
+	
+	public static DataSource getDataSource() {
+		if(ds == null) {
+			BasicDataSource bds = new BasicDataSource();
+			bds.setDriverClassName(getProperty("bbdd.driver"));
+			bds.setUrl(getProperty("bbdd.url"));
+			bds.setUsername(getProperty("bbdd.user"));
+			bds.setPassword(getProperty("bbdd.pwd"));
+			ds = bds;
+		}
+		return ds;
 	}
 }
