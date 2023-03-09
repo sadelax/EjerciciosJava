@@ -1,6 +1,5 @@
 package agenda.persistencia;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,14 +114,9 @@ public class ContactoDaoSQL implements ContactoDao {
 
 	@Override
 	public Contacto buscar(int idContacto) {
-		String sql = "SELECT id_contacto FROM contactos where id_contacto = ?";
-		try(Connection con = ds.getConnection()){
-			
-		} catch (SQLException e) {
-			System.err.println("error al buscar");
-			throw new PersistenciaExcepcion();
-		}
-		return null;
+		Contacto encontrado = new Contacto();
+		
+		return encontrado;
 	}
 
 	@Override
@@ -133,8 +127,62 @@ public class ContactoDaoSQL implements ContactoDao {
 	
 	@Override
 	public Set<Contacto> buscar(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Contacto> contactos = new TreeSet<>();
+		int encontrado = 0;
+		String sqlCon = "SELECT * FROM contactos WHERE nombre like ? or apellido like ? or apodo like ?";
+		String sqlTel = "SELECT * FROM telefonos WHERE fk_contacto = ?";
+		String sqlCorr = "SELECT * FROM correos WHERE fk_contacto = ?";
+		
+		try(Connection con = ds.getConnection()){
+			
+			PreparedStatement ps = con.prepareStatement(sqlCon);
+			String param = "%" + nom + "%";
+			ps.setString(1, param);
+			ps.setString(2, param);
+			ps.setString(3, param);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Contacto c = new Contacto();
+				
+				c.setIdContacto(rs.getInt("id_contacto"));
+				c.setNombre(rs.getString("nombre"));
+				c.setApellidos(rs.getString("apellido"));
+				c.setApodo(rs.getString("apodo"));
+				c.getDom().setTipoVia(rs.getString("tipo_via"));				
+				c.getDom().setVia(rs.getString("via"));				
+				c.getDom().setNumero(rs.getInt("numero"));				
+				c.getDom().setPiso(rs.getInt("piso"));				
+				c.getDom().setPuerta(rs.getString("puerta"));				
+				c.getDom().setCodigoPostal(rs.getString("codigo_postal"));				
+				c.getDom().setCiudad(rs.getString("ciudad"));				
+				c.getDom().setProvincia(rs.getString("provincia"));
+				
+				PreparedStatement psTel = con.prepareStatement(sqlTel);
+				psTel.setInt(1, c.getIdContacto());
+				ResultSet rsTel = psTel.executeQuery();
+
+				while(rsTel.next()) {
+					c.addTelefono(rsTel.getString("telefono"));
+				}
+				
+				PreparedStatement psCorr = con.prepareStatement(sqlCorr);
+				psCorr.setInt(1, c.getIdContacto());
+				ResultSet rsCorr = psCorr.executeQuery();
+				
+				while(rsCorr.next()) {
+					c.addCorreo(rsCorr.getString("correo"));
+				}
+				
+				contactos.add(c);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenciaExcepcion();
+		}
+		
+		return contactos;
 	}
 	
 	@Override
