@@ -3,8 +3,11 @@ package agenda.persistencia;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -46,6 +49,53 @@ public class ContactoDaoSerial implements ContactoDao {
 		}
 	}
 	
+	// para guardar el fichero de bits de nuevo en un CSV, junto con el main para lanzarlo
+	public void guardarContactosCSV(String nombreFichero) throws IOException {
+	    try (FileInputStream fis = new FileInputStream(NOMBRE_FICHERO)) {
+	        ObjectInputStream ois = new ObjectInputStream(fis);
+	        Almacen almacen = (Almacen) ois.readObject();
+	        
+	        FileWriter fw = new FileWriter(nombreFichero);
+	        PrintWriter pw = new PrintWriter(fw);
+	        
+	        pw.println("nombre,apellido,email,telefono");
+	        
+	        for (Contacto contacto : almacen.mapa.values()) {
+	            pw.println(contacto.getNombre() + "," + 
+	            			contacto.getApellidos() + "," + 
+	            			contacto.getApodo() + "," + 
+	            			contacto.getDom().getTipoVia() + "," +
+	            			contacto.getDom().getVia() + "," +
+	            			contacto.getDom().getNumero() + "," +
+	            			contacto.getDom().getPiso() + "," +
+	            			contacto.getDom().getPuerta() + "," +
+	            			contacto.getDom().getCodigoPostal() + "," +
+	            			contacto.getDom().getCiudad() + "," +
+	            			contacto.getDom().getProvincia() + "," +
+	            			contacto.getTelefonos()+ "," +
+	            			contacto.getCorreos());
+	        }
+	        
+	        pw.close();
+	        fw.close();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        throw new RuntimeException();
+	    }
+	}
+	
+	public static void main(String[] args) {
+		ContactoDaoSerial dao = new ContactoDaoSerial();
+		try {
+			dao.guardarContactosCSV("contactosPrueba.csv");
+	        System.out.println("Los contactos se han guardado correctamente en el archivo contactosPrueba.csv.");
+	        } catch (IOException e) {
+	        	System.err.println("Ha ocurrido un error al guardar los contactos en el archivo CSV.");
+	        	e.printStackTrace();
+	        }
+	    }
+
+
 	@Override
 	public void insertar(Contacto c) {
 		c.setIdContacto(almacen.autoIncrement);
