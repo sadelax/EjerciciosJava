@@ -90,31 +90,38 @@ public class ContactoDaoSQL implements ContactoDao {
 
 	@Override
 	public boolean eliminar(int idContacto) {
-		String sql = "DELETE FROM contactos WHERE id_contactos = ?";
+		int eliminado = 0;
+		String sql = "DELETE FROM contactos WHERE id_contacto = ?";
 		try(Connection con = ds.getConnection()) {
-			
-			Contacto c = new Contacto();
-			
-			
+			con.setAutoCommit(false);
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, c.getIdContacto());
-			ResultSet rs = ps.executeQuery();
+			ps.setInt(1, idContacto);
+			eliminado = ps.executeUpdate();
 			
-			c.setIdContacto(rs.getInt("id _contactos"));
-
-			while(rs.next()) {
-				
+			if(eliminado == 1) {
+				con.commit();				
+			} else {
+				con.rollback();
 			}
 			
+			System.out.println("eliminado correctamente");
+			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("error al eliminar");
+			throw new PersistenciaExcepcion();
 		}
-		return false;
+		return eliminado == 1;
 	}
 
 	@Override
 	public Contacto buscar(int idContacto) {
-		// TODO Auto-generated method stub
+		String sql = "SELECT id_contacto FROM contactos where id_contacto = ?";
+		try(Connection con = ds.getConnection()){
+			
+		} catch (SQLException e) {
+			System.err.println("error al buscar");
+			throw new PersistenciaExcepcion();
+		}
 		return null;
 	}
 
@@ -145,7 +152,7 @@ public class ContactoDaoSQL implements ContactoDao {
 			while(rs.next()) {
 				Contacto c = new Contacto();
 				
-				c.setIdContacto(rs.getInt("id_contactos"));
+				c.setIdContacto(rs.getInt("id_contacto"));
 				c.setNombre(rs.getString("nombre"));
 				c.setApellidos(rs.getString("apellido"));
 				c.setApodo(rs.getString("apodo"));
@@ -176,11 +183,10 @@ public class ContactoDaoSQL implements ContactoDao {
 
 				contactos.add(c);
 			}
-			System.out.println("consultados correctamente");
 			
 		} catch(SQLException e) {
 			System.err.println("error en la consulta");
-			e.printStackTrace();
+			throw new PersistenciaExcepcion();
 		}
 		
 		return contactos;
