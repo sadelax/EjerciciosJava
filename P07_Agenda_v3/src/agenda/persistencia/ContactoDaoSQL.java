@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.sql.DataSource;
 
@@ -112,9 +113,8 @@ public class ContactoDaoSQL implements ContactoDao {
 	
 	@Override
 	public Set<Contacto> buscarTodos() {
-		String contactos = "SELECT * FROM contactos";	// DataSouce ya apunta a agenda, por eso no pongo 20_agenda.contactos
-		String telefonos = "SELECT * FROM telefonos";	// DataSouce ya apunta a agenda, por eso no pongo 20_agenda.contactos
-		String correos = "SELECT * FROM correos";	// DataSouce ya apunta a agenda, por eso no pongo 20_agenda.contactos
+		Set<Contacto> todos = new TreeSet<>();
+		String contactos = "SELECT * FROM contactos";
 		try(Connection con = ds.getConnection()) {
 			con.setAutoCommit(false);
 			PreparedStatement ps = con.prepareStatement(contactos);
@@ -122,9 +122,12 @@ public class ContactoDaoSQL implements ContactoDao {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			while(rs.next()) {
-				rs.getInt(1);
-				rs.getInt(2);
-				rs.getInt(3);
+				rs.getString(1);
+				rs.getString(2);
+				rs.getString(3);
+				rs.getString(4);
+				rs.getString(5);
+				rs.getString(6);
 			}
 			con.close();
 			
