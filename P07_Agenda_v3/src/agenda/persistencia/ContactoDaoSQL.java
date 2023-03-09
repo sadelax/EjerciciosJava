@@ -128,7 +128,6 @@ public class ContactoDaoSQL implements ContactoDao {
 	@Override
 	public Set<Contacto> buscar(String nom) {
 		Set<Contacto> contactos = new TreeSet<>();
-		int encontrado = 0;
 		String sqlCon = "SELECT * FROM contactos WHERE nombre like ? or apellido like ? or apodo like ?";
 		String sqlTel = "SELECT * FROM telefonos WHERE fk_contacto = ?";
 		String sqlCorr = "SELECT * FROM correos WHERE fk_contacto = ?";
