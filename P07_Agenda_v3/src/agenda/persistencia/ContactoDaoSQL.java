@@ -1,5 +1,6 @@
 package agenda.persistencia;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,7 +90,25 @@ public class ContactoDaoSQL implements ContactoDao {
 
 	@Override
 	public boolean eliminar(int idContacto) {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM contactos WHERE id_contactos = ?";
+		try(Connection con = ds.getConnection()) {
+			
+			Contacto c = new Contacto();
+			
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, c.getIdContacto());
+			ResultSet rs = ps.executeQuery();
+			
+			c.setIdContacto(rs.getInt("id _contactos"));
+
+			while(rs.next()) {
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -113,29 +132,58 @@ public class ContactoDaoSQL implements ContactoDao {
 	
 	@Override
 	public Set<Contacto> buscarTodos() {
-		Set<Contacto> todos = new TreeSet<>();
-		String contactos = "SELECT * FROM contactos";
+		Set<Contacto> contactos = new TreeSet<>();
+		String sqlCon = "SELECT * FROM contactos";
+		String sqlTel = "SELECT * FROM telefonos WHERE fk_contacto = ?";
+		String sqlCorr = "SELECT * FROM correos WHERE fk_contacto = ?";
+		
 		try(Connection con = ds.getConnection()) {
-			con.setAutoCommit(false);
-			PreparedStatement ps = con.prepareStatement(contactos);
 			
-			ResultSet rs = ps.executeQuery();
-			rs.next();
+			PreparedStatement psCon = con.prepareStatement(sqlCon);
+			ResultSet rs = psCon.executeQuery();
+			
 			while(rs.next()) {
-				rs.getString(1);
-				rs.getString(2);
-				rs.getString(3);
-				rs.getString(4);
-				rs.getString(5);
-				rs.getString(6);
+				Contacto c = new Contacto();
+				
+				c.setIdContacto(rs.getInt("id_contactos"));
+				c.setNombre(rs.getString("nombre"));
+				c.setApellidos(rs.getString("apellido"));
+				c.setApodo(rs.getString("apodo"));
+				c.getDom().setTipoVia(rs.getString("tipo_via"));				
+				c.getDom().setVia(rs.getString("via"));				
+				c.getDom().setNumero(rs.getInt("numero"));				
+				c.getDom().setPiso(rs.getInt("piso"));				
+				c.getDom().setPuerta(rs.getString("puerta"));				
+				c.getDom().setCodigoPostal(rs.getString("codigo_postal"));				
+				c.getDom().setCiudad(rs.getString("ciudad"));				
+				c.getDom().setProvincia(rs.getString("provincia"));
+				
+				PreparedStatement psTel = con.prepareStatement(sqlTel);
+				psTel.setInt(1, c.getIdContacto());
+				ResultSet rsTel = psTel.executeQuery();
+
+				while(rsTel.next()) {
+					c.addTelefono(rsTel.getString("telefono"));
+				}
+				
+				PreparedStatement psCorr = con.prepareStatement(sqlCorr);
+				psCorr.setInt(1, c.getIdContacto());
+				ResultSet rsCorr = psCorr.executeQuery();
+				
+				while(rsCorr.next()) {
+					c.addCorreo(rsCorr.getString("correo"));
+				}
+
+				contactos.add(c);
 			}
-			con.close();
+			System.out.println("consultados correctamente");
 			
 		} catch(SQLException e) {
-			
+			System.err.println("error en la consulta");
+			e.printStackTrace();
 		}
 		
-		return null;
+		return contactos;
 	}
 
 	
