@@ -121,14 +121,82 @@ public class ContactoDaoSQL implements ContactoDao {
 
 	@Override
 	public void actualizar(Contacto contacto) {
-		// TODO Auto-generated method stub
+		String sqlCon = "UPDATE contactos "
+				+ "SET "
+				+ "nombre = ?,"
+				+ "apellido = ?,"
+				+ "apodo = ?,"
+				+ "tipo_via = ?,"
+				+ "via = ?,"
+				+ "numero = ?,"
+				+ "piso = ?,"
+				+ "puerta = ?,"
+				+ "codigo_postal = ?,"
+				+ "ciudad = ?,"
+				+ "provincia = ?,"
+				+ "WHERE (`id_contacto` = ?)";
+		String sqlTel = "DELETE FROM telefonos WHERE fk_contacto = ?";
+		String sqlCorr = "DELETE FROM correos WHERE fk_contacto = ?";
+		
+		try(Connection con = ds.getConnection()) {
+			
+			con.setAutoCommit(false);
+			PreparedStatement psCon = con.prepareStatement(sqlCon);
+			
+			psCon.setString(1, contacto.getNombre());
+			psCon.setString(2, contacto.getApellidos());
+			psCon.setString(3, contacto.getApodo());
+			psCon.setString(4, contacto.getDom().getTipoVia());
+			psCon.setString(5, contacto.getDom().getVia());
+			psCon.setInt(6, contacto.getDom().getNumero());
+			psCon.setInt(7, contacto.getDom().getPiso());
+			psCon.setString(8, contacto.getDom().getPuerta());
+			psCon.setString(9, contacto.getDom().getCodigoPostal());
+			psCon.setString(10, contacto.getDom().getCiudad());
+			psCon.setString(11, contacto.getDom().getProvincia());
+			psCon.setInt(12, contacto.getIdContacto());
+			
+			int filas =  psCon.executeUpdate();
+
+			if(filas == 1) {
+				
+				sqlTel = "INSERT INTO telefonos VALUES(null,?,?)";
+				PreparedStatement psTel = con.prepareStatement(sqlTel);
+				
+				for(String telefono : contacto.getTelefonos()) {
+					psTel.setInt(1, contacto.getIdContacto());
+					psTel.setString(2, telefono);
+				}
+				
+				sqlCorr = "INSERT INTO correos VALUES(null,?,?)";
+				PreparedStatement psCorr = con.prepareStatement(sqlCorr);
+				
+				for(String correo : contacto.getCorreos()) {
+					psCorr.setInt(1, contacto.getIdContacto());
+					psCorr.setString(2, correo);
+				}
+
+				con.commit();
+				
+			} else {
+				con.rollback();
+			}
+			
+			System.out.println("actualizado correctamente");
+			
+		} catch (SQLException e) {
+			System.err.println("error");
+			e.printStackTrace();
+			throw new PersistenciaExcepcion();
+		}
+		
 		
 	}
 	
 	@Override
 	public Set<Contacto> buscar(String nom) {
 		Set<Contacto> contactos = new TreeSet<>();
-		String sqlCon = "SELECT * FROM contactos WHERE nombre like ? or apellido like ? or apodo like ?";
+		String sqlCon = "SELECT * FROM contactos WHERE nombre like ? OR apellido like ? OR apodo LIKE ?";
 		String sqlTel = "SELECT * FROM telefonos WHERE fk_contacto = ?";
 		String sqlCorr = "SELECT * FROM correos WHERE fk_contacto = ?";
 		
