@@ -199,7 +199,7 @@ public class ContactoDaoSQL implements ContactoDao {
 		String sqlCon = "SELECT * FROM contactos WHERE nombre like ? OR apellido like ? OR apodo LIKE ?";
 		String sqlTel = "SELECT * FROM telefonos WHERE fk_contacto = ?";
 		String sqlCorr = "SELECT * FROM correos WHERE fk_contacto = ?";
-		
+		 
 		try(Connection con = ds.getConnection()){
 			
 			PreparedStatement ps = con.prepareStatement(sqlCon);
