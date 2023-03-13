@@ -188,9 +188,7 @@ public class ContactoDaoSQL implements ContactoDao {
 			System.err.println("error");
 			e.printStackTrace();
 			throw new PersistenciaExcepcion();
-		}
-		
-		
+		}	
 	}
 	
 	@Override
