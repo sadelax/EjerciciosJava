@@ -192,7 +192,7 @@ public class ContactoDaoSQL implements ContactoDao {
 		
 		
 	}
-	
+
 	@Override
 	public Set<Contacto> buscar(String nom) {
 		Set<Contacto> contactos = new TreeSet<>();
