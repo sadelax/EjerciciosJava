@@ -183,7 +183,7 @@ public class ContactoDaoSQL implements ContactoDao {
 			}
 			
 			System.out.println("actualizado correctamente");
-			
+		
 		} catch (SQLException e) {
 			System.err.println("error");
 			e.printStackTrace();
