@@ -1,10 +1,10 @@
-package e01;
+package e05;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class Test01 {
+public class Test05 {
 	public static void main(String[] args) {
 		// equivalente al datasource
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pruebasJPA"); // le pasamos el nombre de la unidad de persistencia
@@ -12,13 +12,7 @@ public class Test01 {
 		// equivalente a connection + prep statement
 		EntityManager em = emf.createEntityManager();
 		
-		Persona p = em.find(Persona.class, 12);
-		if(p != null) {
-			System.out.println(p.getApellidos() + " " + p.getApodo());
-			System.out.println(p.getNombreCompleto());
-		}
-		
-		Persona nuevo = new Persona();
+		Persona05 nuevo = new Persona05();
 		nuevo.setApellidos("Perez");
 		nuevo.setApodo("Paco");
 		nuevo.setDni("sin_papeles");

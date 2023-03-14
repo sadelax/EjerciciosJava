@@ -1,4 +1,4 @@
-package e01;
+package e06;
 
 import java.io.Serializable;
 
@@ -6,11 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 
 @Entity
-public class Persona implements Serializable {
+@Table(name = "persona")
+public class Persona06 implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
