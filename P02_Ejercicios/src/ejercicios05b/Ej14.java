@@ -9,13 +9,13 @@ public class Ej14 {
 		frase = frase.trim().replaceAll(" +", " ");
 		int pos = frase.indexOf(" ");
 		int primer = 0;
-		if(pos != -1) {
-			while(frase.substring(primer, pos).length() <= 3) {
+		while(pos != -1) {
+			if(frase.substring(primer, pos).length() <= 3) {
 				cont++;
 			}
 			primer = pos + 1;
+			pos = frase.indexOf(" ", pos + 1);
 		}
-		
 		return cont;
 	}
 	
