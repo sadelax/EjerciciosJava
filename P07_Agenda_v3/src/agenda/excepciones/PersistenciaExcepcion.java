@@ -1,5 +1,6 @@
 package agenda.excepciones;
 
+@SuppressWarnings("serial")
 public class PersistenciaExcepcion extends RuntimeException {
 
 	public PersistenciaExcepcion() {

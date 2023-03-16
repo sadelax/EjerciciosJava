@@ -10,7 +10,6 @@ import java.util.Set;
 import agenda.config.Config;
 import agenda.modelo.Contacto;
 import agenda.persistencia.ContactoDao;
-import agenda.persistencia.ContactoDaoSerial;
 
 public class AgendaImpl implements Agenda{
 
