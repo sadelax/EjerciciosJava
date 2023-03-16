@@ -1,7 +1,5 @@
 package ejercicio05b;
 
-import java.util.regex.Pattern;
-
 //Método que reciba una cadena y retorne el número de vocales que contiene.
 public class Ej08 {
 	
