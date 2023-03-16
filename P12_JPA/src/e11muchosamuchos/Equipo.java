@@ -20,7 +20,6 @@ public class Equipo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idequipo;
-	
 	private String equipo;
 	
 	@ManyToMany

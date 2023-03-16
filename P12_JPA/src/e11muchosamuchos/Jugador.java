@@ -3,6 +3,7 @@ package e11muchosamuchos;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,21 +18,21 @@ public class Jugador implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idjugador;
-	
+	private int idJugador;
 	private int dorsal;
-	private String nombreyapellidos;
+	@Column(name = "nombreyapellidos")
+	private String nombreCompleto;
 	private String licencia;
 	
 	@ManyToMany(mappedBy = "jugadores")
 	private List<Equipo> equipos;
 
 	public int getIdjugador() {
-		return idjugador;
+		return idJugador;
 	}
 
-	public void setIdjugador(int idjugador) {
-		this.idjugador = idjugador;
+	public void setIdjugador(int idJugador) {
+		this.idJugador = idJugador;
 	}
 
 	public int getDorsal() {
@@ -42,12 +43,12 @@ public class Jugador implements Serializable {
 		this.dorsal = dorsal;
 	}
 
-	public String getNombreyapellidos() {
-		return nombreyapellidos;
+	public String getNombreCompleto() {
+		return nombreCompleto;
 	}
 
-	public void setNombreyapellidos(String nombreyapellidos) {
-		this.nombreyapellidos = nombreyapellidos;
+	public void setNombreCompleto(String nombreyapellidos) {
+		this.nombreCompleto = nombreyapellidos;
 	}
 
 	public String getLicencia() {
@@ -68,7 +69,7 @@ public class Jugador implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[" + idjugador + ", " + dorsal + ", " + nombreyapellidos + ", " + licencia + "]";
+		return "[" + idJugador + ", " + dorsal + ", " + nombreCompleto + ", " + licencia + "]";
 	}
 	
 	
