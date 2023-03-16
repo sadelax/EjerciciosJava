@@ -15,6 +15,7 @@ public class Ej14 {
 			}
 			primer = pos + 1;
 			pos = frase.indexOf(" ", pos + 1);
+//			System.out.println(pos);
 		}
 		return cont;
 	}
