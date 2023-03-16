@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "persona_03")
+@SuppressWarnings("serial")
 public class Persona04b implements Serializable {
 
 	@EmbeddedId
