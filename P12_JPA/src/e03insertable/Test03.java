@@ -1,8 +1,8 @@
-package e03;
+package e03insertable;
 
 import javax.persistence.EntityManager;
 
-import e02.Genero;
+import e02enum.Genero;
 import util.EMF;
 
 public class Test03 {

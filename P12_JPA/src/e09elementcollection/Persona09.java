@@ -1,29 +1,39 @@
-package e05;
+package e09elementcollection;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 
 @Entity
-@Table(name = "persona")
-public class Persona05 implements Serializable {
+@Table(name = "personas_con_telefono")
+public class Persona09 implements Serializable {
 	
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPersona;
-	private String apellidos;
+	
+	private	 String apellidos;
 	private String apodo;
 	private String nombre;
 	private String dni;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ElementCollection(fetch = FetchType.EAGER) // no se considera un one to many
+	@CollectionTable(name ="telefonospersonas", joinColumns = {@JoinColumn(name = "idPersona")})	// tabla auxiliar
+	@Column(name = "telefono")
+	private List<String> telefonos;
+	
 	public int getIdPersona() {
 		return idPersona;
 	}
@@ -34,19 +44,19 @@ public class Persona05 implements Serializable {
 		return apellidos;
 	}
 	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos.toUpperCase();
+		this.apellidos = apellidos;
 	}
 	public String getApodo() {
 		return apodo;
 	}
 	public void setApodo(String apodo) {
-		this.apodo = apodo.toUpperCase();
+		this.apodo = apodo;
 	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
-		this.nombre = nombre.toUpperCase();
+		this.nombre = nombre;
 	}
 	public String getDni() {
 		return dni;
@@ -55,8 +65,16 @@ public class Persona05 implements Serializable {
 		this.dni = dni;
 	}
 	
-	@Transient
 	public String getNombreCompleto() {
 		return nombre + " " + apellidos;
 	}
+	public List<String> getTelefonos() {
+		return telefonos;
+	}
+	public void setTelefonos(List<String> telefonos) {
+		this.telefonos = telefonos;
+	}
+	
+	
+	
 }

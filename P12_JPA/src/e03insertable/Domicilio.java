@@ -1,4 +1,4 @@
-package e03;
+package e03insertable;
 
 import java.io.Serializable;
 import java.util.Objects;

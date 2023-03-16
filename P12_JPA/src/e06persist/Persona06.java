@@ -1,38 +1,26 @@
-package e09;
+package e06persist;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 
 @Entity
-@Table(name = "personas_con_telefono")
-public class Persona09 implements Serializable {
+@Table(name = "persona")
+public class Persona06 implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPersona;
-	
-	private	 String apellidos;	
+	private String apellidos;
 	private String apodo;
 	private String nombre;
 	private String dni;
-	
-	@ElementCollection(fetch = FetchType.EAGER) // no se considera un one to many
-	@CollectionTable(name ="telefonospersonas", joinColumns = {@JoinColumn(name = "idPersona")})	// tabla auxiliar
-	@Column(name = "telefono")
-	private List<String> telefonos;
 	
 	public int getIdPersona() {
 		return idPersona;
@@ -68,13 +56,5 @@ public class Persona09 implements Serializable {
 	public String getNombreCompleto() {
 		return nombre + " " + apellidos;
 	}
-	public List<String> getTelefonos() {
-		return telefonos;
-	}
-	public void setTelefonos(List<String> telefonos) {
-		this.telefonos = telefonos;
-	}
-	
-	
 	
 }

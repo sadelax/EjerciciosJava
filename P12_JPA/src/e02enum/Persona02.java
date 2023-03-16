@@ -1,8 +1,11 @@
-package e06;
+package e02enum;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,17 +14,33 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 
 @Entity
-@Table(name = "persona")
-public class Persona06 implements Serializable {
+@Table(name = "personas")
+public class Persona02 implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_persona")
 	private int idPersona;
+	
+	@Column(name = "p_apellidos")
 	private String apellidos;
+	@Column(name = "p_apodo")
 	private String apodo;
+	@Column(name = "p_nombre")
 	private String nombre;
+	@Column(name = "p_dni")
 	private String dni;
 	
+	@Column(name = "p_sexo")
+	@Enumerated(EnumType.STRING)
+	private Genero genero;
+	
+	public Genero getGenero() {
+		return genero;
+	}
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
 	public int getIdPersona() {
 		return idPersona;
 	}
@@ -53,8 +72,5 @@ public class Persona06 implements Serializable {
 		this.dni = dni;
 	}
 	
-	public String getNombreCompleto() {
-		return nombre + " " + apellidos;
-	}
 	
 }

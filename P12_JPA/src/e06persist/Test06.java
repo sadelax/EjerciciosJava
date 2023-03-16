@@ -1,4 +1,4 @@
-package e06;
+package e06persist;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

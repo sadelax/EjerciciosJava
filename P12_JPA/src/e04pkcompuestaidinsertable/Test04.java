@@ -1,4 +1,4 @@
-package e04b;
+package e04pkcompuestaidinsertable;
 
 import javax.persistence.EntityManager;
 

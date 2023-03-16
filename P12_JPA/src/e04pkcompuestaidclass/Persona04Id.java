@@ -1,16 +1,10 @@
-package e04b;
+package e04pkcompuestaidclass;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+public class Persona04Id implements Serializable {
 
-@Embeddable
-public class Persona04bId implements Serializable {
-
-	@Column(name = "nrodoc")
 	private int dni;
-	@Column(name = "letradoc")
 	private char letra;
 	
 	public int getId() {

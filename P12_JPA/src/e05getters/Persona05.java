@@ -1,46 +1,29 @@
-package e02;
+package e05getters;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 
 @Entity
-@Table(name = "personas")
-public class Persona02 implements Serializable {
+@Table(name = "persona")
+public class Persona05 implements Serializable {
+	
+
+	private int idPersona;
+	private String apellidos;
+	private String apodo;
+	private String nombre;
+	private String dni;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_persona")
-	private int idPersona;
-	
-	@Column(name = "p_apellidos")
-	private String apellidos;
-	@Column(name = "p_apodo")
-	private String apodo;
-	@Column(name = "p_nombre")
-	private String nombre;
-	@Column(name = "p_dni")
-	private String dni;
-	
-	@Column(name = "p_sexo")
-	@Enumerated(EnumType.STRING)
-	private Genero genero;
-	
-	public Genero getGenero() {
-		return genero;
-	}
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
 	public int getIdPersona() {
 		return idPersona;
 	}
@@ -51,19 +34,19 @@ public class Persona02 implements Serializable {
 		return apellidos;
 	}
 	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+		this.apellidos = apellidos.toUpperCase();
 	}
 	public String getApodo() {
 		return apodo;
 	}
 	public void setApodo(String apodo) {
-		this.apodo = apodo;
+		this.apodo = apodo.toUpperCase();
 	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombre = nombre.toUpperCase();
 	}
 	public String getDni() {
 		return dni;
@@ -72,5 +55,8 @@ public class Persona02 implements Serializable {
 		this.dni = dni;
 	}
 	
-	
+	@Transient
+	public String getNombreCompleto() {
+		return nombre + " " + apellidos;
+	}
 }

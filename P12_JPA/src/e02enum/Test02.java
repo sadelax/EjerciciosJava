@@ -1,4 +1,4 @@
-package e02;
+package e02enum;
 
 import javax.persistence.EntityManager;
 

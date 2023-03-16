@@ -1,4 +1,4 @@
-package e04;
+package e04pkcompuestaidclass;
 
 import javax.persistence.EntityManager;
 
