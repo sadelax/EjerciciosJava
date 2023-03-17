@@ -10,7 +10,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="C:/Curso/software/util_1_4_1.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-j-8.0.31.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Tardes/OneDrive/SANDRA/commons-dbcp-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Tardes/OneDrive/SANDRA/commons-pool-1.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tardes/OneDrive/SANDRA/software/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tardes/OneDrive/SANDRA/software/commons-pool-1.5.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

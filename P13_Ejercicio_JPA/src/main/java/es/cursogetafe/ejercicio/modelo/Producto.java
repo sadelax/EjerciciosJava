@@ -55,4 +55,10 @@ public class Producto implements Serializable {
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
+
+	@Override
+	public String toString() {
+		return "[" + idProducto + ", " + producto + ", " + precio + "]";
+	}
+	
 }
