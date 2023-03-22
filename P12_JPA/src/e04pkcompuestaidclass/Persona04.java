@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "persona_03")
 @IdClass(Persona04Id.class)
