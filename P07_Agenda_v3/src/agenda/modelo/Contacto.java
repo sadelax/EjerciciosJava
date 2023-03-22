@@ -7,14 +7,34 @@ import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "contactos")
 @SuppressWarnings("serial")
 public class Contacto implements Comparable<Contacto>, Serializable {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_contacto")
 	private int idContacto;
 	private String nombre;
 	private String apellidos;
 	private String apodo;
 	private Domicilio dom;
+	
+	@Embedded
+	@AttributeOverrides({
+		@AttributeOverride(name = "tipoVia", column = @Column(name = "tipo_via")), 
+		@AttributeOverride(name = "codigoPostal", column = @Column(name = "codigo_postal"))})
 	private Set<String> telefonos;
 	private Set<String> correos;
 	

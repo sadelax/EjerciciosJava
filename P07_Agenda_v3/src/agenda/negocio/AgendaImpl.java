@@ -90,6 +90,11 @@ public class AgendaImpl implements Agenda{
 
 		return c;
 	}
+
+	@Override
+	public Contacto buscar(int idContacto) {
+		return dao.buscar(idContacto);
+	}
 	
 	
 	

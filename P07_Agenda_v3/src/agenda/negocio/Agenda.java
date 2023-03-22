@@ -21,4 +21,6 @@ public interface Agenda {
 	Set<Contacto> buscarContactoPorNombre(String nombre);
 	
 	int importarCSV(String fichero) throws IOException;
+
+	Contacto buscar(int idContacto);
 }
