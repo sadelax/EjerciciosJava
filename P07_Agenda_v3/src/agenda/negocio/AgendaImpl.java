@@ -34,7 +34,7 @@ public class AgendaImpl implements Agenda{
 
 	@Override
 	public void modificar(Contacto c) {
-		// TODO Auto-generated method stub
+		dao.actualizar(c);
 		
 	}
 
