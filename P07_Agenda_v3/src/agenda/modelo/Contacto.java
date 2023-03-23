@@ -9,12 +9,16 @@ import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -29,12 +33,14 @@ public class Contacto implements Comparable<Contacto>, Serializable {
 	private String nombre;
 	private String apellidos;
 	private String apodo;
-	private Domicilio dom;
-	
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name = "tipoVia", column = @Column(name = "tipo_via")), 
 		@AttributeOverride(name = "codigoPostal", column = @Column(name = "codigo_postal"))})
+	private Domicilio dom;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@Column(name = "telefono")
+	@CollectionTable(name = "telefonos", joinColumns = {@JoinColumn(name = "fk_contacto")})
 	private Set<String> telefonos;
 	private Set<String> correos;
 	
