@@ -10,6 +10,7 @@ public class Test03 {
 	public static void main(String[] args) {
 		
 		// crear el contexto de Spring
+		@SuppressWarnings("resource")
 		BeanFactory ctx = new ClassPathXmlApplicationContext("A03appCtx.xml");	// crea el classpath a partir de un xml, y búscalo en el classpath
 		
 		PersonaInterface p = ctx.getBean("unaPersona", PersonaInterface.class);

@@ -1,9 +1,10 @@
 package es.cursogetafe.springcore.tests;
 
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import es.cursogetafe.springcore.clasesprueba.PersonaInterface;
+import es.cursogetafe.springcore.config.Config01;
 
 public class Test01 {
 
@@ -11,7 +12,7 @@ public class Test01 {
 		
 		// crear el contexto de Spring
 		@SuppressWarnings("resource")
-		BeanFactory ctx = new ClassPathXmlApplicationContext("A01appCtx.xml");	// crea el classpath a partir de un xml, y búscalo en el classpath
+		BeanFactory ctx = new AnnotationConfigApplicationContext(Config01.class);
 		
 		PersonaInterface p = ctx.getBean("unaPersona", PersonaInterface.class);
 		
