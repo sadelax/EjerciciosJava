@@ -10,7 +10,6 @@ public class BancoDao implements BancoDaoInterface {
 	private DataSource dataSource;
 
 	public BancoDao() {
-		this.dataSource = MyDataSource.getDataSource();
 	}
 
 	public void cambiarSaldo(long dni, double incrementoSaldo) {

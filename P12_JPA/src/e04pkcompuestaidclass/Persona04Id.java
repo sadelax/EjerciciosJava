@@ -2,6 +2,7 @@ package e04pkcompuestaidclass;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Persona04Id implements Serializable {
 
 	private int dni;

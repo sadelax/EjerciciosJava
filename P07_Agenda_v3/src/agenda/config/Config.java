@@ -4,26 +4,32 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
 import agenda.persistencia.ContactoDao;
+import agenda.persistencia.ContactoDaoJPA;
 import agenda.persistencia.ContactoDaoMem;
 import agenda.persistencia.ContactoDaoSQL;
 import agenda.persistencia.ContactoDaoSerial;
 
 public class Config {
 	
+	private static EntityManagerFactory emf;
 	private static ContactoDao cDao;
-	
 	private static Properties prop;
-	
 	private static DataSource ds;
 	
-	// aplicando el patrón Singleton para que mi método solo devuelva un objeto
-	// véase que ContactoDao es una interfaz... EN REALIDAD engloba las clases que implementan ESTA INTERFAZ
-		// (en este caso ContactoDaoSerial y ContactoDaoMem)
+	public static EntityManagerFactory getEMF() {
+		if(emf == null) {
+			emf = Persistence.createEntityManagerFactory("agendaJPA");
+		}
+		return emf;
+	}
+	
 	public static ContactoDao getContactoDao() {
 		if(cDao == null) {
 			String tipoDao = getProperty("daos");
@@ -37,6 +43,9 @@ public class Config {
 			case "sql":
 				cDao = new ContactoDaoSQL();
 				break;
+			case "jpa":
+				cDao = new ContactoDaoJPA();
+				break;  
 			default:
 				cDao = new ContactoDaoSerial();
 				break;
@@ -53,7 +62,6 @@ public class Config {
 			try {
 				prop.load(new FileReader("agenda.properties"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				throw new RuntimeException();
 			}

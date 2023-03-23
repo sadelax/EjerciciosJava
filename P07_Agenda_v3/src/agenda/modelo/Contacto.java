@@ -35,9 +35,12 @@ public class Contacto implements Comparable<Contacto>, Serializable {
 	private String apodo;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 3bfa102... mapping done
+=======
+>>>>>>> temp-branch
 	
 >>>>>>> 3bfa102... mapping done
 	@Embedded
@@ -47,12 +50,16 @@ public class Contacto implements Comparable<Contacto>, Serializable {
 	private Domicilio dom;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	
 >>>>>>> 3bfa102... mapping done
 =======
 	
 >>>>>>> 3bfa102... mapping done
+=======
+	
+>>>>>>> temp-branch
 	@ElementCollection(fetch = FetchType.LAZY)
 	@Column(name = "telefono")
 	@CollectionTable(name = "telefonos", joinColumns = {@JoinColumn(name = "fk_contacto")})
