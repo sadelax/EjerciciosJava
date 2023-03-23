@@ -3,6 +3,9 @@ package agenda.modelo;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 @SuppressWarnings("serial")
 public class Domicilio implements Serializable {
 	private String tipoVia;
