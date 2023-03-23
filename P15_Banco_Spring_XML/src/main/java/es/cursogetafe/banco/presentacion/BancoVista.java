@@ -2,7 +2,6 @@ package es.cursogetafe.banco.presentacion;
 
 import java.util.Scanner;
 
-import es.cursogetafe.banco.negocio.BancoNegocio;
 import es.cursogetafe.banco.negocio.BancoNegocioInterface;
 
 public class BancoVista implements BancoVistaInterface{
@@ -10,7 +9,6 @@ public class BancoVista implements BancoVistaInterface{
 	private BancoNegocioInterface bancoNegocio;
 	
 	public BancoVista(){
-		bancoNegocio  = new BancoNegocio();
 	}
 
 	public void iniciarAplicacion() 

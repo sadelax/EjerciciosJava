@@ -1,13 +1,11 @@
 package es.cursogetafe.banco.negocio;
 
-import es.cursogetafe.banco.persistencia.BancoDao;
 import es.cursogetafe.banco.persistencia.BancoDaoInterface;
 
 public class BancoNegocio implements BancoNegocioInterface {
 	private BancoDaoInterface bancoDao;
 
 	public BancoNegocio() {
-		bancoDao = new BancoDao();
 	}
 
 	public void transferencia(long dni1, long dni2, double cantidad) {

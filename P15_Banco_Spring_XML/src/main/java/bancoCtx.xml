@@ -6,6 +6,14 @@
 		 http://www.springframework.org/schema/beans/spring-beans.xsd
 		 http://www.springframework.org/schema/context
 		 http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<bean name="bancoVista" class="es.cursogetafe.banco.presentacion.BancoVista" init-method="iniciarAplicacion">
+		<property name="bancoNegocio" ref="bancoNegocio"></property>
+	</bean>
+	
+	<bean name="bancoNegocio" class="es.cursogetafe.banco.negocio.BancoNegocio">
+		<property name="bancoDao" ref="bancoDao"/>
+	</bean>
 		 
 	<bean name="bancoDao" class="es.cursogetafe.banco.persistencia.BancoDao">
 		<property name="dataSource" ref="dataSource"></property>
