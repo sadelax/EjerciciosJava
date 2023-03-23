@@ -33,33 +33,13 @@ public class Contacto implements Comparable<Contacto>, Serializable {
 	private String nombre;
 	private String apellidos;
 	private String apodo;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3bfa102... mapping done
-=======
->>>>>>> temp-branch
 	
->>>>>>> 3bfa102... mapping done
 	@Embedded
 	@AttributeOverrides({
 		@AttributeOverride(name = "tipoVia", column = @Column(name = "tipo_via")), 
 		@AttributeOverride(name = "codigoPostal", column = @Column(name = "codigo_postal"))})
 	private Domicilio dom;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 	
->>>>>>> 3bfa102... mapping done
-=======
-	
->>>>>>> 3bfa102... mapping done
-=======
-	
->>>>>>> temp-branch
 	@ElementCollection(fetch = FetchType.LAZY)
 	@Column(name = "telefono")
 	@CollectionTable(name = "telefonos", joinColumns = {@JoinColumn(name = "fk_contacto")})
