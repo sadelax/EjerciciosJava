@@ -34,7 +34,10 @@ public class Contacto implements Comparable<Contacto>, Serializable {
 	private String apellidos;
 	private String apodo;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3bfa102... mapping done
 	
 >>>>>>> 3bfa102... mapping done
 	@Embedded
@@ -43,6 +46,10 @@ public class Contacto implements Comparable<Contacto>, Serializable {
 		@AttributeOverride(name = "codigoPostal", column = @Column(name = "codigo_postal"))})
 	private Domicilio dom;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 3bfa102... mapping done
 =======
 	
 >>>>>>> 3bfa102... mapping done
