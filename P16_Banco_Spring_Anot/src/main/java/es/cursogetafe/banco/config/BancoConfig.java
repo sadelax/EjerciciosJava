@@ -20,7 +20,6 @@ public class BancoConfig {
 
 	@Bean
 	public DataSource dataSource() {
-		
 		BasicDataSource bds = new BasicDataSource();
 		bds.setDriverClassName(prop.getProperty("bbdd.driver"));
 		bds.setUrl(prop.getProperty("bbdd.url"));
