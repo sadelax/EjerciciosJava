@@ -105,7 +105,13 @@ public class VentanaEdicion extends JFrame {
 		this.modo = modo;
 		this.agenda = agenda;
 		bloquearPadre();
-		this.contactoActual = contactoActual;
+//		this.contactoActual = contactoActual;
+		
+		if (modo == AGREGAR)
+			contactoActual = new Contacto();
+		else
+			this.contactoActual = agenda.buscar(contactoActual.getIdContacto());
+		
 		manejador = new ManejaEventos();
 
 		panelDatos = new JPanel();
@@ -583,7 +589,7 @@ public class VentanaEdicion extends JFrame {
 		// Compilar la expresion regular en un patron
         Pattern pattern = Pattern.compile(PATTERN_EMAIL);
  
-        // Realiza el macheo entre el patrón y el correo
+        // Realiza el macheo entre el patrï¿½n y el correo
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
 	}
@@ -638,7 +644,7 @@ public class VentanaEdicion extends JFrame {
 		public void actionPerformed(ActionEvent ev) {
 			if (ev.getSource() == btnCancelar) {
 				if (!edicion || JOptionPane.showConfirmDialog(null,
-										"Desea abandonar la ventana\n Se perderán los cambios realizados",
+										"Desea abandonar la ventana\n Se perderï¿½n los cambios realizados",
 										"Salir de Contactos", 2) == 0) {
 					salir();
 				}
@@ -663,7 +669,7 @@ public class VentanaEdicion extends JFrame {
 							if (JOptionPane
 									.showConfirmDialog(
 											null,
-											"El Contacto ha sido grabado con Exito\nDesea cargar más contactos",
+											"El Contacto ha sido grabado con Exito\nDesea cargar mï¿½s contactos",
 											"Salir de Contactos", 2) == 0) {
 								inicializaPantalla();
 							} else {
@@ -679,7 +685,7 @@ public class VentanaEdicion extends JFrame {
 						}
 					} else {
 						JOptionPane.showMessageDialog(null,
-								"Debe ingresar un Nombre y Apellido válidos");
+								"Debe ingresar un Nombre y Apellido vï¿½lidos");
 
 					}
 				}
