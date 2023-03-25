@@ -32,7 +32,7 @@ public class Cliente {
 	private String municipio;
 	private String provincia;
 	
-	@OneToMany(mappedBy = "clientes")
+	@OneToMany(mappedBy = "cliente")
 	private List<Cuenta> cuentas;
 	
 	
