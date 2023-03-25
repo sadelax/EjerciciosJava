@@ -32,10 +32,10 @@ public class Tarjeta {
 	@Column(name = "mes_vencimiento")
 	private int mesVenc;
 
+	
 	public int getIdTarjeta() {
 		return idTarjeta;
 	}
-
 	
 	public void setIdTarjeta(int idTarjeta) {
 		this.idTarjeta = idTarjeta;

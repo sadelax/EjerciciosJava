@@ -25,6 +25,7 @@ public class Cliente {
 	private String apellido1;
 	private String apellido2;
 	private String nif;
+	
 	@Enumerated(EnumType.STRING)
 	private Genero sexo;
 	
@@ -32,6 +33,7 @@ public class Cliente {
 	private String provincia;
 	@OneToMany(mappedBy = "clientes")
 	private List<Cuenta> cuentas;
+	
 	
 	public int getIdCliente() {
 		return idCliente;
