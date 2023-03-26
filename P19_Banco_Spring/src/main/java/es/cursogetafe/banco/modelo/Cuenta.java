@@ -28,6 +28,12 @@ public class Cuenta {
 	public int getIdCuenta() {
 		return idCuenta;
 	}
+	
+	public Cuenta() {}
+	
+	public Cuenta(String numeroCuenta) {
+		this.numeroCuenta = numeroCuenta;
+	}
 
 	public void setIdCuenta(int idCuenta) {
 		this.idCuenta = idCuenta;
@@ -47,6 +53,11 @@ public class Cuenta {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	@Override
+	public String toString() {
+		return "Cuenta [idCuenta=" + idCuenta + ", numeroCuenta=" + numeroCuenta + ", cliente=" + cliente + "]";
 	}
 	
 	
