@@ -35,6 +35,16 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente")
 	private List<Cuenta> cuentas;
 	
+	public Cliente() {}
+	
+	public Cliente(String nombre, String apellido1, String nif, Genero sexo, String municipio, String provincia) {
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.nif = nif;
+		this.sexo = sexo;
+		this.municipio = municipio;
+		this.provincia = provincia;
+	}
 	
 	public int getIdCliente() {
 		return idCliente;
