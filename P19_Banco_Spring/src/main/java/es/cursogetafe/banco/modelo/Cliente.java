@@ -100,4 +100,12 @@ public class Cliente {
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
+
+	@Override
+	public String toString() {
+		return "[" + idCliente + ", " + nombre + ", " + apellido1 + ", " + apellido2 + ", " + nif + ", " + sexo + ", "
+				+ municipio + ", " + provincia + "]";
+	}
+	
+	
 }

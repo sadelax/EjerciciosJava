@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "movimientos")
-public abstract class Movimiento {
+public class Movimiento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,8 +73,10 @@ public abstract class Movimiento {
 	public void setProveedor(String proveedor) {
 		this.proveedor = proveedor;
 	}
+	@Override
+	public String toString() {
+		return "[" + idMovimiento + "]";
+	}
 	
-    public abstract String getTipo();
-
 	
 }

@@ -1,5 +1,7 @@
 package es.cursogetafe.banco.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,7 @@ public class Cuenta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cuenta")
 	private int idCuenta;
 	
 	@Column(name = "numero")
@@ -23,6 +27,9 @@ public class Cuenta {
 	@ManyToOne()
 	@JoinColumn(name = "fk_cliente")
 	private Cliente cliente;
+	
+	@OneToMany(mappedBy = "cuenta")
+	private List<Tarjeta> tarjetas;
 
 	
 	public int getIdCuenta() {
@@ -53,6 +60,14 @@ public class Cuenta {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public List<Tarjeta> getTarjetas() {
+		return tarjetas;
+	}
+
+	public void setTarjetas(List<Tarjeta> tarjetas) {
+		this.tarjetas = tarjetas;
 	}
 
 	@Override

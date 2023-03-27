@@ -32,7 +32,7 @@ public class TestCargaJunit {
 	
 	@Test
 	public void testCargaCliente() {
-		Cliente c = new Cliente("sandra", "delac", "50770001d", Genero.F, "madrid", "madrid");
+		Cliente c = new Cliente("sandra", "delac", "50770001d", Genero.H, "madrid", "madrid");
 		
 		em.getTransaction().begin();
 		em.persist(c);

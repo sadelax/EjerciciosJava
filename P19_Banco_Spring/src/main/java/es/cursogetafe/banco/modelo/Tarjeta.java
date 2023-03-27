@@ -13,6 +13,11 @@ import javax.persistence.Table;
 @Table(name = "tarjetas")
 public class Tarjeta {
 
+	@Override
+	public String toString() {
+		return "[" + idTarjeta + ", " + pan + ", " + marca + ", " + tipo + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_tarjeta")

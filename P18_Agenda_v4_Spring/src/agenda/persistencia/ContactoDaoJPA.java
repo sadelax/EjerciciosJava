@@ -73,5 +73,4 @@ public class ContactoDaoJPA implements ContactoDao{
 		em.close();
 		return resu;
 	}
-
 }

@@ -13,7 +13,7 @@ public class TestCarga {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Banco_Spring");
 		EntityManager em = emf.createEntityManager();
 		
-		Cliente cliente = new Cliente("sandra", "delac", "507700161d", Genero.F, "madrid", "madrid");
+		Cliente cliente = new Cliente("sandra", "delac", "507700161d", Genero.H, "madrid", "madrid");
 		
 		em.getTransaction().begin();
 		em.persist(cliente);
