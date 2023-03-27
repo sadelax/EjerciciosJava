@@ -1,16 +1,16 @@
 package es.cursogetafe.banco.persistencia;
 
-import java.util.TreeSet;
+import java.util.Set;
 
-import es.cursogetafe.banco.modelo.Cliente;
+public interface GenericoDao <K,E> {
 
-public interface ClienteDao {
-
-	void save(Cliente c);
+	void save(E entidad);
 	
-	void findById(int idCliente);
+	E findById(K id);
 	
-	void deleteById(int idCliente);
+	E findbyIdEager(K id);
 	
-	TreeSet<Cliente> findByNombre(String nom);
+	Set<E> findAll();
+	
+	void delete(E entidad);
 }
