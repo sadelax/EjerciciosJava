@@ -1,6 +1,9 @@
 package es.cursogetafe.banco.modelo;
 
-import java.sql.Date;
+import java.text.Collator;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "movimientos")
-public class Movimiento {
+public class Movimiento implements Comparable<Movimiento> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +37,7 @@ public class Movimiento {
 	@JoinColumn(name = "fk_tarjeta")
 	private Tarjeta tarjeta;
 	
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
 	private double importe;
 	private String proveedor;
@@ -61,6 +67,12 @@ public class Movimiento {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	
+	public String getFechaFormat() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(fecha);
+	}
+	
 	public double getImporte() {
 		return importe;
 	}
@@ -77,6 +89,11 @@ public class Movimiento {
 	public String toString() {
 		return "[" + idMovimiento + "]";
 	}
-	
-	
+	@Override
+	public int compareTo(Movimiento o) {
+		if(this.equals(o)) return 0;
+		Collator col = Collator.getInstance(new Locale("es"));
+		
+		return col.compare(this.fecha, o.fecha);
+	}
 }

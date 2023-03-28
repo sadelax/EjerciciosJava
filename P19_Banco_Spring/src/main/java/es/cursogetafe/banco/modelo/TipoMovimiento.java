@@ -1,5 +1,8 @@
 package es.cursogetafe.banco.modelo;
 
+import java.text.Collator;
+import java.util.Locale;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tipos_movimientos")
-public class TipoMovimiento {
+public class TipoMovimiento implements Comparable<TipoMovimiento> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +42,14 @@ public class TipoMovimiento {
 	@Override
 	public String toString() {
 		return "[" + idTipo + ", " + tipo + "]";
+	}
+
+	@Override
+	public int compareTo(TipoMovimiento o) {
+		if(this.equals(o)) return 0;
+		Collator col = Collator.getInstance(new Locale("es"));
+		
+		return col.compare(this.idTipo + this.tipo, o.idTipo + o.tipo);
 	}
 	
 }

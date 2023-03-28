@@ -8,7 +8,7 @@ public interface GenericoDao <K,E> {
 	
 	E findById(K id);
 	
-	E findbyIdEager(K id);
+	E findByIdEager(K id);
 	
 	Set<E> findAll();
 	

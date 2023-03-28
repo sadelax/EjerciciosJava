@@ -1,7 +1,9 @@
 package
 es.cursogetafe.banco.modelo;
 
-import java.util.List;
+import java.text.Collator;
+import java.util.Locale;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "extractos")
-public class Extracto {
+public class Extracto implements Comparable<Extracto> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +32,15 @@ public class Extracto {
 	private int mes;
 	
 	@OneToMany(mappedBy = "extracto")
-	private List<Movimiento> movimientos;
+	private Set<Movimiento> movimientos;
 	
+	public Extracto() {}
+	
+	public Extracto(Cuenta cuenta, int anyo, int mes) {
+		this.cuenta = cuenta;
+		this.anyo = anyo;
+		this.mes = mes;
+	}
 	
 	public int getIdExtracto() {
 		return idExtracto;
@@ -57,15 +66,22 @@ public class Extracto {
 	public void setMes(int mes) {
 		this.mes = mes;
 	}
-	public List<Movimiento> getMovimientos() {
+	public Set<Movimiento> getMovimientos() {
 		return movimientos;
 	}
-	public void setMovimientos(List<Movimiento> movimientos) {
+	public void setMovimientos(Set<Movimiento> movimientos) {
 		this.movimientos = movimientos;
 	}
 	@Override
 	public String toString() {
 		return "[" + idExtracto + ", " + cuenta + ", " + anyo + ", " + mes + "]";
 	}
-	
+	@Override
+	public int compareTo(Extracto o) {
+		if(this.equals(o)) return 0;
+		Collator col = Collator.getInstance(new Locale("es"));
+		
+		return col.compare(this.mes + this.anyo, o.mes + o.anyo);
+	}
+
 }

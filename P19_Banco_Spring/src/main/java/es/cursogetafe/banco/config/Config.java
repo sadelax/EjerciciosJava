@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan({"es.cursogetafe.banco.persistencia.test", "es.cursogetafe.banco.persistencia"})
+@ComponentScan({"es.cursogetafe.banco.vista", "es.cursogetafe.banco.negocio", "es.cursogetafe.banco.persistencia"})
 public class Config {
 
 	@Bean("emf")

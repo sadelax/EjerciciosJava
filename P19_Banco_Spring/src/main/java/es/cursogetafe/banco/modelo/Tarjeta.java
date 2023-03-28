@@ -1,5 +1,8 @@
 package es.cursogetafe.banco.modelo;
 
+import java.text.Collator;
+import java.util.Locale;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tarjetas")
-public class Tarjeta {
+public class Tarjeta implements Comparable<Tarjeta> {
 
 	@Override
 	public String toString() {
@@ -93,6 +96,12 @@ public class Tarjeta {
 	public void setMesVenc(int mesVenc) {
 		this.mesVenc = mesVenc;
 	}
-	
-	
+
+	@Override
+	public int compareTo(Tarjeta o) {
+		if(this.equals(o)) return 0;
+		Collator col = Collator.getInstance(new Locale("es"));
+		
+		return col.compare(this.pan + this.idTarjeta, o.pan + o.idTarjeta);
+	}
 }

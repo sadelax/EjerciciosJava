@@ -1,6 +1,6 @@
 package es.cursogetafe.banco.modelo;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ public class Cuenta {
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "cuenta")
-	private List<Tarjeta> tarjetas;
+	private Set<Tarjeta> tarjetas;
 
 	
 	public int getIdCuenta() {
@@ -62,11 +62,11 @@ public class Cuenta {
 		this.cliente = cliente;
 	}
 
-	public List<Tarjeta> getTarjetas() {
+	public Set<Tarjeta> getTarjetas() {
 		return tarjetas;
 	}
 
-	public void setTarjetas(List<Tarjeta> tarjetas) {
+	public void setTarjetas(Set<Tarjeta> tarjetas) {
 		this.tarjetas = tarjetas;
 	}
 

@@ -1,6 +1,5 @@
 package es.cursogetafe.banco.persistencia;
 
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -12,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import es.cursogetafe.banco.modelo.Tarjeta;
+import es.cursogetafe.banco.modelo.Cuenta;
 
-@Repository("tarjetaDao")
-public class TarjetaDaoJPA implements TarjetaDao {
+@Repository("cuentaDao")
+public class CuentaDaoJPA implements CuentaDao {
 
 	@Autowired
 	@Qualifier("emf")
@@ -23,8 +22,7 @@ public class TarjetaDaoJPA implements TarjetaDao {
 	private EntityManager em;
 	
 	@Override
-	public void save(Tarjeta entidad) {
-		em = emf.createEntityManager();
+	public void save(Cuenta entidad) {
 		em.getTransaction().begin();
 		em.merge(entidad);
 		em.getTransaction().commit();
@@ -32,33 +30,33 @@ public class TarjetaDaoJPA implements TarjetaDao {
 	}
 
 	@Override
-	public Tarjeta findById(Integer id) {
+	public Cuenta findById(Integer id) {
 		em = emf.createEntityManager();
-		Tarjeta t = em.find(Tarjeta.class, id);
-		return t;
+		Cuenta c = em.find(Cuenta.class, id);
+		return c;
 	}
 
 	@Override
-	public Tarjeta findByIdEager(Integer id) {
+	public Cuenta findByIdEager(Integer id) {
 		em = emf.createEntityManager();
-		String jpql = "SELECT t FROM Tarjeta t LEFT JOIN FETCH t.movimientos WHERE idTarjeta = :id";
-		TypedQuery<Tarjeta> q = em.createQuery(jpql, Tarjeta.class);
+		String jpql = "SELECT c FROM Cuenta c LEFT JOIN FETCH c.tarjetas WHERE idCuenta = :id";
+		TypedQuery<Cuenta> q = em.createQuery(jpql, Cuenta.class);
 		q.setParameter("id", id);
-		Tarjeta t = q.getSingleResult();
-		return t; 
+		Cuenta c = q.getSingleResult();
+		return c;
 	}
 
 	@Override
-	public Set<Tarjeta> findAll() {
+	public Set<Cuenta> findAll() {
 		em = emf.createEntityManager();
-		String jpql = "SELECT t FROM Tarjeta t";
-		TypedQuery<Tarjeta> q = em.createQuery(jpql, Tarjeta.class);
-		Set<Tarjeta> listado = new TreeSet<>(q.getResultList());
+		String jpql = "SELECT c FROM Cuenta c";
+		TypedQuery<Cuenta> q = em.createNamedQuery(jpql, Cuenta.class);
+		Set<Cuenta> listado = new TreeSet<>(q.getResultList());
 		return listado;
 	}
 
 	@Override
-	public void delete(Tarjeta entidad) {
+	public void delete(Cuenta entidad) {
 		em = emf.createEntityManager();
 		if (entidad != null) {
 			em.getTransaction().begin();
@@ -66,13 +64,6 @@ public class TarjetaDaoJPA implements TarjetaDao {
 			em.getTransaction().commit();
 		}
 		em.close();
-		
-	}
-
-	@Override
-	public List<Tarjeta> vigentes(Tarjeta tarjeta) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

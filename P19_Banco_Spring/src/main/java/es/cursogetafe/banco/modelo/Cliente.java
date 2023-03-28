@@ -1,6 +1,8 @@
 package es.cursogetafe.banco.modelo;
 
-import java.util.List;
+import java.text.Collator;
+import java.util.Locale;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "clientes")
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,13 +29,14 @@ public class Cliente {
 	private String nif;
 	
 	@Enumerated(EnumType.STRING)
-	private Genero sexo;
+	@Column(name = "sexo")
+	private Genero genero;
 	
 	private String municipio;
 	private String provincia;
 	
 	@OneToMany(mappedBy = "cliente")
-	private List<Cuenta> cuentas;
+	private Set<Cuenta> cuentas;
 	
 	public Cliente() {}
 	
@@ -41,7 +44,7 @@ public class Cliente {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.nif = nif;
-		this.sexo = sexo;
+		this.genero = sexo;
 		this.municipio = municipio;
 		this.provincia = provincia;
 	}
@@ -70,18 +73,28 @@ public class Cliente {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
+	
+	public String getApellidos() {
+		return apellido1 + " " + apellido2;
+	}
+	
+	public String getNombreCompleto() {
+		return nombre + " " + getApellidos();
+	}
+	
 	public String getNif() {
 		return nif;
 	}
 	public void setNif(String nif) {
 		this.nif = nif;
 	}
-	public Genero getSexo() {
-		return sexo;
+	public Genero getGenero() {
+		return genero;
 	}
-	public void setSexo(Genero sexo) {
-		this.sexo = sexo;
+	public void setGenero(Genero genero) {
+		this.genero = genero;
 	}
+		
 	public String getMunicipio() {
 		return municipio;
 	}
@@ -94,18 +107,25 @@ public class Cliente {
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
-	public List<Cuenta> getCuentas() {
+	public Set<Cuenta> getCuentas() {
 		return cuentas;
 	}
-	public void setCuentas(List<Cuenta> cuentas) {
+	public void setCuentas(Set<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
 
 	@Override
 	public String toString() {
-		return "[" + idCliente + ", " + nombre + ", " + apellido1 + ", " + apellido2 + ", " + nif + ", " + sexo + ", "
+		return "[" + idCliente + ", " + nombre + ", " + apellido1 + ", " + apellido2 + ", " + nif + ", " + genero + ", "
 				+ municipio + ", " + provincia + "]";
 	}
-	
+
+	@Override
+	public int compareTo(Cliente o) {
+		if(this.equals(o)) return 0;
+		Collator col = Collator.getInstance(new Locale("es"));
+		
+		return col.compare(this.nombre + this.idCliente, o.nombre + o.idCliente);
+	}
 	
 }

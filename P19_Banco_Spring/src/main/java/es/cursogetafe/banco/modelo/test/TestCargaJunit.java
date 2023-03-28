@@ -43,7 +43,7 @@ public class TestCargaJunit {
 		assertEquals(c.getNombre(), clienteRecuperado.getNombre());
 		assertEquals(c.getApellido1(), clienteRecuperado.getApellido1());
 		assertEquals(c.getNif(), clienteRecuperado.getNif());
-		assertEquals(c.getSexo(), clienteRecuperado.getSexo());
+		assertEquals(c.getGenero(), clienteRecuperado.getGenero());
 		assertEquals(c.getProvincia(), clienteRecuperado.getProvincia());
 		assertEquals(c.getMunicipio(), clienteRecuperado.getMunicipio());
 	}
