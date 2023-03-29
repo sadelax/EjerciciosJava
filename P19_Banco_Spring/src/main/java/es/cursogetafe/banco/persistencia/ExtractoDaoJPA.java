@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import es.cursogetafe.banco.modelo.Cuenta;
 import es.cursogetafe.banco.modelo.Extracto;
 
 @Repository("extractoDao")
@@ -77,4 +78,26 @@ public class ExtractoDaoJPA implements ExtractoDao {
 		em.close();
 	}
 
+	@Override
+	public Extracto extractoFechaEager(Cuenta c, int anyo, int mes) {
+		Extracto generado;
+		em = emf.createEntityManager();
+		String jpql = "SELECT e FROM Extracto e "
+				+ "JOIN FETCH e.movimientos "
+				+ "JOIN FETCH e.cuenta cue "
+				+ "JOIN FETCH cue.tarjetas "
+				+ "WHERE e.cuenta = :c "
+				+ "AND e.anyo = :anyo "
+				+ "AND e.mes =:mes";
+		TypedQuery<Extracto> q = em.createQuery(jpql,Extracto.class);
+		q.setParameter("c", c);
+		q.setParameter("anyo", anyo);
+		q.setParameter("mes", mes);
+		try {
+			generado = q.getSingleResult();
+		} catch(NoResultException e) {
+			generado = null;
+		}
+		return generado;
+	}
 }
