@@ -26,20 +26,21 @@ public class ClienteDaoJPA implements ClienteDao {
 	
 	@Override
 	public void save(Cliente entidad) {
+		em = emf.createEntityManager();
 		if (entidad.getNif() == null) {
-			em = emf.createEntityManager();
 			em.getTransaction().begin();
 			em.merge(entidad);
 			em.getTransaction().commit();
-			em.close();			
 		}
+		em.close();
 	}
 
 	@Override
 	public Cliente findById(Integer id) {
 		em = emf.createEntityManager();
-		Cliente t = em.find(Cliente.class, id);
-		return t;
+		Cliente c = em.find(Cliente.class, id);
+		em.close();
+		return c;
 	}
 
 	@Override
@@ -55,6 +56,7 @@ public class ClienteDaoJPA implements ClienteDao {
 			c = null;
 		}
 		c = q.getSingleResult();
+		em.close();
 		return c;
 	}
 

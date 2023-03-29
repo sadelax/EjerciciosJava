@@ -35,25 +35,38 @@ public class TarjetaDaoJPA implements TarjetaDao {
 	public Tarjeta findById(Integer id) {
 		em = emf.createEntityManager();
 		Tarjeta t = em.find(Tarjeta.class, id);
+		em.close();
 		return t;
 	}
 
 	@Override
 	public Tarjeta findByIdEager(Integer id) {
+		Tarjeta t;
 		em = emf.createEntityManager();
 		String jpql = "SELECT t FROM Tarjeta t LEFT JOIN FETCH t.movimientos WHERE idTarjeta = :id";
 		TypedQuery<Tarjeta> q = em.createQuery(jpql, Tarjeta.class);
 		q.setParameter("id", id);
-		Tarjeta t = q.getSingleResult();
+		try {
+			t = q.getSingleResult();
+		} catch (Exception e) {
+			t = null;
+		}
+		em.close();
 		return t; 
 	}
 
 	@Override
 	public Set<Tarjeta> findAll() {
+		Set<Tarjeta> listado;
 		em = emf.createEntityManager();
 		String jpql = "SELECT t FROM Tarjeta t";
 		TypedQuery<Tarjeta> q = em.createQuery(jpql, Tarjeta.class);
-		Set<Tarjeta> listado = new TreeSet<>(q.getResultList());
+		try {
+			listado = new TreeSet<>(q.getResultList());
+		} catch (Exception e) {
+			listado = null;
+		}
+		em.close();
 		return listado;
 	}
 
@@ -66,7 +79,6 @@ public class TarjetaDaoJPA implements TarjetaDao {
 			em.getTransaction().commit();
 		}
 		em.close();
-		
 	}
 
 	@Override
