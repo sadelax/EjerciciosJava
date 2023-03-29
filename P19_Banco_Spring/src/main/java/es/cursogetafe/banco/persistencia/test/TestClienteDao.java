@@ -5,7 +5,6 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import es.cursogetafe.banco.modelo.Cliente;
 import es.cursogetafe.banco.modelo.Genero;
