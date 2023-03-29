@@ -12,6 +12,7 @@ import es.cursogetafe.banco.modelo.Extracto;
 import es.cursogetafe.banco.modelo.Movimiento;
 import es.cursogetafe.banco.modelo.Tarjeta;
 import es.cursogetafe.banco.persistencia.ClienteDao;
+import es.cursogetafe.banco.persistencia.ExtractoDao;
 
 @Service("generaExtracto")
 @SuppressWarnings("serial")
@@ -19,6 +20,8 @@ public class GeneraExtractoImpl implements GeneraExtracto {
 
 	@Autowired
 	private ClienteDao cd;
+	@Autowired
+	private ExtractoDao ed;
 	
 	@Override
 	public List<Cliente> getClientes(String nombre) {
@@ -32,8 +35,8 @@ public class GeneraExtractoImpl implements GeneraExtracto {
 
 	@Override
 	public Extracto generaExtracto(Cuenta cuenta, int anyo, int mes) {
-		Extracto extracto = new Extracto(cuenta, anyo, mes);
-		return extracto;
+		Extracto generado = ed.extractoFechaEager(cuenta, anyo, mes);
+		return generado;
 	}
 
 	@Override
