@@ -1,5 +1,6 @@
 package repaso;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Persona implements Comparable<Persona> {
@@ -46,9 +47,18 @@ public class Persona implements Comparable<Persona> {
 
 	@Override
 	public int compareTo(Persona o) {
-		// TODO Auto-generated method stub
 		return this.idPersona - o.idPersona;
 	}
 	
-	
+	// si voy a usar el comparator todo el tiempo, pa eso lo dejo aquí en la clase.
+	// por q estático? xq no depende de la instancia actual.
+	public static Comparator<Persona> compNombre(){
+		return new Comparator<Persona>() {
+
+			@Override
+			public int compare(Persona o1, Persona o2) {
+				return o1.getNombre().compareToIgnoreCase(o2.getNombre());
+			}
+		};
+	}
 }

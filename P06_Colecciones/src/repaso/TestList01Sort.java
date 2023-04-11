@@ -43,10 +43,20 @@ public class TestList01Sort {
 
 			@Override
 			public int compare(Persona p1, Persona p2) {
-				return p1.getNombre().compareTo(p2.getNombre()); // ojo 
+				return p1.getNombre().compareTo(p2.getNombre()); // ojo, por orden ascii, sin español ni na
 			}
 			
 		});
+		
+		for (Persona persona : personas) {
+			System.out.println(persona);
+		}
+		
+		// EXPRESIÓN LAMBDA DE LO ANTERIOR
+		
+		Collections.sort(personas, (p1,p2) -> p2.getIdPersona() - p2.getIdPersona());
+		
+		personas.forEach(System.out::println);
 	}
 	
 }

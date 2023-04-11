@@ -12,7 +12,8 @@ public class TestSet01 {
 		Set<Persona> personas;
 //		personas = new HashSet<>();
 //		personas = new LinkedHashSet<>();
-		personas = new TreeSet<>();
+//		personas = new TreeSet<>();
+		personas = new TreeSet<>(Persona.compNombre());
 		
 		personas.add(new Persona(75, "AA"));
 		personas.add(new Persona(76, "Aj"));
