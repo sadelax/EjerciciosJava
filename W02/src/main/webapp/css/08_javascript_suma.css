@@ -1,0 +1,35 @@
+div{
+  width: 32.8%;
+  margin: auto;
+  margin-top: 50px;
+}
+body{
+  margin: center;
+}
+input{
+  background-color: salmon;
+  opacity: 50%;
+}
+label{
+  font-family: courier;
+}
+button{
+  font-family: courier;
+  border-color: salmon;
+  margin-left: 10px;
+  padding: 10px;
+}
+#parrafo{
+  font-family: courier;
+  padding: 10px;
+  border: solid salmon;
+  opacity: 90%;
+  margin: 1 auto;
+  text-align: center;
+}
+span{
+  font-family: courier;
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+}
