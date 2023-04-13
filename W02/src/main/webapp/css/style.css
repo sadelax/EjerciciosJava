@@ -1,0 +1,18 @@
+
+p{
+	text-align: center;
+}
+.cajas{
+	font-family: courier;
+	border: 1px solid;
+	margin: 30px;
+}
+#caja1{
+	background-color: salmon;
+}
+#caja2{
+	background-color: tan;
+}
+#caja3{
+	background-color: turquoise;
+}

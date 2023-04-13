@@ -1,0 +1,32 @@
+p{
+	text-align: center;
+}
+#cont_principal{
+	border: 3px solid;
+	background-color: navajowhite;
+	width: 300px;
+	height: 300px;
+}
+.cajas{
+	font-family: courier;
+	border: 1px solid;
+  float: left;
+	padding: 30px;
+	position: absolute;
+	opacity: 0.75;
+}
+#caja1{
+	background-color: salmon;
+	top: 30px;
+	left: 30px;
+}
+#caja2{
+	background-color: mediumpurple;
+	top: 50px;
+	left: 50px;
+}
+#caja3{
+	background-color: turquoise;
+	top: 70px;
+	left: 70px;
+}

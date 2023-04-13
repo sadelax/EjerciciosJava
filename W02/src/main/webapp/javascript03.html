@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ponga el título</title>
+	<link rel = "stylesheet" href="">
+	<style>
+	</style>
+	<script type="text/javascript">
+		var h3;
+		var boton;
+		var estado = 0;
+		
+		function cambia(){
+			if(estado == 0){
+				h3.textContent = "encendido";
+				estado = 1;
+				boton.textContent = "apagar";
+			} else {
+				h3.textContent = "apagado";
+				estado = 0;
+				boton.textContent = "encender";
+			}
+		}
+		
+		window.onload = function(){
+			h3 = document.getElementById("h3_mensaje");
+			boton = document.getElementById("btn_cambia");
+			boton.onclick = cambia;
+		};
+	</script>
+</head>
+<body>
+	<div>
+		<h3 id="h3_mensaje">____</h3>
+		<button id="btn_cambia">Encender</button>
+	</div>
+</body>
+</html>

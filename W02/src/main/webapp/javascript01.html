@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ponga el título</title>
+	<link rel = "stylesheet" href="">
+	<style>
+	</style>
+	<script type="text/javascript">
+		function saluda(){
+			alert("tu fiel admirador");		
+		}
+		
+		window.onload = function(){
+			var boton = document.getElementById("btn_saludo");
+			boton.onclick = saluda;
+			
+			document.getElementById("btn_escribe").onclick = function(){
+				document.getElementById("p_mensaje").textContent = "hoy es noche de";
+			};
+		}
+	
+	</script>
+</head>
+
+<body>
+	<div>
+		<h1>hola q tal soy el xico de las poesias</h1>
+		<button id="btn_saludo" onclick="btn_saludo();">Saludar</button>
+		<button id="btn_escribe" onclick="btn_escribe();">Escribir</button>
+		<p id="p_mensaje">el q no te conocía</p>
+	</div>
+</body>
+</html>
