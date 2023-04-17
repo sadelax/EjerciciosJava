@@ -1,12 +1,11 @@
 #cuerpo{
   border: 2px solid #ccc;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   width: 300px;
   margin: auto;
   padding: 10px;
 }
-
 h2{
   text-align: center;
   font-family: courier;
@@ -19,12 +18,23 @@ input{
   padding: 5px;
   font-family: courier;
 }
-button{
+.boton{
   border-radius: 5px;
   display: block;
   margin: auto;
   width: 59%;
   padding: 5px;
   background-color: salmon;
+  opacity: 70%;
+  font-family: courier;
+}
+.boton:hover{
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: salmon;
+  opacity: 100%;
   font-family: courier;
 }
