@@ -1,4 +1,4 @@
-#cuerpo{
+#formulario{
   border: 2px solid #ccc;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
@@ -6,7 +6,7 @@
   margin: auto;
   padding: 10px;
 }
-h2{
+#cabecera{
   text-align: center;
   font-family: courier;
   margin-top: 50px;
@@ -37,4 +37,15 @@ input{
   background-color: salmon;
   opacity: 100%;
   font-family: courier;
+}
+
+#cuerpo{
+	text-align: center;
+	font-family: courier;
+}
+
+img{
+	width: 70%;
+	margin: auto;
+	border: solid 1px black;
 }
