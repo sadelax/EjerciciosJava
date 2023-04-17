@@ -1,0 +1,27 @@
+#cuerpo{
+  border: 1px solid black;
+  border-image: linear-gradient(45deg, turquoise, purple) 1;
+  width: 300px;
+  margin: auto;
+  padding: 10px;
+}
+
+h2{
+  text-align: center;
+  font-family: courier;
+  margin-top: 50px;
+}
+input{
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  font-family: courier;
+}
+button{
+  display: block;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: salmon;
+  font-family: courier;
+}

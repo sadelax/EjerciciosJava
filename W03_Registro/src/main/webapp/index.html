@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="src/index.css">
+	<style>
+		#cuerpo{
+			border: 1px solid black;
+			border-image: linear-gradient(45deg, turquoise, purple) 1;
+			width: 300px;
+			margin: auto;
+			padding: 10px;
+		}
+
+		h2{
+			text-align: center;
+			font-family: courier;
+			margin-top: 50px;
+		}
+		input{
+			display: block;
+			margin: 10px auto;
+			padding: 5px;
+			font-family: courier;
+		}
+		button{
+			display: block;
+			margin: auto;
+			width: 59%;
+			padding: 5px;
+			background-color: salmon;
+			font-family: courier;
+		}
+	</style>
+</head>
+<body>
+	<form action="" method="post"></form>
+	<div id="cabecera">
+		<h2>acceso usuarios</h2>
+		<div id="cuerpo">
+			<input type="text" name="nombre" placeholder="nombre" required="required"></input>
+			<input type="text" name="usuario" placeholder="usuario" required="required"></input>
+			<input type="text" name="password" placeholder="password" required="required"></input>
+			<input type="text" name="password-bis" placeholder="repita password" required="required"></input>
+			<div id="botones">
+				<button type="submit">login</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
