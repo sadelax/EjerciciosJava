@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario</title>
+<link rel="stylesheet" href="">
+<style>
+</style>
+</head>
+<body>
+	<form action="" method="post" autocomplete="off">
+		<div id="controles">
+			<h2>Formulario</h2>
+			<div id="controlIzq">
+				<label for="usuario">usuario</label>
+				<input type="text" name="usuario" placeholder="Ingrese usuario" required="required" />
+				
+				<label for="password">password</label>
+				<input type="password" name="password" required="required" />
+				
+				<label for="anyo_nac">fecha de nacimiento</label>
+				<input type="number" name="anyo_nac" value="1981" min="1900" max="2023" title="fecha_nacimiento"
+				autofocus="autofocus"/>
+				
+				<label for="fecha_pedido">fecha del pedido</label>
+				<input type="date" name="fecha_pedido" />
+				
+				<label for="email">email</label>
+				<input type="email" name="email" />
+				
+				<label for="cp">codigo postal</label>
+				<input type="text" name="cp" pattern= "[0-9]{5}" title= "5 digitos numericos"/>
+				
+				<label for="color">color</label>
+				<input type="color" name="color" />
+				
+				seleccione fichero: <input type="file" name="img" >
+				
+				<label for="prov"> provincia</label>
+				<select name ="provincia" id="prov">
+					<option value="28">madrid </option> 
+					<option value="82">barcelona </option> 
+					<option value="41">sevilla </option> 
+					<option value="69">cadiz </option> 
+				</select>
+				
+				<input type="radio" name="e_civil" id="soltero" value="s"> 
+				<label for="soltero">soltero</label>
+
+				<input type="radio" name="e_civil" id="casado" value="s"> 
+				<label for="casado">casado</label>
+
+				<input type="radio" name="e_civil" id="otro" value="o"> 
+				<label for="otro">otro</label>
+
+				<label for="dias">dias preferidos</label>
+				<select name="dias" id="dias" multiple="multiple">
+					<option value="l">lunes</option>
+					<option value="m">martes</option>
+					<option value="x">miercoles</option>
+					<option value="j">jueves</option>
+					<option value="v">viernes</option>
+				</select>
+
+				<label for="tit">titulacion</label>
+				<input type="a" name="tit" id="tit" list="lista_tit">
+				<datalist id="lista_tit">
+					<option label="informatica" value="informatica"></option>
+					<option label="medicina" value="medicina"></option>
+					<option label="derecho" value="derecho"></option>
+					<option label="biologia" value="biologia"></option>
+				</datalist>
+
+				<label for="publi">acepto los terminos y condiciones</label>
+				<input type="checkbox" name="publicidad" value="si" id="publi" required="required">
+				<textarea name="" id="" cols="30" rows="10"></textarea>
+				
+			</div>
+			<div id="botones">
+				<button type="submit" >Enviar</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

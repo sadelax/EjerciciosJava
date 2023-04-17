@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tablas</title>
+<link rel="stylesheet" href="">
+<style>
+
+body{
+
+	
+	font-family:Helvetica;
+	background-image: url(https://img.freepik.com/foto-gratis/fondo-papel-pastel-grunge-aranazos-pliegues_1048-12285.jpg?w=826&t=st=1681491962~exp=1681492562~hmac=14c9eebb6bb1d3ebaf2d928b78ca0d9bd7e48b0e602c6b719fd8760ca06000c2);
+	background-size: cover;  
+}
+
+table{
+
+	width: 50%;
+	border: 2px solid; 
+	margin: 30px auto;
+	box-shadow: 15px 15px 20px aquamarine
+	
+}
+
+caption{
+  font-size: 2em;	
+	margin: 10px;
+	font-weight: bold;
+	border: 3px solid;
+	background-color: white;
+	
+}
+
+thead th, tfoot {
+	
+	background-color: magenta;
+	font-size: 1.2em;
+	text-align: center;
+	
+}
+
+td, th{
+	padding: 5px 20px 10px;
+	border: 2px dotted;
+	
+	
+}
+tbody tr:nth-child(odd){
+	background-color: pink;
+	
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+	<table id="tablaDatos" class="datos">
+		<caption>Listado Clientes</caption>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+				<th>Ciudad</th>
+				<th>Saldo</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>José</td>
+				<td>Martín</td>
+				<td>Alcobendas</td>
+				<td>179,50</td>
+			</tr>
+			<tr>
+				<td>Fabio</td>
+				<td>McNamara</td>
+				<td>Villaverde Bajo</td>
+				<td>80000000</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>
+				Cantidad de Clientes: 4
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>
