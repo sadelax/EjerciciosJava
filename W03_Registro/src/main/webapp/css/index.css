@@ -6,11 +6,13 @@
   margin: auto;
   padding: 10px;
 }
+
 #cabecera{
   text-align: center;
   font-family: courier;
   margin-top: 50px;
 }
+
 input{
   border-radius: 5px;
   display: block;
@@ -18,6 +20,7 @@ input{
   padding: 5px;
   font-family: courier;
 }
+
 .boton{
   border-radius: 5px;
   display: block;
@@ -28,6 +31,7 @@ input{
   opacity: 70%;
   font-family: courier;
 }
+
 .boton:hover{
   border-radius: 5px;
   display: block;
@@ -44,8 +48,35 @@ input{
 	font-family: courier;
 }
 
+p{
+  width: 75%;
+  margin: auto;
+}
+
 img{
+  opacity: 0%;
 	width: 70%;
-	margin: auto;
+	margin: 20px auto;
 	border: solid 1px black;
 }
+
+img:hover{
+  opacity: 100%;
+	width: 70%;
+	margin: 20px auto;
+	border: solid 1px black;
+}
+
+span{
+  font-family: lucida console;
+  font-weight: bold;
+  color: purple;
+}
+
+p#error{
+  margin: 10px auto;
+  font-family: courier;
+	color: red;
+	text-align: center;
+	font-size: 0.9em;
+  }

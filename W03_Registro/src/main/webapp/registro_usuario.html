@@ -6,21 +6,49 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/index.css">
+	<script>
+
+		function validaForm(ev){
+			
+			ev.preventDefault();
+			console.log("has hecho submit");
+
+			var nombre = document.getElementById("name").value;
+			var usuario = document.getElementById("user").value;
+			var pwd = document.getElementById("pwd").value;
+			var pwd2 = document.getElementById("pwd2").value;
+			var error = document.getElementById("error");
+
+			if(!nombre.trim() || !usuario.trim() || !pwd.trim() || !pwd2.trim()) {
+				error.textContent = "todos los campos son obligatorios";
+			} else if(pwd != pwd2) {
+				error.textContent = "las password no coinciden";
+			} else {
+				error.textContent = "";
+				this.submit();				
+			}
+		}
+
+		window.onload = function(){
+			document.getElementById("frm_reg").addEventListener("submit", validaForm);
+		}
+	</script>
 </head>
 <body>
 	<div id="cabecera">
 		<h2>&#11088; acceso usuarios &#11088;</h2>
 	</div>
 	<div id="formulario">
-		<form action="registro_usuario" method="post" autocomplete="off">
-			<input type="text" name="nombre" placeholder="nombre" required="required"></input>
-			<input type="text" name="usuario" placeholder="usuario" required="required"></input>
-			<input type="password" name="password" placeholder="password" required="required"></input>
-			<input type="password" name="password-bis" placeholder="repita password" required="required"></input>
+		<form id="frm_reg" action="registro_usuario_jsp" method="post" autocomplete="off">
+			<input id="name" type="text" name="nombre" placeholder="nombre"></input>
+			<input id="user" type="text" name="usuario" placeholder="usuario"></input>
+			<input id="pwd" type="password" name="password" placeholder="password"></input>
+			<input id="pwd2" type="password" name="password-bis" placeholder="repita password"></input>
 			<div id="botones">
 				<input class="boton" type="submit" value="login">
 			</div>
 		</form>
+		<p id="error"></p>
 	</div>
 </body>
 </html>
