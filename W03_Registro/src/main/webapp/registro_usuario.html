@@ -8,30 +8,30 @@
 	<link rel="stylesheet" href="css/index.css">
 	<script>
 
-		function validaForm(ev){
-			
-			ev.preventDefault();
-			console.log("has hecho submit");
+// 		function validaForm(ev){
 
-			var nombre = document.getElementById("name").value;
-			var usuario = document.getElementById("user").value;
-			var pwd = document.getElementById("pwd").value;
-			var pwd2 = document.getElementById("pwd2").value;
-			var error = document.getElementById("error");
+// 			ev.preventDefault();
+// 			console.log("has hecho submit");
 
-			if(!nombre.trim() || !usuario.trim() || !pwd.trim() || !pwd2.trim()) {
-				error.textContent = "todos los campos son obligatorios";
-			} else if(pwd != pwd2) {
-				error.textContent = "las password no coinciden";
-			} else {
-				error.textContent = "";
-				this.submit();				
-			}
-		}
+// 			var nombre = document.getElementById("name").value;
+// 			var usuario = document.getElementById("user").value;
+// 			var pwd = document.getElementById("pwd").value;
+// 			var pwd2 = document.getElementById("pwd2").value;
+// 			var error = document.getElementById("error");
 
-		window.onload = function(){
-			document.getElementById("frm_reg").addEventListener("submit", validaForm);
-		}
+// 			if(!nombre.trim() || !usuario.trim() || !pwd.trim() || !pwd2.trim()) {
+// 				error.textContent = "todos los campos son obligatorios";
+// 			} else if(pwd != pwd2) {
+// 				error.textContent = "las password no coinciden";
+// 			} else {
+// 				error.textContent = "";
+// 				this.submit();				
+// 			}
+// 		}
+
+		// window.onload = function(){
+		// 	document.getElementById("frm_reg").addEventListener("submit", validaForm);
+		// }
 	</script>
 </head>
 <body>

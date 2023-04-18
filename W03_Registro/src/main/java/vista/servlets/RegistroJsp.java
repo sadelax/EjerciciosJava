@@ -25,15 +25,22 @@ public class RegistroJsp extends HttpServlet {
 		if(isNotEmpty(nombre) && isNotEmpty(usuario) && isNotEmpty(password) && isNotEmpty(password2)) {
 			if(password.equals(password2)) {
 				// registro correcto
+
+				// queremos reenviar la petición al jsp
+				// quiero pasarle el nombre y el usuario
 				req.setAttribute("nombre", nombre);
 				req.setAttribute("usuario", usuario);
 				
 				req.getRequestDispatcher("WEB-INF/vistas/registro_ok.jsp").forward(req, resp);
 			} else {
-				out.println("las passwords no son iguales");
+				// out.println("las passwords no son iguales");
+				req.setAttribute("error", "pass");
+				req.getRequestDispatcher("WEB-INF/vistas/registro_error.jsp").forward(req, resp);
 			}
 		} else {
-			out.println("todos los campos son obligatorios");
+			// out.println("todos los campos son obligatorios");
+			req.setAttribute("error", "oblig");
+			req.getRequestDispatcher("WEB-INF/vistas/registro_error.jsp").forward(req, resp);
 		}
 	}
 	

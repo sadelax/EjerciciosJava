@@ -1,4 +1,9 @@
+body{
+  background-color: #fdfd96;
+}
+
 #formulario{
+  background-color: white;
   border: 2px solid #ccc;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
@@ -14,6 +19,19 @@
 }
 
 input{
+  color: black;
+  border-radius: 5px;
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  font-family: courier;
+  transition: all 1s ease;
+}
+
+input:hover{
+  background-color: grey;
+  color: white;
+  opacity: 50%;
   border-radius: 5px;
   display: block;
   margin: 10px auto;
@@ -30,6 +48,8 @@ input{
   background-color: salmon;
   opacity: 70%;
   font-family: courier;
+  font-size: 30px;
+  transition: all 2s linear;
 }
 
 .boton:hover{
@@ -41,6 +61,7 @@ input{
   background-color: salmon;
   opacity: 100%;
   font-family: courier;
+  font-size: 30px;
 }
 
 #cuerpo{
@@ -79,4 +100,13 @@ p#error{
 	color: red;
 	text-align: center;
 	font-size: 0.9em;
-  }
+}
+
+p#campos_obligatorios{
+  transition: all 2s linear;
+}
+
+p#campos_obligatorios:hover{
+  color: red;
+  font-size: 40px;
+}

@@ -24,7 +24,7 @@ public class Registro extends HttpServlet {
 		
 		if(isNotEmpty(nombre) && isNotEmpty(usuario) && isNotEmpty(password) && isNotEmpty(password2)) {
 			if(password.equals(password2)) {
-				out.println(nombre + " te has registrado con exito");
+				out.println(nombre + " te has registrado con éxito");
 				out.println("tu usuario es " + usuario);
 			} else {
 				out.println("las passwords no son iguales");
