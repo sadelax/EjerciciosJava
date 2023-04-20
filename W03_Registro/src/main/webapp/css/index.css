@@ -1,3 +1,7 @@
+*{
+  box-sizing: border-box;
+  font-family: courier;
+}
 body{
   background-color: #fdfd96;
 }
@@ -12,13 +16,39 @@ body{
   padding: 10px;
 }
 
+#formulario_reg{
+  background-color:   #ffee58;
+  border: 2px solid  #ffee58;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  width: 70%;
+  margin: auto;
+  padding: 10px;
+}
+
+#registro_ok{
+  text-align: center;
+  background-color:   #ffee58;
+  border: 2px solid  #ffee58;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  width: 70%;
+  margin: auto;
+  padding: 10px;
+}
+a{
+  color: black;
+}
+
 #cabecera{
   text-align: center;
   font-family: courier;
+  font-size: 30px;
   margin-top: 50px;
 }
 
 input{
+  width: 75%;
   color: black;
   border-radius: 5px;
   display: block;
@@ -29,6 +59,7 @@ input{
 }
 
 input:hover{
+    width: 75%;
   background-color: grey;
   color: white;
   opacity: 50%;
@@ -39,7 +70,7 @@ input:hover{
   font-family: courier;
 }
 
-.boton{
+#login{
   border-radius: 5px;
   display: block;
   margin: auto;
@@ -52,16 +83,21 @@ input:hover{
   transition: all 2s linear;
 }
 
-.boton:hover{
+#login:hover{
   border-radius: 5px;
   display: block;
   margin: auto;
   width: 59%;
   padding: 5px;
   background-color: salmon;
+  color: black;
   opacity: 100%;
   font-family: courier;
   font-size: 30px;
+}
+#botones > p{
+  text-align: center;
+  margin-top: 10px;
 }
 
 #cuerpo{
@@ -75,16 +111,19 @@ p{
 }
 
 img{
-  opacity: 0%;
-	width: 70%;
+  opacity: 5%;
+	width: 50%;
 	margin: 20px auto;
 	border: solid 1px black;
+  border-radius: 50px;
+  transition: all 1s ease;
 }
 
 img:hover{
   opacity: 100%;
-	width: 70%;
+	width: 60%;
 	margin: 20px auto;
+  border-radius: 50px;
 	border: solid 1px black;
 }
 
