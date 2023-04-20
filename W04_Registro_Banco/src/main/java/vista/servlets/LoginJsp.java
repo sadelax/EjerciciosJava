@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Usuario;
 import persistencia.UsuarioDao;
 import persistencia.UsuarioDaoJpa;
 
@@ -25,29 +26,19 @@ public class LoginJsp extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String usuario = req.getParameter("usuario");
 		String password = req.getParameter("password");
-		String password2 = req.getParameter("password-bis");
 		
-		if(isNotEmpty(usuario) && isNotEmpty(password) && isNotEmpty(password2)) {
-			if(password.equals(password2)) {
-
-				// VALIDAR desde la bbdd
-				 userDao.valida(usuario, password);
-
-				// registro correcto
-				// queremos reenviar la petición al jsp
-				// quiero pasarle el nombre y el usuario
-				req.setAttribute("usuario", usuario);
-				
+		Usuario existente = userDao.valida(usuario, password);
+		
+		if(isNotEmpty(usuario) && isNotEmpty(password)) {
+			if(existente != null) {
 				req.getRequestDispatcher("WEB-INF/vistas/index.jsp").forward(req, resp);
 			} else {
-				// out.println("las passwords no son iguales");
-				req.setAttribute("error", "pass");
-				req.getRequestDispatcher("WEB-INF/vistas/registro_error.jsp").forward(req, resp);
+				req.setAttribute("error", "inexistente");
+				req.getRequestDispatcher("WEB-INF/vistas/login_error.jsp").forward(req, resp);
 			}
 		} else {
-			// out.println("todos los campos son obligatorios");
-			req.setAttribute("error", "oblig");
-			req.getRequestDispatcher("WEB-INF/vistas/registro_error.jsp").forward(req, resp);
+				req.setAttribute("error", "oblig");
+				req.getRequestDispatcher("WEB-INF/vistas/login_error.jsp").forward(req, resp);
 		}
 	}
 	

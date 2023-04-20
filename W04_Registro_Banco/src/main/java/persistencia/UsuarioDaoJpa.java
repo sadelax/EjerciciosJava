@@ -29,7 +29,6 @@ public class UsuarioDaoJpa implements UsuarioDao {
 		} catch (NoResultException e) {
 			u = null;
 		}
-		u = q.getSingleResult();
 		em.close();
 		return u;
 	}
