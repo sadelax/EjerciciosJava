@@ -31,14 +31,15 @@ public class LoginJsp extends HttpServlet {
 		
 		if(isNotEmpty(usuario) && isNotEmpty(password)) {
 			if(existente != null) {
-				req.getRequestDispatcher("WEB-INF/vistas/index.jsp").forward(req, resp);
+				resp.sendRedirect("index");
+//				req.getRequestDispatcher("WEB-INF/vistas/index.jsp").forward(req, resp);
 			} else {
-				req.setAttribute("error", "inexistente");
+				req.getSession().setAttribute("error", "inexistente");
 				req.getRequestDispatcher("WEB-INF/vistas/login_error.jsp").forward(req, resp);
 			}
 		} else {
-				req.setAttribute("error", "oblig");
-				req.getRequestDispatcher("WEB-INF/vistas/login_error.jsp").forward(req, resp);
+			req.getSession().setAttribute("error", "oblig");
+			req.getRequestDispatcher("WEB-INF/vistas/login_error.jsp").forward(req, resp);
 		}
 	}
 	
