@@ -1,11 +1,12 @@
-package persistencia;
+package main.java.persistencia;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import modelo.Usuario;
-import util.EMF;
+import main.java.modelo.Usuario;
+import main.java.util.EMF;
+
 
 public class UsuarioDaoJpa implements UsuarioDao {
 	

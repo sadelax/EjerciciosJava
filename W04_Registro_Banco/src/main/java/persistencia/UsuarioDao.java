@@ -1,6 +1,6 @@
-package persistencia;
+package main.java.persistencia;
 
-import modelo.Usuario;
+import main.java.modelo.Usuario;
 
 public interface UsuarioDao{
 

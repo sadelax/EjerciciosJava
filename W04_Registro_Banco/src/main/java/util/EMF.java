@@ -1,4 +1,4 @@
-package util;
+package main.java.util;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

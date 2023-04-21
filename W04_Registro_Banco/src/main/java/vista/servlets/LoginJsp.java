@@ -1,4 +1,4 @@
-package vista.servlets;
+package main.java.vista.servlets;
 
 import java.io.IOException;
 
@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Usuario;
-import persistencia.UsuarioDao;
-import persistencia.UsuarioDaoJpa;
+import main.java.modelo.Usuario;
+import main.java.persistencia.UsuarioDao;
+import main.java.persistencia.UsuarioDaoJpa;
+
 
 @WebServlet("/login_usuario")
 @SuppressWarnings("serial")
