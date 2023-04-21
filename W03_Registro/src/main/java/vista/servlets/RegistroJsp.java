@@ -1,4 +1,4 @@
-package vista.servlets;
+package main.java.vista.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
