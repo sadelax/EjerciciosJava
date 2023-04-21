@@ -36,11 +36,11 @@ public class LoginJsp extends HttpServlet {
 //				req.getRequestDispatcher("WEB-INF/vistas/index.jsp").forward(req, resp);
 			} else {
 				req.getSession().setAttribute("error", "inexistente");
-				req.getRequestDispatcher("WEB-INF/vistas/login_error.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/vistas/login_error.jsp").forward(req, resp);
 			}
 		} else {
 			req.getSession().setAttribute("error", "oblig");
-			req.getRequestDispatcher("WEB-INF/vistas/login_error.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/vistas/login_error.jsp").forward(req, resp);
 		}
 	}
 	

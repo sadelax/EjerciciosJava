@@ -45,12 +45,12 @@ public class RegistroJsp extends HttpServlet {
 			} else {
 				// out.println("las passwords no son iguales");
 				req.setAttribute("error", "pass");
-				req.getRequestDispatcher("WEB-INF/vistas/registro_error.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/vistas/registro_error.jsp").forward(req, resp);
 			}
 		} else {
 			// out.println("todos los campos son obligatorios");
 			req.setAttribute("error", "oblig");
-			req.getRequestDispatcher("WEB-INF/vistas/registro_error.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/vistas/registro_error.jsp").forward(req, resp);
 		}
 	}
 	
