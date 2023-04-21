@@ -31,6 +31,7 @@ public class LoginJsp extends HttpServlet {
 		
 		if(isNotEmpty(usuario) && isNotEmpty(password)) {
 			if(existente != null) {
+				req.getSession().setAttribute("usuario", usuario);
 				resp.sendRedirect("index");
 //				req.getRequestDispatcher("WEB-INF/vistas/index.jsp").forward(req, resp);
 			} else {
