@@ -29,9 +29,9 @@
  			}
  		}
 
-		window.onload = function(){
-			document.getElementById("frm_log").addEventListener("submit", validaForm);
-		}
+// 		window.onload = function(){
+// 			document.getElementById("frm_log").addEventListener("submit", validaForm);
+// 		}
 	</script>
 </head>
 <body>
@@ -40,14 +40,23 @@
 	</div>
 	<div id="formulario">
 		<form id="frm_log" action="${home}/login" method="post" autocomplete="off">
-			<input id="user" type="text" name="usuario" placeholder="usuario"></input>
-			<input id="pwd" type="password" name="password" placeholder="password"></input>
+			<input id="user" type="text" name="usuario" placeholder="usuario (*)"></input>
+			<input id="pwd" type="password" name="password" placeholder="password (*)"></input>
 			<div id="botones">
 				<input id="login" class="boton" type="submit" value="login">
-				<p>no estÃ¡s registrado? <a href="registro.html">regÃ­strate</a>.</p>
+				<p>no estás registrado? <a href="${home}/registro_usuario">regístrate</a>.</p>
 			</div>
 		</form>
-		<p id="error"></p>
+		<p id="error">
+		<c:choose>
+				<c:when test="${error eq 'no_login'}">
+					usuario y/o contraseña incorrectos
+				</c:when>
+				<c:when test="${error eq 'login_vacios'}">
+					(*) campos obligatorios
+				</c:when>
+			</c:choose>
+		</p>
 	</div>
 </body>
 </html>

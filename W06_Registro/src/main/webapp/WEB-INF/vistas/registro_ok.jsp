@@ -8,24 +8,16 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>menú principal</title>
+	<title>Felicidades!</title>
 	<link rel="stylesheet" href="${css}/index.css">
-	<script>
-	
-	</script>
 </head>
 <body>
-	<div class="cabecera">
-		<h2>menú principal</h2>
+	<div id="cabecera">
+		<h2><c:out value="${usuarioNuevo.nombre}" />, te has registrado con éxito.</h2>
 	</div>
-	<div class="cuerpo">
-		<ul>
-			<li><a href="${home}/listado_usuarios">listado de empleados</a></li>
-			<li><a href="${home}/nominas">liquidación de nóminas</a></li>
-			<hr>
-			<li><a href="${home}/cerrar_sesion">cerrar sesión</a></li>
-		</ul>
-
+	<div id="registro_ok">
+		<p>valida tu información en el e-mail que te hemos enviado y vuelve a loguearte.</p>
+		<a href="${home}/login">login</a>
 	</div>
 </body>
 </html>

@@ -17,14 +17,13 @@
 			ev.preventDefault();
  			console.log("has hecho submit");
 
-			var nombre = document.getElementById("name").value;
+			var nombre = document.getElementById("nombre").value;
  			var usuario = document.getElementById("user").value;
- 			var email = document.getElementById("email").value;
  			var pwd = document.getElementById("pwd").value;
  			var pwd2 = document.getElementById("pwd2").value;
  			var error = document.getElementById("error");
 
- 			if(!nombre.trim() || !usuario.trim() || !email.trim() || !pwd.trim() || !pwd2.trim()) {
+ 			if(!nombre.trim() || !usuario.trim() || !pwd.trim() || !pwd2.trim()) {
  				error.textContent = "todos los campos son obligatorios";
  			} else if(pwd != pwd2) {
  				error.textContent = "las password no coinciden";
@@ -34,9 +33,9 @@
  			}
  		}
 
-		window.onload = function(){
-			document.getElementById("frm_reg").addEventListener("submit", validaForm);
-		}
+// 		window.onload = function(){
+// 			document.getElementById("frm_reg").addEventListener("submit", validaForm);
+// 		}
 	</script>
 </head>
 <body>
@@ -45,19 +44,25 @@
 	</div>
 	<div id="formulario_reg">
 		<form id="frm_reg" action="${home}/registro_usuario" method="post" autocomplete="off">
-			<input class="input_reg" id="nombre (*)" type="text" name="nombre" placeholder="nombre" required="required"></input>
-			<input class="input_reg" id="user (*)" type="text" name="usuario" placeholder="usuario" required="required"></input>
-			<input class="input_reg" id="email (*)" type="text" name="email" placeholder="e-mail" required="required"></input>
-			<input class="input_reg" id="ciudad" type="text" name="ciudad" placeholder="ciudad"></input>
-			<input class="input_reg" id="pais" type="text" name="pais" placeholder="paÃ­s"></input>
-			<input class="input_reg" id="pwd (*)" type="password" name="password" placeholder="password" required="required"></input>
-			<input class="input_reg" id="pwd2 (*)" type="password" name="password-bis" placeholder="repita password" required="required"></input>
+			<input class="input_reg" id="nombre" type="text" name="nombre" placeholder="nombre (*)"></input>
+			<input class="input_reg" id="user" type="text" name="usuario" placeholder="usuario(*)"></input>
+			<input class="input_reg" id="pwd" type="password" name="password" placeholder="password(*)"></input>
+			<input class="input_reg" id="pwd2" type="password" name="password-bis" placeholder="repita password(*)"></input>
 			<div id="botones">
-				<input id="login" class="boton" type="submit" value="registrarme">
-				<p><a href="${home}/login">volver a la pÃ¡gina de login</a>.</p>
+				<input id="login" class="boton" type="submit" value="registro">
+				<p><a href="${home}/login">volver a la página de login</a>.</p>
 			</div>
 		</form>
-		<p id="error"></p>
+		<p id="error">
+			<c:choose>
+				<c:when test="${error eq 'existe'}">
+					el usuario ya existe
+				</c:when>
+				<c:when test="${error eq 'passwords' or error eq 'vacios'}">
+					no te hagas el listo!!!!111
+				</c:when>
+			</c:choose>
+		</p>
 	</div>
 </body>
 </html>
