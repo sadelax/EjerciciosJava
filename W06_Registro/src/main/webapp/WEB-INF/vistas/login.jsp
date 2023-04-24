@@ -9,7 +9,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>login</title>
-	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="${css}/index.css">
 	<script>
 
  		function validaForm(ev){
@@ -39,7 +39,7 @@
 		<h2>&#11088; acceso usuarios &#11088;</h2>
 	</div>
 	<div id="formulario">
-		<form id="frm_log" action="login_usuario" method="post" autocomplete="off">
+		<form id="frm_log" action="${home}/login" method="post" autocomplete="off">
 			<input id="user" type="text" name="usuario" placeholder="usuario"></input>
 			<input id="pwd" type="password" name="password" placeholder="password"></input>
 			<div id="botones">
