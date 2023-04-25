@@ -1,5 +1,7 @@
 package persistencia;
 
+import java.util.Set;
+
 import modelo.Usuario;
 
 public interface UsuarioDao{
@@ -10,4 +12,6 @@ public interface UsuarioDao{
 	Usuario valida(String usuario, String password);
 	
 	boolean save(Usuario usuario);
+	
+	public Set<Usuario> findAll();
 }

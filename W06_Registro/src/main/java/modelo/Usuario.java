@@ -1,5 +1,8 @@
 package modelo;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements Serializable, Comparable<Usuario> {
 
 	@Id
 	@Column(name = "Id_usuario")
@@ -61,6 +64,31 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "[" + idUsuario + ", " + user + "]";
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(idUsuario, user);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if(idUsuario == 0 || other.idUsuario == 0)
+			return user.equals(other.user);
+		else
+			return idUsuario == other.idUsuario;
+	}
+
+	@Override
+	public int compareTo(Usuario o) {
+		return this.idUsuario - o.idUsuario;
 	}
 	
 	

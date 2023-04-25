@@ -1,6 +1,7 @@
 package vista;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -38,7 +39,10 @@ public class Controller extends HttpServlet {
 				req.getSession().invalidate();
 				req.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(req, resp);
 				break;
-			default:
+			case "/listado_usuarios":
+				Set<Usuario> usuarios = userDao.findAll();
+				req.setAttribute("usuarios", usuarios);
+				req.getRequestDispatcher("/WEB-INF/vistas/listado_usuarios.jsp").forward(req, resp);
 				break;
 			}
 		} else {

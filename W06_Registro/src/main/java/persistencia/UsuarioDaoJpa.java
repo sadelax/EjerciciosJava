@@ -1,5 +1,8 @@
 package persistencia;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -46,5 +49,15 @@ public class UsuarioDaoJpa implements UsuarioDao {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public Set<Usuario> findAll() {
+		String jpql = "SELECT u FROM Usuario u";
+		em = EMF.getEmf().createEntityManager();
+		TypedQuery<Usuario> q = em.createQuery(jpql, Usuario.class);
+		Set<Usuario> resu = new TreeSet<>(q.getResultList());
+		em.close();
+		return resu;
 	}
 }

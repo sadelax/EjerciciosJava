@@ -97,7 +97,7 @@ input:hover{
 }
 #botones > p{
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 #cuerpo{
@@ -145,4 +145,27 @@ p#campos_obligatorios{
 p#campos_obligatorios:hover{
   color: red;
   font-size: 40px;
+}
+
+table#tabla_datos{
+  margin: auto;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-spacing: 0;
+  border-collapse: separate;
+
+}
+tr, th, td{
+  text-align: center;
+  width: 30px;
+  padding: 10px;
+}
+#tabla_datos thead th{
+  border-bottom: 1px solid black;
+}
+#tabla_datos tfoot td{
+  border-top: 1px solid black;
+  background-color: salmon;
 }
