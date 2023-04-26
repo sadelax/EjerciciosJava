@@ -20,6 +20,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	private String password;
 	private String name;
 	private String email;
+	private boolean enabled;
 
 	
 	public Usuario() {}
@@ -68,6 +69,15 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override
