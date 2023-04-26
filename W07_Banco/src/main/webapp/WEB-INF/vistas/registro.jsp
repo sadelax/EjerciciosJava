@@ -46,6 +46,7 @@
 		<form id="frm_reg" action="${home}/registro_usuario" method="post" autocomplete="off">
 			<input class="input_reg" id="nombre" type="text" name="nombre" placeholder="nombre (*)"></input>
 			<input class="input_reg" id="user" type="text" name="usuario" placeholder="usuario(*)"></input>
+			<input class="input_reg" id="email" type="email" name="email" placeholder="email(*)"></input>
 			<input class="input_reg" id="pwd" type="password" name="password" placeholder="password(*)"></input>
 			<input class="input_reg" id="pwd2" type="password" name="password-bis" placeholder="repita password(*)"></input>
 			<div id="botones">

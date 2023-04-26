@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import modelo.Cuenta;
 import modelo.Usuario;
 import util.EMF;
 
@@ -23,7 +24,7 @@ public class UsuarioDaoJpa implements UsuarioDao {
 	public Usuario valida(String usuario, String password) {
 		em = EMF.getEmf().createEntityManager();
 		Usuario u;
-		String jpql = "SELECT u FROM Usuario u WHERE u.user = :usuario AND u.password = :pwd";
+		String jpql = "SELECT u FROM Usuario u WHERE u.username = :usuario AND u.password = :pwd";
 		TypedQuery<Usuario> q = em.createQuery(jpql, Usuario.class);
 		q.setParameter("usuario", usuario);
 		q.setParameter("pwd", password);
@@ -60,4 +61,5 @@ public class UsuarioDaoJpa implements UsuarioDao {
 		em.close();
 		return resu;
 	}
+
 }

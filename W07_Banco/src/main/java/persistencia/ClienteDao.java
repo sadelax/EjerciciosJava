@@ -8,4 +8,6 @@ public interface ClienteDao extends GenericoDao<Integer, Cliente> {
 
 	List<Cliente> findByValue(String valor);
 	
+//	Set<Cuenta> findCuentas(Integer id);
+	
 }

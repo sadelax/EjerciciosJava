@@ -25,10 +25,11 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	
 	public Usuario() {}
 	
-	public Usuario(String nombre, String username, String password) {
-		this.username = username;
-		this.password = password;
+	public Usuario(String nombre, String username, String email, String password) {
 		this.name = nombre;
+		this.username = username;
+		this.email = email;
+		this.password = password;
 	}
 	
 	public int getIdUsuario() {

@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div id="cabecera">
-		<h2><c:out value="${usuarioNuevo.nombre}" />, te has registrado con éxito.</h2>
+		<h2><c:out value="${usuarioNuevo.name}" />, te has registrado con éxito.</h2>
 	</div>
 	<div id="registro_ok">
 		<p>valida tu información en el e-mail que te hemos enviado y vuelve a loguearte.</p>

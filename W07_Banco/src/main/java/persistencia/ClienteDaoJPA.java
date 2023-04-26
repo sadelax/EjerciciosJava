@@ -86,4 +86,14 @@ public class ClienteDaoJPA implements ClienteDao {
 		em.close();
 		return listado;
 	}
+	
+//	@Override
+//	public Set<Cuenta> findCuentas(Integer id) {
+//		String jpql = "SELECT u FROM Usuario u LEFT JOIN FETCH c.cuentas WHERE c.idUsuario = :id";
+//		em = EMF.getEmf().createEntityManager();
+//		TypedQuery<Cuenta> q = em.createQuery(jpql, Cuenta.class);
+//		Set<Cuenta> cuentas = new TreeSet<>(q.getResultList());
+//		em.close();
+//		return cuentas;
+//	}
 }
