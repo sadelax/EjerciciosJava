@@ -161,6 +161,13 @@ tr, th, td{
   text-align: center;
   width: 30px;
   padding: 10px;
+    transition: all 0.5s linear;
+}
+tr:hover{
+  background-color: salmon;
+  text-align: center;
+  width: 30px;
+  padding: 10px;
 }
 #tabla_datos thead th{
   border-bottom: 1px solid black;
