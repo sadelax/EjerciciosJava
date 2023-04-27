@@ -29,7 +29,8 @@ public class ClienteDaoJPA implements ClienteDao {
 
 	@Override
 	public Cliente findById(Integer id) {
-		em = EMF.getEmf().createEntityManager();		Cliente c = em.find(Cliente.class, id);
+		em = EMF.getEmf().createEntityManager();		
+		Cliente c = em.find(Cliente.class, id);
 		em.close();
 		return c;
 	}
@@ -37,7 +38,8 @@ public class ClienteDaoJPA implements ClienteDao {
 	@Override
 	public Cliente findByIdEager(Integer id) {
 		Cliente c;
-		em = EMF.getEmf().createEntityManager();		String jpql = "SELECT c FROM Cliente c LEFT JOIN FETCH c.cuentas WHERE c.idCliente = :id";
+		em = EMF.getEmf().createEntityManager();		
+		String jpql = "SELECT c FROM Cliente c LEFT JOIN FETCH c.cuentas WHERE c.idCliente = :id";
 		TypedQuery<Cliente> q = em.createQuery(jpql, Cliente.class);
 		q.setParameter("id", id);
 		try {
@@ -53,7 +55,8 @@ public class ClienteDaoJPA implements ClienteDao {
 	@Override
 	public Set<Cliente> findAll() {
 		Set<Cliente> listado;
-		em = EMF.getEmf().createEntityManager();		String jpql = "SELECT c FROM Cliente c";
+		em = EMF.getEmf().createEntityManager();		
+		String jpql = "SELECT c FROM Cliente c";
 		TypedQuery<Cliente> q = em.createQuery(jpql, Cliente.class);
 		try {
 			listado = new TreeSet<>(q.getResultList());			
@@ -66,7 +69,8 @@ public class ClienteDaoJPA implements ClienteDao {
 
 	@Override
 	public void delete(Cliente entidad) {
-		em = EMF.getEmf().createEntityManager();		if(entidad != null) {
+		em = EMF.getEmf().createEntityManager();		
+		if(entidad != null) {
 			em.getTransaction().begin();
 			em.remove(entidad);
 			em.getTransaction().commit();
@@ -76,7 +80,8 @@ public class ClienteDaoJPA implements ClienteDao {
 
 	@Override
 	public List<Cliente> findByValue(String valor) {
-		em = EMF.getEmf().createEntityManager();		String jpql = "SELECT c FROM Cliente c WHERE "
+		em = EMF.getEmf().createEntityManager();		
+		String jpql = "SELECT c FROM Cliente c WHERE "
 				+ "c.nombre like :valor OR "
 				+ "c.apellido1 like :valor OR "
 				+ "c.apellido2 like :valor";
@@ -86,14 +91,4 @@ public class ClienteDaoJPA implements ClienteDao {
 		em.close();
 		return listado;
 	}
-	
-//	@Override
-//	public Set<Cuenta> findCuentas(Integer id) {
-//		String jpql = "SELECT u FROM Usuario u LEFT JOIN FETCH c.cuentas WHERE c.idUsuario = :id";
-//		em = EMF.getEmf().createEntityManager();
-//		TypedQuery<Cuenta> q = em.createQuery(jpql, Cuenta.class);
-//		Set<Cuenta> cuentas = new TreeSet<>(q.getResultList());
-//		em.close();
-//		return cuentas;
-//	}
 }

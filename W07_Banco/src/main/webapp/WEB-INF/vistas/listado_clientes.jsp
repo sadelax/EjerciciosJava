@@ -17,13 +17,13 @@
 			location.href = "${home}/cuentas?id="+ id;
 		}
 
-		window.onload = function(){
-			var filas = document.getElementsByClassName("filas_clientes");
-			for (let i = 0; i < filas.length; i++) {
-				filas[i].addEventListener("click", seleccionaCliente);
+// 		window.onload = function(){
+// 			var filas = document.getElementsByClassName("filas_clientes");
+// 			for (let i = 0; i < filas.length; i++) {
+// 				filas[i].addEventListener("click", seleccionaCliente);
 
-			}
-		}
+// 			}
+// 		}
 	</script>
 </head>
 <body>
@@ -52,7 +52,7 @@
 						<td>${cliente.genero}</td>
 						<td>${cliente.municipio}</td>
 						<td>${cliente.provincia}</td>
-						<td><a href="${home}/cuentas">consultar</a></td>
+						<td><a href="${home}/cuentas?id=${cliente.idCliente}">consultar</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

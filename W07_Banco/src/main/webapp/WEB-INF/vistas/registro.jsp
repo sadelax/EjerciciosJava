@@ -56,10 +56,10 @@
 		</form>
 		<p id="error">
 			<c:choose>
-				<c:when test="${error eq 'existe'}">
+				<c:when test="${error eq 'ya_existe'}">
 					el usuario ya existe
 				</c:when>
-				<c:when test="${error eq 'passwords' or error eq 'vacios'}">
+				<c:when test="${error eq 'no_match_pwd' or error eq 'campos_vacios'}">
 					no te hagas el listo!!!!111
 				</c:when>
 			</c:choose>

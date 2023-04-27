@@ -7,11 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import modelo.Cuenta;
 import modelo.Usuario;
 import util.EMF;
 
-public class UsuarioDaoJpa implements UsuarioDao {
+public class UsuarioDaoJPA implements UsuarioDao {
 	
 	EntityManager em;
 

@@ -72,7 +72,7 @@ public class Cuenta {
 
 	@Override
 	public String toString() {
-		return "Cuenta [idCuenta=" + idCuenta + ", numeroCuenta=" + numeroCuenta + ", cliente=" + cliente + "]";
+		return numeroCuenta;
 	}
 	
 	

@@ -15,28 +15,28 @@ import javax.servlet.http.HttpSession;
 
 import modelo.Cliente;
 import modelo.Usuario;
-import persistencia.ClienteDao;
-import persistencia.ClienteDaoJPA;
-import persistencia.UsuarioDao;
-import persistencia.UsuarioDaoJpa;
+import negocio.GestionClientes;
+import negocio.GestionClientesImpl;
+import negocio.GestionUsuarios;
+import negocio.GestionUsuariosImpl;
 
 @WebServlet("/home/*")
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
-
+	
 	private String context;
-	private UsuarioDao ud;
-	private ClienteDao cd;
-
+	private GestionUsuarios negUser;
+	private GestionClientes negCli;
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		String path = req.getPathInfo();
-
-		// acordate q usr_reg lo creo en un setAttribute en el doPost, y dentro hay un
-		// obj Usuario existente
-		if (req.getSession().getAttribute("usr_reg") != null) {
-			switch (path) {
+		
+		// user_reg contiene un obj Usuario existente
+		if (req.getSession().getAttribute("user_reg") != null) {
+			switch(path) {
 			case "/menu_principal":
 				req.getRequestDispatcher("/WEB-INF/vistas/menu_principal.jsp").forward(req, resp);
 				break;
@@ -45,15 +45,26 @@ public class Controller extends HttpServlet {
 				req.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(req, resp);
 				break;
 			case "/listado_usuarios":
-				Set<Usuario> usuarios = ud.findAll();
+				Set<Usuario> usuarios = negUser.findAllUsuarios();
 				req.setAttribute("usuarios", usuarios);
 				req.getRequestDispatcher("/WEB-INF/vistas/listado_usuarios.jsp").forward(req, resp);
 				break;
+			// case listado clientes
 			case "/listado_clientes":
-				Set<Cliente> clientes = cd.findAll();
+				Set<Cliente> clientes = negCli.findAllClientes();
 				req.setAttribute("clientes", clientes);
 				req.getRequestDispatcher("/WEB-INF/vistas/listado_clientes.jsp").forward(req, resp);
 				break;
+			// case cuentas de clientes
+			case "/cuentas":
+				Integer id = Integer.parseInt(req.getParameter("id"));
+				Cliente cli = negCli.cuentasCliente(id);
+				req.setAttribute("cli", cli);
+				req.getRequestDispatcher("/WEB-INF/vistas/cuentas.jsp").forward(req, resp);
+				break;
+			// extractos
+//			case "/extractos":
+//				Integer idCuenta = Integer.parseInt(req.getParameter("id"));
 			}
 		} else {
 			switch (path) {
@@ -64,37 +75,38 @@ public class Controller extends HttpServlet {
 				req.getRequestDispatcher("/WEB-INF/vistas/registro_ok.jsp").forward(req, resp);
 				break;
 			case "/registro_fail":
-				req.getRequestDispatcher("/WEB-INF/vistas/registro.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/vistas/menu_principal.jsp").forward(req, resp);
 				break;
 			default:
 				req.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(req, resp);
 				break;
-			}
+			}	
 		}
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String path = req.getPathInfo();
-
+		
 		HttpSession sesion = req.getSession(true);
-
+		
 		switch (path) {
+		// corcheteo este case porque así no chocan variables q se llaman igual en el próximo case
 		case "/login": {
 			String user = req.getParameter("usuario");
 			String pwd = req.getParameter("password");
 			if (isNotEmpty(user) && isNotEmpty(pwd)) {
-				Usuario userActual = ud.valida(user, pwd);
-				if (userActual != null) {
-					sesion.setAttribute("usr_reg", userActual); // guardo en "usr_reg" el Usuario
+				Usuario logged = negUser.existe(user, pwd);
+				if (logged != null) {
+					sesion.setAttribute("user_reg", logged); // user_reg contiene ahora un objeto Usuario
 					resp.sendRedirect(context + "/home/menu_principal");
 				} else {
-					sesion.setAttribute("error", "no_usr_reg");
+					sesion.setAttribute("error", "no_user_reg");
 					resp.sendRedirect(context + "/home/login");
 				}
 			} else {
-				sesion.setAttribute("error", "campos_login_vacios");
+				sesion.setAttribute("error", "campos_vacios_login");
 				resp.sendRedirect(context + "/home/login");
 			}
 			break;
@@ -105,15 +117,15 @@ public class Controller extends HttpServlet {
 			String email = req.getParameter("email");
 			String pwd = req.getParameter("password");
 			String pwd2 = req.getParameter("password-bis");
-			if (isNotEmpty(nombre) && isNotEmpty(user) && isNotEmpty(pwd) && isNotEmpty(pwd2)) {
+			if (isNotEmpty(nombre) && isNotEmpty(user) && isNotEmpty(email) && isNotEmpty(pwd) && isNotEmpty(pwd2)) {
 				if (pwd.equals(pwd2)) {
 					Usuario nuevo = new Usuario(nombre, user, email, pwd);
-					if (ud.save(nuevo)) {
+					if (negUser.registro(nuevo)) {
 						sesion.setAttribute("usuarioNuevo", nuevo);
 						resp.sendRedirect(context + "/home/registro_ok");
 					} else {
 						sesion.setAttribute("error", "ya_existe");
-						resp.sendRedirect(context + "/home/registro_fail");
+						resp.sendRedirect(context + "/home/registro_fail"); // ojo, es una url, NO es un JSP NUEVO.
 					}
 				} else {
 					sesion.setAttribute("error", "no_match_pwd");
@@ -139,7 +151,7 @@ public class Controller extends HttpServlet {
 		app.setAttribute("css", app.getContextPath() + "/css");
 		app.setAttribute("images", app.getContextPath() + "/images");
 
-		ud = new UsuarioDaoJpa();
-		cd = new ClienteDaoJPA();
+		negUser = new GestionUsuariosImpl();
+		negCli = new GestionClientesImpl();
 	}
 }

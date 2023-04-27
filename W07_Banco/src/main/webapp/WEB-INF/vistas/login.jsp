@@ -49,10 +49,10 @@
 		</form>
 		<p id="error">
 		<c:choose>
-				<c:when test="${error eq 'no_login'}">
+				<c:when test="${error eq 'no_user_reg'}">
 					usuario y/o contraseña incorrectos
 				</c:when>
-				<c:when test="${error eq 'login_vacios'}">
+				<c:when test="${error eq 'campos_vacios_login'}">
 					(*) campos obligatorios
 				</c:when>
 			</c:choose>

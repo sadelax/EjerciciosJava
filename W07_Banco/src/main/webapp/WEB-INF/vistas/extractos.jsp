@@ -8,46 +8,38 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>cuentas asociadas a ${cli.nombre}</title>
+	<title>cuentas asociadas a ${cliente.nombre}</title>
 	<link rel="stylesheet" href="${css}/index.css">
-	<script>
-
-		function seleccionaCliente(ev){
-			var id = ev.currentTarget.id;
-			location.href = "${home}/extractos?id="+ id;
-		}
-
-// 		window.onload = function(){
-// 			var filas = document.getElementsByClassName("filas_clientes");
-// 			for (let i = 0; i < filas.length; i++) {
-// 				filas[i].addEventListener("click", seleccionaCliente);
-
-// 			}
-// 		}
-	</script>
+	
 </head>
 <body>
 	<div id="cabecera">
-		<h2>cuentas</h2>
+		<h2>extractos</h2>
 	</div>
 	<div class="cuerpo">
+		<form action="${home}/extracto" method="get">
+			<input id="anyo" name="anyo" placeholder="año"/>
+			<input id="mes" name="mes" placeholder="mes"/>
+			<input id="extracto" class="boton" type="submit" value="mostrar">
+			
+			<!-- TO-DO A PARTIR DE AQUÍ!!!!111 -->
+		</form>
 		<table id="tabla_datos">
 			<thead>
 				<tr>
-					<th colspan=2>cuentas de ${cli.nombre} ${cli.apellido1} ${cli.apellido2}</th>
+					<th>extracto de ${ext.cuenta}</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="cuenta" items="${cli.cuentas}">
-					<tr id="${cli.cuentas}">
+				<c:forEach var="extracto" items="${ext.cuenta}">
+					<tr>
 						<td>${cuenta}</td>
-						<td><a href="${home}/extractos?id=${cli.cuentas}">consultar extracto</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan=2>cantidad cuentas: ${cli.cuentas.size()}</td>
+					<td colspan=7>cantidad cuentas: ${cli.cuentas.size()}</td>
 				</tr>
 			</tfoot>
 		</table>
@@ -58,6 +50,3 @@
 	</div>
 </body>
 </html>
-
-
-<%-- <td><a href="${home}/cuentas?id=${cliente.idCliente}">consultar</a></td> --%>
