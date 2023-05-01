@@ -40,11 +40,10 @@ public class Cliente implements Comparable<Cliente> {
 	
 	public Cliente() {}
 	
-	public Cliente(String nombre, String apellido1, String nif, Genero sexo, String municipio, String provincia) {
+	public Cliente(String nombre, String apellido1, String nif, String municipio, String provincia) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.nif = nif;
-		this.genero = sexo;
 		this.municipio = municipio;
 		this.provincia = provincia;
 	}
@@ -120,6 +119,7 @@ public class Cliente implements Comparable<Cliente> {
 				+ municipio + ", " + provincia + "]";
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public int compareTo(Cliente o) {
 		if(this.equals(o)) return 0;
@@ -127,5 +127,4 @@ public class Cliente implements Comparable<Cliente> {
 		
 		return col.compare(this.nombre + this.idCliente, o.nombre + o.idCliente);
 	}
-	
 }

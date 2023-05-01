@@ -4,7 +4,7 @@ import java.util.Set;
 
 import modelo.Cliente;
 
-public interface GestionClientes {
+public interface GestionClientes extends GenericoNeg<Integer, Cliente>{
 
 	// mostrar todos los clientes
 	public Set<Cliente> findAllClientes();

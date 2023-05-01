@@ -19,4 +19,15 @@ public class GestionClientesImpl implements GestionClientes {
 	public Cliente cuentasCliente(Integer id) {
 		return clid.findByIdEager(id);
 	}
+
+	@Override
+	public boolean registro(Cliente entidad) {
+		if (entidad != null) {
+			clid.save(entidad);
+			System.out.println(entidad);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

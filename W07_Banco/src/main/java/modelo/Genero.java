@@ -1,5 +1,5 @@
 package modelo;
 
 public enum Genero {
-	M, H
+	M, H, F
 }

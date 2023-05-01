@@ -22,7 +22,7 @@
 		<ul>
 			<li><a href="${home}/listado_usuarios">listado de usuarios</a></li>
 			<li><a href="${home}/listado_clientes">listado de clientes</a></li>
-			<li><a href="${home}/nominas">liquidación de nóminas</a></li>
+			<li><a href="${home}/registro_cliente">registrar nuevo cliente</a></li>
 			<hr>
 			<li><a href="${home}/cerrar_sesion">cerrar sesión</a></li>
 		</ul>

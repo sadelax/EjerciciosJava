@@ -17,15 +17,41 @@ public class ClienteDaoJPA implements ClienteDao {
 	private EntityManager em;
 	
 	@Override
+//	public void save(Cliente entidad) {
+//		em = EMF.getEmf().createEntityManager();
+//		if (entidad.getNif() == null) {
+//			em.getTransaction().begin();
+//			em.merge(entidad);
+//			em.getTransaction().commit();
+//			
+//			System.out.println("cliente mergeeee");
+//		} else {
+//			System.out.println("ya existe dicho nif");
+//			
+//		}
+//		em.close();
+//	}
+	
 	public void save(Cliente entidad) {
-		em = EMF.getEmf().createEntityManager();
-		if (entidad.getNif() == null) {
-			em.getTransaction().begin();
-			em.merge(entidad);
-			em.getTransaction().commit();
-		}
-		em.close();
+	    em = EMF.getEmf().createEntityManager();
+	    try {
+	        TypedQuery<Cliente> query = em.createQuery("SELECT c FROM Cliente c WHERE c.nif = :nif", Cliente.class);
+	        query.setParameter("nif", entidad.getNif());
+	        List<Cliente> resu = query.getResultList();
+	        
+	        if (resu.isEmpty()) {
+	            em.getTransaction().begin();
+	            em.merge(entidad);
+	            em.getTransaction().commit();
+	            System.out.println("cliente mergeeee");
+	        } else {
+	            System.out.println("Ya existe un registro con el mismo NIF.");
+	        }
+	    } finally {
+	        em.close();
+	    }
 	}
+
 
 	@Override
 	public Cliente findById(Integer id) {
@@ -61,6 +87,7 @@ public class ClienteDaoJPA implements ClienteDao {
 		try {
 			listado = new TreeSet<>(q.getResultList());			
 		} catch (Exception e) {
+			e.printStackTrace();
 			listado = null;
 		}
 		em.close();

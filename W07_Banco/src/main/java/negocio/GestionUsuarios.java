@@ -4,7 +4,7 @@ import java.util.Set;
 
 import modelo.Usuario;
 
-public interface GestionUsuarios {
+public interface GestionUsuarios extends GenericoNeg<Integer, Usuario>{
 
 	// recuperar de la bbdd el usuario y la contraseña
 	// deberá retornar el Usuario

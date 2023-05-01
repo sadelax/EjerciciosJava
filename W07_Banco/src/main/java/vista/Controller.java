@@ -62,6 +62,11 @@ public class Controller extends HttpServlet {
 				req.setAttribute("cli", cli);
 				req.getRequestDispatcher("/WEB-INF/vistas/cuentas.jsp").forward(req, resp);
 				break;
+			case "/registro_cliente":
+				req.getRequestDispatcher("/WEB-INF/vistas/registro_cliente.jsp").forward(req, resp);
+				break;
+			case "/registro_cli_ok":
+				req.getRequestDispatcher("/WEB-INF/vistas/registro_cli_ok.jsp").forward(req, resp);
 			// extractos
 //			case "/extractos":
 //				Integer idCuenta = Integer.parseInt(req.getParameter("id"));
@@ -112,11 +117,13 @@ public class Controller extends HttpServlet {
 			break;
 		}
 		case "/registro_usuario":
+		{
 			String nombre = req.getParameter("nombre");
 			String user = req.getParameter("usuario");
 			String email = req.getParameter("email");
 			String pwd = req.getParameter("password");
 			String pwd2 = req.getParameter("password-bis");
+			
 			if (isNotEmpty(nombre) && isNotEmpty(user) && isNotEmpty(email) && isNotEmpty(pwd) && isNotEmpty(pwd2)) {
 				if (pwd.equals(pwd2)) {
 					Usuario nuevo = new Usuario(nombre, user, email, pwd);
@@ -135,6 +142,32 @@ public class Controller extends HttpServlet {
 				sesion.setAttribute("error", "campos_vacios");
 				resp.sendRedirect(context + "/home/registro_fail");
 			}
+			break;
+		}
+		case "/registro_cliente":
+			String nombre = req.getParameter("nombre");
+			String apellido1 = req.getParameter("apellido1");
+			String nif = req.getParameter("nif");
+			String municipio = req.getParameter("municipio");
+			String provincia = req.getParameter("provincia");
+			
+			if (isNotEmpty(nombre) && isNotEmpty(apellido1) && isNotEmpty(nif) && isNotEmpty(municipio) && isNotEmpty(provincia)) {
+				
+				Cliente nuevo = new Cliente(nombre, apellido1, nif, municipio, provincia);
+				
+				System.out.println("1" + nuevo);
+				
+				if (negCli.registro(nuevo)) {
+					sesion.setAttribute("clienteNuevo", nuevo);
+					resp.sendRedirect(context + "/home/registro_cli_ok");					
+
+					System.out.println("2" + nuevo);
+				}
+			} else {
+				sesion.setAttribute("error", "campos_vacios_cli");
+				resp.sendRedirect(context + "/home/registro_cliente");
+			}
+			
 		default:
 			break;
 		}
@@ -153,5 +186,6 @@ public class Controller extends HttpServlet {
 
 		negUser = new GestionUsuariosImpl();
 		negCli = new GestionClientesImpl();
+
 	}
 }
