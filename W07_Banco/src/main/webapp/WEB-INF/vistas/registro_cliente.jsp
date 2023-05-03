@@ -41,10 +41,19 @@
 	</script>
 </head>
 <body>
-	<div id="cabecera">
-		<h2>&#127812; registro de cliente nuevo &#127812;</h2>
-	</div>
-	<div id="formulario_reg">
+	<header class="cabecera">
+		<nav>
+			<ul>
+				<li><a href="${home}/listado_usuarios">listado de usuarios</a></li>
+				<li><a href="${home}/listado_clientes">listado de clientes</a></li>
+				<li><a href="${home}/registro_cliente">registrar nuevo cliente</a></li>
+				<li><a href="${home}/cerrar_sesion">cerrar sesión</a></li>
+			</ul>
+		</nav>
+		<hr>
+		<h2>registrar un nuevo cliente</h2>
+	</header>
+	<main class="cuerpo">
 		<form id="frm_reg" action="${home}/registro_cliente" method="post" autocomplete="off">
 			<input class="input_reg" id="nombre" type="text" name="nombre" placeholder="nombre (*)"></input>
 			<input class="input_reg" id="apellido1" type="text" name="apellido1" placeholder="primer apellido (*)"></input>
@@ -54,8 +63,8 @@
 			<input class="input_reg" id="municipio" type="text" name="municipio" placeholder="municipio (*)"></input>
 			<input class="input_reg" id="provincia" type="text" name="provincia" placeholder="provincia (*)"></input>
 			<div id="botones">
-				<input id="registro_cliente" class="boton" type="submit" value="registro_cliente">
-				<p><a href="${home}/menu_principal">volver al menú principal</a>.</p>
+				<input id="registro_cliente" class="boton" type="submit" value="registro cliente">
+				<p><a href="${home}/menu_principal">volver al menú principal</a></p>
 			</div>
 		</form>
 		<p id="error">
@@ -65,6 +74,6 @@
 				</c:when>
 			</c:choose>
 		</p>
-	</div>
+	</main>
 </body>
 </html>

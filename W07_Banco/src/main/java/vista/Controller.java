@@ -3,6 +3,8 @@ package vista;
 import static vista.Util.isNotEmpty;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -49,12 +51,23 @@ public class Controller extends HttpServlet {
 				req.setAttribute("usuarios", usuarios);
 				req.getRequestDispatcher("/WEB-INF/vistas/listado_usuarios.jsp").forward(req, resp);
 				break;
+				
 			// case listado clientes
 			case "/listado_clientes":
-				Set<Cliente> clientes = negCli.findAllClientes();
+				String valor = req.getParameter("valor");
+				
+				List<Cliente> clientes = null;
+				
+				if (valor != null && valor.trim().length() > 0) {
+					clientes = negCli.buscar(valor);
+				} else {
+					clientes = new LinkedList<>(negCli.findAllClientes());
+				}
+				
 				req.setAttribute("clientes", clientes);
 				req.getRequestDispatcher("/WEB-INF/vistas/listado_clientes.jsp").forward(req, resp);
 				break;
+				
 			// case cuentas de clientes
 			case "/cuentas":
 				Integer id = Integer.parseInt(req.getParameter("id"));
@@ -62,11 +75,14 @@ public class Controller extends HttpServlet {
 				req.setAttribute("cli", cli);
 				req.getRequestDispatcher("/WEB-INF/vistas/cuentas.jsp").forward(req, resp);
 				break;
+				
 			case "/registro_cliente":
 				req.getRequestDispatcher("/WEB-INF/vistas/registro_cliente.jsp").forward(req, resp);
 				break;
+				
 			case "/registro_cli_ok":
 				req.getRequestDispatcher("/WEB-INF/vistas/registro_cli_ok.jsp").forward(req, resp);
+				break;
 			// extractos
 //			case "/extractos":
 //				Integer idCuenta = Integer.parseInt(req.getParameter("id"));

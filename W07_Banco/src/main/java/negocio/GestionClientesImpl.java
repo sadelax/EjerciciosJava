@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.List;
 import java.util.Set;
 
 import modelo.Cliente;
@@ -29,5 +30,10 @@ public class GestionClientesImpl implements GestionClientes {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public List<Cliente> buscar(String valor) {
+		return clid.findByValue(valor);
 	}
 }

@@ -119,7 +119,6 @@ public class Cliente implements Comparable<Cliente> {
 				+ municipio + ", " + provincia + "]";
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public int compareTo(Cliente o) {
 		if(this.equals(o)) return 0;

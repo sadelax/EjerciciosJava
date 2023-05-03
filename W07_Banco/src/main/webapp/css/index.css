@@ -3,7 +3,24 @@
   font-family: courier;
 }
 body{
-  background-color: #fdfd96;
+  background-color: white;
+}
+
+nav ul {
+  list-style: none; /* para quitar los puntos de la lista */
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block; /* para hacer que los elementos sean en línea */
+}
+
+nav a {
+  display: block; /* para hacer que los elementos sean clicables en toda su área */
+  padding: 10px;
+  text-decoration: none;
+  text-decoration: underline; /* subrayado en el texto del enlace */
 }
 
 #formulario{
@@ -39,15 +56,14 @@ body{
 a{
   color: black;
 }
-
-#cabecera{
-  text-align: center;
-  font-family: courier;
-  font-size: 30px;
-  margin-top: 50px;
+header nav{
 }
 
-input{
+header h2{
+  text-align: center;
+}
+
+form#frm_log input{
   width: 75%;
   color: black;
   border-radius: 5px;
@@ -58,8 +74,8 @@ input{
   transition: all 1s ease;
 }
 
-input:hover{
-    width: 75%;
+form#frm_log input:hover{
+   width: 75%;
   background-color: grey;
   color: white;
   opacity: 50%;
@@ -147,7 +163,13 @@ p#campos_obligatorios:hover{
   font-size: 40px;
 }
 
-table#tabla_datos{
+main form{
+  width: 70%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+main table{
   margin: auto;
   width: 50%;
   border: 1px solid black;
@@ -155,8 +177,8 @@ table#tabla_datos{
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-spacing: 0;
   border-collapse: separate;
-
 }
+
 tr, th, td{
   text-align: center;
   width: 30px;

@@ -35,9 +35,9 @@
 	</script>
 </head>
 <body>
-	<div id="cabecera">
+	<header id="cabecera">
 		<h2>&#11088; acceso usuarios &#11088;</h2>
-	</div>
+	</header>
 	<div id="formulario">
 		<form id="frm_log" action="${home}/login" method="post" autocomplete="off">
 			<input id="user" type="text" name="usuario" placeholder="usuario (*)"></input>
@@ -48,7 +48,7 @@
 			</div>
 		</form>
 		<p id="error">
-		<c:choose>
+			<c:choose>
 				<c:when test="${error eq 'no_user_reg'}">
 					usuario y/o contraseña incorrectos
 				</c:when>
