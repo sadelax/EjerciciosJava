@@ -39,9 +39,9 @@
 	</script>
 </head>
 <body>
-	<div id="cabecera">
+	<header id="cabecera">
 		<h2>&#127812; registro &#127812;</h2>
-	</div>
+	</header>
 	<div id="formulario_reg">
 		<form id="frm_reg" action="${home}/registro_usuario" method="post" autocomplete="off">
 			<input class="input_reg" id="nombre" type="text" name="nombre" placeholder="nombre (*)"></input>
@@ -50,8 +50,8 @@
 			<input class="input_reg" id="pwd" type="password" name="password" placeholder="password(*)"></input>
 			<input class="input_reg" id="pwd2" type="password" name="password-bis" placeholder="repita password(*)"></input>
 			<div id="botones">
-				<input id="login" class="boton" type="submit" value="registro">
-				<p><a href="${home}/login">volver a la página de login</a>.</p>
+				<input id="frm_reg" class="boton" type="submit" value="enviar">
+				<p><a href="${home}/login">volver a login</a></p>
 			</div>
 		</form>
 		<p id="error">
@@ -60,7 +60,7 @@
 					el usuario ya existe
 				</c:when>
 				<c:when test="${error eq 'no_match_pwd' or error eq 'campos_vacios'}">
-					no te hagas el listo!!!!111
+					rellena los campos obligatorios (*)
 				</c:when>
 			</c:choose>
 		</p>

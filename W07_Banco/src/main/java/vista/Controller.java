@@ -96,7 +96,7 @@ public class Controller extends HttpServlet {
 				req.getRequestDispatcher("/WEB-INF/vistas/registro_ok.jsp").forward(req, resp);
 				break;
 			case "/registro_fail":
-				req.getRequestDispatcher("/WEB-INF/vistas/menu_principal.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/vistas/registro.jsp").forward(req, resp);
 				break;
 			default:
 				req.getRequestDispatcher("/WEB-INF/vistas/login.jsp").forward(req, resp);
