@@ -17,6 +17,7 @@
             var apellidos = document.getElementById("ape").value;
             var nuevo = new Persona(nombre, apellidos);
             insertarEnTabla(nuevo);
+			insertarWebStorage(nuevo);
         }
         
         function insertarEnTabla(p){
@@ -30,6 +31,10 @@
             tr.appendChild(tdNombre);
             tr.appendChild(tdApellidos);
         }
+        
+        function insertarWebStorage(nuevo){
+
+		}
         
         window.onload = function(){
             document.getElementById("btn_agregar").addEventListener("click", inserta);
@@ -56,8 +61,8 @@
         </thead>
         <tbody>
             <tr>
-                <td>Jose Martin</td>
-                <td>El Pirata</td>
+               <!--  <td>Jose Martin</td>
+                <td>El Pirata</td> -->
             </tr>
         </tbody>
     </table>
