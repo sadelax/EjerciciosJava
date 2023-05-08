@@ -31,13 +31,67 @@
             tr.appendChild(tdNombre);
             tr.appendChild(tdApellidos);
         }
-        
-        function insertarWebStorage(nuevo){
 
+        function insertarWebStorage(nuevo){
+			if(!localStorage){
+				alert("no te soporto!");
+				return;
+			}
+			var lista = new Array();
+			if(localStorage.getItem("listaPersonas")){
+				lista = JSON.parse(localStorage.getItem("listaPersonas"));
+			}
+			lista[lista.length] = nuevo;
+
+			localStorage.setItem("listaPersonas", JSON.stringify(lista));
+
+			console.log(lista);
+
+			var json = JSON.stringify(lista);
+			console.log(json);
+
+			var nuevaLista = JSON.parse(json);
+			console.log(nuevaLista);
 		}
+
+		function leerWebStorage(){
+			if(!localStorage){
+				alert("no te soporto!");
+				return;
+			}
+			var lista;
+			if(localStorage.getItem("listaPersonas")){
+				lista = JSON.parse(localStorage.getItem("listaPersonas"));
+				for(var i = 0; i < lista.length; i++){
+					insertarEnTabla(lista[i]);
+				}
+			}
+		}
+        
+        function pruebaJSONaJavaScript(nuevo){
+			if(!localStorage){
+				alert("no te soporto!");
+				return;
+			}
+			var lista = new Array();
+
+			lista[lista.length] = nuevo;
+
+			console.log(lista);
+
+			// convertir un objeto javascript a cadena (texto plano)
+			var json = JSON.stringify(lista);
+			console.log(json);
+
+			// leo la cadena (texto plano) y creo un objeto javascript
+			var nuevaLista = JSON.parse(json);
+			console.log(nuevaLista);
+		}
+
         
         window.onload = function(){
             document.getElementById("btn_agregar").addEventListener("click", inserta);
+			leerWebStorage();
         };
     </script>
 </head>
