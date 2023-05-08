@@ -23,6 +23,14 @@ nav a {
   text-decoration: underline; /* subrayado en el texto del enlace */
 }
 
+nav li#nav-act > a{
+	text-decoration: none;
+}
+
+nav li:last-child {
+  float: right;
+}
+
 #formulario{
   background-color: white;
   border: 2px solid #ccc;
@@ -34,11 +42,11 @@ nav a {
 }
 
 #formulario_reg{
-  background-color:   #ffee58;
-  border: 2px solid  #ffee58;
+  background-color: white;
+  border: 2px solid #ccc;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  width: 70%;
+  width: 300px;
   margin: auto;
   padding: 10px;
 }
@@ -55,8 +63,6 @@ nav a {
 }
 a{
   color: black;
-}
-header nav{
 }
 
 header h2{
@@ -86,7 +92,7 @@ form#frm_log input:hover{
   font-family: courier;
 }
 
-#login{
+input#login{
   border-radius: 5px;
   display: block;
   margin: auto;
@@ -99,7 +105,7 @@ form#frm_log input:hover{
   transition: all 2s linear;
 }
 
-#login:hover{
+input#login:hover{
   border-radius: 5px;
   display: block;
   margin: auto;
@@ -111,6 +117,135 @@ form#frm_log input:hover{
   font-family: courier;
   font-size: 30px;
 }
+
+form#frm_reg input{
+  width: 75%;
+  color: black;
+  border-radius: 5px;
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  font-family: courier;
+  transition: all 1s ease;
+}
+
+form#frm_reg input:hover{
+   width: 75%;
+  background-color: grey;
+  color: white;
+  opacity: 50%;
+  border-radius: 5px;
+  display: block;
+  margin: 10px auto;
+  padding: 5px;
+  font-family: courier;
+}
+
+input#frm_reg{
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: salmon;
+  opacity: 70%;
+  font-family: courier;
+  font-size: 30px;
+  transition: all 2s linear;
+}
+
+input#frm_reg:hover{
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: salmon;
+  color: black;
+  opacity: 100%;
+  font-family: courier;
+  font-size: 30px;
+}
+
+
+input#registro_cliente{
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: salmon;
+  opacity: 70%;
+  font-family: courier;
+  font-size: 30px;
+  transition: all 2s linear;
+}
+
+input#registro_cliente:hover{
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: salmon;
+  color: black;
+  opacity: 100%;
+  font-family: courier;
+  font-size: 30px;
+}
+
+form#buscar-cliente{
+  text-align: center;
+}
+
+form#buscar-cliente input{
+  width: 75%;
+  color: black;
+  border-radius: 5px;
+  display: block;
+  margin: 5px auto;
+  padding: 5px;
+  font-family: courier;
+  transition: all 1s ease;
+}
+
+form#buscar-cliente input:hover{
+  width: 75%;
+  background-color: grey;
+  color: white;
+  opacity: 50%;
+  border-radius: 5px;
+  display: block;
+  margin: 5px auto;
+  padding: 5px;
+  font-family: courier;
+}
+
+input#buscar-cliente{
+  border-radius: 5px;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: salmon;
+  opacity: 60%;
+  font-family: courier;
+  font-size: 16px;
+  transition: all 2s linear;
+}
+
+input#buscar-cliente:hover{
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+  width: 59%;
+  padding: 5px;
+  background-color: white;
+  color: black;
+  opacity: 100%;
+  font-family: courier;
+  font-size: 16px;
+}
+
 #botones > p{
   text-align: center;
   margin-top: 30px;
@@ -171,7 +306,7 @@ main form{
 
 main table{
   margin: auto;
-  width: 50%;
+  width: 700px;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);

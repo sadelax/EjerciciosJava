@@ -29,8 +29,9 @@
 	<header class="cabecera">
 		<nav>
 			<ul>
+				<li><a href="${home}/menu_principal">&#127968;</a></li>
 				<li><a href="${home}/listado_usuarios">listado de usuarios</a></li>
-				<li><a href="${home}/listado_clientes">listado de clientes</a></li>
+				<li id="nav-act"><a href="${home}/listado_clientes">listado de clientes</a></li>
 				<li><a href="${home}/registro_cliente">registrar nuevo
 						cliente</a></li>
 				<li><a href="${home}/cerrar_sesion">cerrar sesión</a></li>

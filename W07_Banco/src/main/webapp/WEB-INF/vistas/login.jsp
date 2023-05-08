@@ -44,7 +44,7 @@
 			<input id="pwd" type="password" name="password" placeholder="password (*)"></input>
 			<div id="botones">
 				<input id="login" class="boton" type="submit" value="login">
-				<p>no estás registrado? <a href="${home}/registro_usuario">regístrate</a>.</p>
+				<p>¿no estás registrado? <a href="${home}/registro_usuario">regístrate</a></p>
 			</div>
 		</form>
 		<p id="error">
