@@ -24,7 +24,6 @@
 		<h2>menú principal</h2>
 	</header>
 	<main class="cuerpo">
-		
 	</main>
 </body>
 </body>
