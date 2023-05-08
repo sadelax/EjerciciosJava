@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+    <script>
+        function Persona(nombre, apellidos){
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+        }
+        
+        function inserta(){
+            var nombre = document.getElementById("nom").value;
+            var apellidos = document.getElementById("ape").value;
+            var nuevo = new Persona(nombre, apellidos);
+            insertarEnTabla(nuevo);
+			insertarWebStorage(nuevo);
+        }
+        
+        function insertarEnTabla(p){
+            var tbody = document.querySelector("#tbl_datos tbody");
+            var tr = document.createElement("tr");
+            var tdNombre = document.createElement("td");
+            var tdApellidos = document.createElement("td");
+            tdNombre.textContent = p.nombre;
+            tdApellidos.textContent = p.apellidos;
+            tbody.appendChild(tr);
+            tr.appendChild(tdNombre);
+            tr.appendChild(tdApellidos);
+        }
+        
+        function insertarWebStorage(nuevo){
+
+		}
+        
+        window.onload = function(){
+            document.getElementById("btn_agregar").addEventListener("click", inserta);
+        };
+    </script>
+</head>
+<body>
+    <h1>Carga Datos</h1>
+    <div id="div_ingreso">
+        <label for="nom">Nombre</label>
+        <input id="nom" type="text"/>
+        
+        <label for="ape">Apellidos</label>
+        <input type="text" id="ape"/>
+
+        <button id="btn_agregar">Agregar</button>
+    </div>
+    <table id="tbl_datos">
+        <thead>
+        <!--<tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+            </tr>-->
+        </thead>
+        <tbody>
+            <tr>
+               <!--  <td>Jose Martin</td>
+                <td>El Pirata</td> -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
