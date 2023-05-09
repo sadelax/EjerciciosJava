@@ -11,7 +11,7 @@ import util.EMF;
 public class ProductoDaoImpl implements ProductoDao {
 
 	private EntityManager em;
-	
+
 	@Override
 	public Producto findById(int idProducto) {
 		em = EMF.getEmf().createEntityManager();
@@ -24,13 +24,10 @@ public class ProductoDaoImpl implements ProductoDao {
 	public List<Producto> findByDescripcion(String descripcion) {
 		em = EMF.getEmf().createEntityManager();
 		List<Producto> productos = null;
-		TypedQuery<Producto> q = em.createQuery("SELECT p FROM Producto p WHERE p.producto LIKE :descripcion", Producto.class);
+		TypedQuery<Producto> q = em.createQuery("SELECT p FROM Producto p WHERE p.producto LIKE :descripcion",
+				Producto.class);
 		q.setParameter("descripcion", "%" + descripcion + "%");
-		try {
-			productos = q.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		productos = q.getResultList();
 		em.close();
 		return productos;
 	}
@@ -40,11 +37,7 @@ public class ProductoDaoImpl implements ProductoDao {
 		em = EMF.getEmf().createEntityManager();
 		List<Producto> productos = null;
 		TypedQuery<Producto> q = em.createQuery("SELECT p FROM Producto p", Producto.class);
-		try {
-			productos = q.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		productos = q.getResultList();
 		em.close();
 		return productos;
 	}
@@ -52,18 +45,9 @@ public class ProductoDaoImpl implements ProductoDao {
 	@Override
 	public void save(Producto p) {
 		em = EMF.getEmf().createEntityManager();
-		try {
-			TypedQuery<Producto> q = em.createQuery("SELECT p FROM Producto pWHERE f.idProducto = :id", Producto.class);
-			q.setParameter("id", p.getIdProducto());
-			List<Producto> res = q.getResultList();
-			if (res.isEmpty()) {
-				em.getTransaction().begin();
-				em.merge(p);
-				em.getTransaction().commit();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		em.getTransaction().begin();
+		em.merge(p);
+		em.getTransaction().commit();
 		em.close();
 	}
 
