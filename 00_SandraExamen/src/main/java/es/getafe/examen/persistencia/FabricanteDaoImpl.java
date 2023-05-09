@@ -5,20 +5,22 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import es.getafe.examen.modelo.Fabricante;
 import util.EMF;
 
 public class FabricanteDaoImpl implements FabricanteDao {
-	
+
 	private EntityManager em;
 
 	@Override
 	public void save(Fabricante fabricante) {
 		em = EMF.getEmf().createEntityManager();
 		try {
-			TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante f WHERE f.idFabricante = :id", Fabricante.class);
+			TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante f WHERE f.idFabricante = :id",
+					Fabricante.class);
 			q.setParameter("id", fabricante.getIdFabricante());
 			List<Fabricante> res = q.getResultList();
 			if (res.isEmpty()) {
@@ -43,13 +45,14 @@ public class FabricanteDaoImpl implements FabricanteDao {
 	@Override
 	public Fabricante findById(int idFabricante) {
 		em = EMF.getEmf().createEntityManager();
-		Fabricante f = null;
-		TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante f LEFT JOIN FETCH f.productos WHERE f.idFabricante = :id", Fabricante.class);
+		Fabricante f;
+		TypedQuery<Fabricante> q = em.createQuery(
+				"SELECT f FROM Fabricante f LEFT JOIN FETCH f.productos WHERE f.idFabricante = :id", Fabricante.class);
 		q.setParameter("id", idFabricante);
 		try {
 			f = q.getSingleResult();
-		} catch (Exception e) {
-//			e.printStackTrace();
+		} catch (NoResultException e) {
+			f = null;
 		}
 		em.close();
 		return f;
@@ -59,12 +62,9 @@ public class FabricanteDaoImpl implements FabricanteDao {
 	public Set<Fabricante> findOnlyActive() {
 		em = EMF.getEmf().createEntityManager();
 		Set<Fabricante> fabricantes = null;
-		TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante f JOIN f.productos", Fabricante.class);
-		try {
-			fabricantes = new TreeSet<>(q.getResultList());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		TypedQuery<Fabricante> q = em.createQuery("SELECT DISTINCT f FROM Fabricante f JOIN f.productos",
+				Fabricante.class);
+		fabricantes = new TreeSet<>(q.getResultList());
 		em.close();
 		return fabricantes;
 	}
@@ -74,11 +74,7 @@ public class FabricanteDaoImpl implements FabricanteDao {
 		em = EMF.getEmf().createEntityManager();
 		Set<Fabricante> fabricantes = null;
 		TypedQuery<Fabricante> q = em.createQuery("SELECT f FROM Fabricante f", Fabricante.class);
-		try {
-			fabricantes = new TreeSet<>(q.getResultList());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		fabricantes = new TreeSet<>(q.getResultList());
 		em.close();
 		return fabricantes;
 	}
