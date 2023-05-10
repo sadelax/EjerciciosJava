@@ -1,5 +1,8 @@
 package es.getafe.examen.negocio;
 
+import java.text.Collator;
+import java.util.Comparator;
+import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -11,68 +14,93 @@ import es.getafe.examen.persistencia.ProductoDao;
 import es.getafe.examen.persistencia.ProductoDaoImpl;
 
 public class TiendaImpl implements Tienda {
-	
+
 	ProductoDao pd = new ProductoDaoImpl();
 	FabricanteDao fd = new FabricanteDaoImpl();
-	
+
 	@Override
 	public Set<Producto> getProductos() {
-		Set<Producto> productos = new TreeSet<>(pd.findAll());
-//		Set<Producto> ordena = new TreeSet<>(new Comparator<Producto>() {
-//
-//			@Override
-//			public int compare(Producto o1, Producto o2) {
-//				return (o1.getProducto() + o1.getIdProducto()).compareToIgnoreCase(o2.getProducto() + o2.getIdProducto());
-//			}
-//		});
-		return productos;
+		Set<Producto> ordenados = new TreeSet<>(new Comparator<Producto>() {
+
+			@Override
+			public int compare(Producto p1, Producto p2) {
+				Collator col = Collator.getInstance(new Locale("es"));
+				String s1 = p1.getProducto() + p1.getIdProducto();
+				String s2 = p2.getProducto() + p2.getIdProducto();
+				return  col.compare(s1, s2);
+				}
+		});
+		return ordenados;
 	}
 
 	@Override
 	public Set<Producto> getProductos(String descripcion) {
-		return new TreeSet<>(pd.findByDescripcion(descripcion));
+		Set<Producto> res = new TreeSet<Producto>(pd.findByDescripcion(descripcion));
+		return res.isEmpty() ? null : res;
 	}
 
 	@Override
 	public double getMediaPrecioProductosByFabricante(int idFabricante) {
-//		TODO
-		return 0;
+		Fabricante f = fd.findById(idFabricante);
+		double media = 0;
+		if (f != null) {
+			for (Producto p : f.getProductos()) {
+				media += p.getPrecio();
+			}
+			if (f.getProductos().size() > 0) {
+				media /= f.getProductos().size();
+			}
+		}
+		return media;
 	}
 
 	@Override
 	public void addFabricante(Fabricante fabricante) {
-		// TODO Auto-generated method stub
-		
+		fd.save(fabricante);
+
 	}
 
 	@Override
 	public void addProducto(Producto producto) {
-		// TODO Auto-generated method stub
-		
+		pd.save(producto);
+
 	}
 
 	@Override
 	public Set<Fabricante> getFabricantes() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Fabricante> res = new TreeSet<>(compFabNombre());
+		res.addAll(fd.findAll());
+		return res;
 	}
 
 	@Override
 	public Set<Fabricante> getFabricantesActivos() {
-		// TODO Auto-generated method stub
+		Set<Fabricante> res = new TreeSet<>(compFabNombre());
+		res.addAll(fd.findOnlyActive());
 		return null;
 	}
 
 	@Override
 	public Fabricante getFabricante(int idFabricante) {
-		// TODO Auto-generated method stub
-		return null;
+		return fd.findByIdLazy(idFabricante);
 	}
 
 	@Override
 	public Fabricante getFabricanteConProductos(int idFabricante) {
-		// TODO Auto-generated method stub
-		return null;
+		return fd.findById(idFabricante);
 	}
 
+	public Comparator<Fabricante> compFabNombre() {
+		return new Comparator<Fabricante>() {
+
+			@Override
+			public int compare(Fabricante f1, Fabricante f2) {
+				Collator col = Collator.getInstance(new Locale("es"));
+				String s1 = f1.getFabricante() + f1.getIdFabricante();
+				String s2 = f2.getFabricante() + f2.getIdFabricante();
+				return col.compare(s1, s2);
+			}
+
+		};
+	}
 }
