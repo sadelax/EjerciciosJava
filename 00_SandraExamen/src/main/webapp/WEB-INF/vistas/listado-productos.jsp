@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>listado usuarios</title>
+<title>listado productos</title>
 <link rel="stylesheet" href="${css}/index.css">
 <script>
 	function seleccionaCliente(ev) {
@@ -33,15 +33,16 @@
 				<li><a href="${home}/registro_fabricante">alta nuevo fabricante</a></li>
 				<li><a href="${home}/registro_producto">agregar nuevo producto</a></li>
 				<li><a href="${home}/listado_fabricantes">fabricantes que suministran productos</a></li>
+				<li><a href="${home}/productos_fabricante">productos por fabricante</a></li>
 			</ul>
 		</nav>
 		<hr>
-		<h2>listado de clientes</h2>
+		<h2>listado de productos</h2>
 	</header>
 	<main class="cuerpo">
-		<form id="buscar-prod" action="${home}/buscar_productos" method="post">
+		<form id="buscar-prod" action="${home}/listado_productos" method="post">
 			<label for="valor">buscar productos:</label>
-			<input class="input_reg" id="valor" type="text" name="valor"
+			<input class="input_reg" id="valor" type="text" name="descripcion"
 				placeholder="&#128269;"/>
 			<div id="botones">
 				<input id="buscar-prod" class="boton" type="submit"

@@ -77,7 +77,7 @@ public class TiendaImpl implements Tienda {
 	public Set<Fabricante> getFabricantesActivos() {
 		Set<Fabricante> res = new TreeSet<>(compFabNombre());
 		res.addAll(fd.findOnlyActive());
-		return null;
+		return res;
 	}
 
 	@Override

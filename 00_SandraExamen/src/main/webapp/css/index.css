@@ -6,7 +6,22 @@ body{
   background-color: white;
 }
 
+main form{
+  text-align: center;
+  width: 300px;
+  margin: auto;
+}
+main form div input{
+  margin: 10px;  
+}
+
+main form select{
+  text-align: center;
+  font-size: 35px;
+}
+
 nav ul {
+  text-align: center;
   list-style: none; /* para quitar los puntos de la lista */
   margin: 0;
   padding: 0;

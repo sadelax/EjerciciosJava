@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import es.getafe.examen.modelo.Fabricante;
 import es.getafe.examen.modelo.Producto;
+import es.getafe.examen.negocio.Tienda;
+import es.getafe.examen.negocio.TiendaImpl;
 import es.getafe.examen.persistencia.FabricanteDao;
 import es.getafe.examen.persistencia.FabricanteDaoImpl;
 import es.getafe.examen.persistencia.ProductoDao;
@@ -22,9 +25,8 @@ import es.getafe.examen.persistencia.ProductoDaoImpl;
 @SuppressWarnings("serial")
 public class Controller extends HttpServlet {
 
-	private String context;
-	private FabricanteDao fdao;
-	private ProductoDao pdao;
+	String context;
+	private Tienda neg;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,15 +34,53 @@ public class Controller extends HttpServlet {
 		String path = req.getPathInfo();
 		
 		switch (path) {
-		case "/menu_principal":
-			req.getRequestDispatcher("/WEB-INF/vistas/menu-principal.jsp").forward(req, resp);
-			break;
 		case "/listado_productos":
-			Set<Producto> productos = new TreeSet<>(pdao.findAll());
-			req.setAttribute("productos", productos);
 			req.getRequestDispatcher("/WEB-INF/vistas/listado-productos.jsp").forward(req, resp);
 			break;
+		case "/productos_fabricante":
+			Set<Fabricante> fabricante = neg.getFabricantesActivos();
+			System.out.println(fabricante.size());
+			req.setAttribute("fabs", fabricante);
+			req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante.jsp").forward(req, resp);
+			break;
+		case "/menu_principal":
 		default:
+			req.getRequestDispatcher("/WEB-INF/vistas/menu-principal.jsp").forward(req, resp);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String path = req.getPathInfo();
+		
+		HttpSession sesion = req.getSession();
+		
+		switch(path) {
+		case "/listado_productos":
+			String desc = req.getParameter("descripcion");
+			Set<Producto> productos;
+			if(desc != null) {
+				productos = neg.getProductos(desc.trim());
+			} else {
+				productos = neg.getProductos("");
+			}
+			sesion.setAttribute("productos", productos);
+			resp.sendRedirect(context + "/home/listado_productos");
+			break;
+		case "/productos_fabricante":
+			String idFab = req.getParameter("idFabricante");
+			int id;
+			if(idFab != null) {
+				try {
+					id = Integer.parseInt(idFab);
+					Fabricante fab = neg.getFabricanteConProductos(id);
+					sesion.setAttribute("fab", fab);
+					resp.sendRedirect(context + "/home/productos_fabricante");
+				} catch (NumberFormatException e) {
+					resp.sendRedirect(context + "/home/cerrar_sesion");
+				}
+			}
 			break;
 		}
 	}
@@ -48,14 +88,13 @@ public class Controller extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		ServletContext app = getServletContext();
+		
 		context = app.getContextPath();
 		
-		app.setAttribute("context", app.getContextPath());
-		app.setAttribute("home", app.getContextPath() + "/home");
-		app.setAttribute("css", app.getContextPath() + "/css");
+		app.setAttribute("context", context);
+		app.setAttribute("home", context + "/home");
+		app.setAttribute("css", context + "/css");
 		
-		fdao = new FabricanteDaoImpl();
-		pdao = new ProductoDaoImpl();
+		neg = new TiendaImpl();
 	}
-	
 }
