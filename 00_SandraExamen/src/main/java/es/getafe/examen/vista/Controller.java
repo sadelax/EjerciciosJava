@@ -43,6 +43,12 @@ public class Controller extends HttpServlet {
 			req.setAttribute("fabs", fabricante);
 			req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante.jsp").forward(req, resp);
 			break;
+		case "/ofertas":
+			Set<Producto> productos = neg.getProductos();
+			System.out.println(productos);
+			req.setAttribute("productos", productos);
+			req.getRequestDispatcher("/WEB-INF/vistas/ofertas.jsp").forward(req, resp);
+			break;
 		case "/menu_principal":
 		default:
 			req.getRequestDispatcher("/WEB-INF/vistas/menu-principal.jsp").forward(req, resp);

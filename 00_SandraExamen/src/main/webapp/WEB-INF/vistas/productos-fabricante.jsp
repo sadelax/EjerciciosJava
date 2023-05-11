@@ -22,18 +22,11 @@
 <body>
 	<header class="cabecera">
 		<nav>
-			<ul>
-				<li><a href="${home}/listado_productos">listado de
-						productos</a></li>
-				<li><a href="${home}/registro_fabricante">alta nuevo
-						fabricante</a></li>
-				<li><a href="${home}/registro_producto">agregar nuevo
-						producto</a></li>
-				<li><a href="${home}/listado_fabricantes">fabricantes que
-						suministran productos</a></li>
-				<li><a href="${home}/productos_fabricante">productos por
-						fabricante</a></li>
-			</ul>
+			<li><a href="${home}/listado_productos">listado de productos</a></li>
+				<li><a href="${home}/registro_fabricante">alta nuevo fabricante</a></li>
+				<li><a href="${home}/registro_producto">agregar nuevo producto</a></li>
+				<li><a href="${home}/productos_fabricante">productos por fabricante</a></li>
+				<li><a href="${home}/ofertas">ofertones</a></li>
 		</nav>
 		<hr>
 		<h2>búsqueda de productos por fabricante</h2>

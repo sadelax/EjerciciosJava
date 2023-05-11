@@ -30,13 +30,20 @@ public class TiendaImpl implements Tienda {
 				return  col.compare(s1, s2);
 				}
 		});
+		ordenados.addAll(pd.findAll());
 		return ordenados;
 	}
 
 	@Override
 	public Set<Producto> getProductos(String descripcion) {
+//		Set<Producto> res = new TreeSet<Producto>(pd.findByDescripcion(descripcion));
+//		return res.isEmpty() ? res : null;
 		Set<Producto> res = new TreeSet<Producto>(pd.findByDescripcion(descripcion));
-		return res.isEmpty() ? null : res;
+		if(res.isEmpty()) {
+			return null;
+		} else {
+			return res;
+		}
 	}
 
 	@Override
