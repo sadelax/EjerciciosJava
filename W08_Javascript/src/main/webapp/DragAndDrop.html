@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drag & Drop</title>
+	<style>
+		img{
+			width: 100px;
+		}
+		.destino{
+			background-color: salmon;
+			width: 150px;
+			float: left;
+			height: 420px;
+			margin: 20px;
+		}
+		.movil{
+			width: 100px;
+			margin: 30px auto;
+		}
+	</style>
+	<script>
+
+		function inicio(ev){
+			ev.dataTransfer.setData("id", ev.currentTarget.id);
+		}
+
+		function encima(ev){
+			ev.preventDefault();
+		}
+		
+		function suelta(ev){
+			ev.preventDefault();
+			var id = ev.dataTransfer.getData("id");
+			ev.currentTarget.appendChild(document.querySelector("#" + id));
+		}
+
+		window.onload = function(){
+			var moviles = document.querySelectorAll(".movil");
+			for(var i = 0; i < moviles.length; i++){
+				moviles[i].addEventListener("dragstart", inicio);
+			}
+
+			var destinos = document.querySelectorAll(".destino");
+			for(var i = 0; i < destinos.length; i++){
+				destinos[i].addEventListener("dragover", encima);
+				destinos[i].addEventListener("drop", suelta);
+			}
+		};
+	</script>
+</head>
+<body>
+	<h1>Drag & Drop</h1>
+	<div class="destino">
+		<div id="movil1" class="movil" draggable="true">
+			<img src="images/boladelmundo2.png" alt="">
+		</div>
+		<div id="movil2" class="movil">
+			<img src="images/boladelmundo4.png" alt="">
+		</div>
+		<div id="movil3" class="movil">
+			<img src="images/globo2.png" alt="">
+		</div>
+	</div>
+	<div class="destino"></div>
+	<div class="destino"></div>
+	<div class="destino"></div>
+</body>
+</html>
