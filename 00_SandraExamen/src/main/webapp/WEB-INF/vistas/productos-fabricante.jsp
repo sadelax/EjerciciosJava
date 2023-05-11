@@ -42,18 +42,17 @@
 		<form id="buscar-prod" action="${home}/productos_fabricante"
 			method="post">
 			<select id="idFabricante" name="idFabricante">
-				<!-- 				<option value="1">fabricante1</option> -->
-				<!-- 				<option value="2">fabricante2</option> -->
-				<!-- 				<option value="3">fabricante3</option> -->
-				<!-- 				<option value="4">fabricnte4</option> -->
+				<!-- <option value="1">fabricante1</option> -->
+				<!-- <option value="2">fabricante2</option> -->
+				<!-- <option value="3">fabricante3</option> -->
+				<!-- <option value="4">fabricante4</option> -->
 				<c:if test="${empty fab}">
 					<option></option>
 				</c:if>
-<!-- 				la primera opción vacía, a no ser q elija una -->
+				<!-- la primera opción vacía, a no ser q elija una -->
 				<c:forEach var="fabricante" items="${fabs}">
 					<option value="${fabricante.idFabricante}"
-					${fabricante.idFabricante==fab.idFabricante ? "selected='selected'" : ""}
-					>${fabricante.fabricante}</option>
+						${fabricante.idFabricante==fab.idFabricante ? "selected='selected'" : ""}>${fabricante.fabricante}</option>
 				</c:forEach>
 			</select>
 		</form>
