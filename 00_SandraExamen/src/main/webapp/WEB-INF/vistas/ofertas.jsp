@@ -78,6 +78,11 @@
 		}
 	}
 
+	function enviar(ev){
+		ev.preventDefault();
+		// falta código aquí
+	}
+
 	window.onload = function(){
 		vacia = document.querySelector('#vacia');
 		
