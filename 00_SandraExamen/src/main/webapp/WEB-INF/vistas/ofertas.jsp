@@ -33,10 +33,12 @@
 			borrarVacia();
 			var id = ev.dataTransfer.getData('id');
 			console.log(id);
-			moverFila(ev.currentTarget, document.getElementById(id));
+			if(id != ''){
+				moverFila(ev.currentTarget, document.getElementById(id));
+			}
 		}
 	}
-	
+
 	function mover(ev){
 		if(validaDescuento()){
 			borrarVacia();
@@ -45,6 +47,8 @@
 	}
 	
 	function moverFila(body, tr){
+		tr.removeEventListener('dragstart', inicio);
+		tr.removeEventListener('dblclick', mover);
 		// crear 1 td
 		var tdDto = document.createElement('td');
 		//crear 1 td
@@ -74,7 +78,6 @@
 		}
 	}
 
-
 	window.onload = function(){
 		vacia = document.querySelector('#vacia');
 		
@@ -84,6 +87,7 @@
 			moviles[i].addEventListener('dragstart', inicio);
 			moviles[i].addEventListener('dblclick', mover);
 		}
+
 		destino = document.querySelector('#tabla_ofertas tbody');
 		destino.addEventListener('dragover', 
 		function(ev){
@@ -91,7 +95,11 @@
 		});
 		destino.addEventListener('drop', soltar);
 
+		vacia = document.querySelector('#vacia');
+
+		document.getElementById('frm_envio').addEventListener('submit', enviar);
 	}
+
 </script>
 </head>
 <body>
@@ -131,7 +139,7 @@
 	  
 		  <div id="ofertas">
 			<div>
-			  <input type="text"	 id="input_descuento" placeholder="descuento" min="0" max="100" step="0.1">
+			  <input type="text" id="input_descuento" placeholder="descuento" min="0" max="100" step="0.1">
 			</div>
 			<table id="tabla_ofertas" class="ofertas">
 			  <thead>
@@ -145,10 +153,15 @@
 			  </thead>
 			  <tbody>
 				<tr id="vacia">
-				  <td colspan="5"></td>
+				  <td colspan="5">arrastrar hacia aquí...</td>
 				</tr>
 			  </tbody>
 			</table>
+			<form id="frm_envio" action="${home}/ofertas" method="post">
+				<input id="id_prods" name="id_prods" type="hidden">
+				<input id="descuentos" name="descuentos" type="hidden">
+				<button type="submit"></button>
+			</form>
 		  </div>
 		</div>
 	  </main>

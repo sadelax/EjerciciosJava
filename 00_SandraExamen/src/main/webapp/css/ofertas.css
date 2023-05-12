@@ -194,6 +194,7 @@ tr:hover{
   text-align: center;
   width: 30px;
   padding: 10px;
+  opacity: 60%;
 }
 
 thead tr:hover {
@@ -229,6 +230,7 @@ thead tr:hover {
   padding: 10px;
   font-size: 1.05em;
   border-radius: 7px;
+  opacity: 60%;
 }
 
 main table{
