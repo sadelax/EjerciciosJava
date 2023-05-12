@@ -28,18 +28,53 @@
 	}
 	
 	function soltar(ev){
-		ev.preventDefault();
-		borrarVacia();
-		var id = ev.dataTransfer.getData('id');
-		console.log(id);
-		ev.currentTarget.appendChild(document.getElementById(id));
+		if(validaDescuento()){
+			ev.preventDefault();
+			borrarVacia();
+			var id = ev.dataTransfer.getData('id');
+			console.log(id);
+			moverFila(ev.currentTarget, document.getElementById(id));
+		}
 	}
 	
 	function mover(ev){
-		borrarVacia();
-		destino.appendChild(ev.currentTarget);
+		if(validaDescuento()){
+			borrarVacia();
+			moverFila(destino, ev.currentTarget);
+		}
 	}
 	
+	function moverFila(body, tr){
+		// crear 1 td
+		var tdDto = document.createElement('td');
+		//crear 1 td
+		var tdFinal = document.createElement('td');
+		//hacer td1 hijo del tr
+		tr.insertBefore(tdDto, tr.querySelector('td:nth-child(3)'));
+		//hacer td2 hijo del tr
+		tr.insertBefore(tdFinal, tr.querySelector('td:nth-child(4)'));
+		//colocar el valor del input de dto en el td1
+		var descuento = document.getElementById('input_descuento').value;
+		tdDto.textContent = descuento + '%';
+		//colocar el precio c dto enel td2
+		var precioActual = tr.querySelector('td:nth-child(2)').textContent;
+		tdFinal.textContent = (Math.round((precioActual - precioActual * descuento / 100) * 100 ) / 100).toFixed(2);
+		// ev.currentTarget.appendChild(document.getElementBy(id));
+
+		body.appendChild(tr);
+	}
+
+	function validaDescuento(){
+		var iDto = document.getElementById('input_descuento').value;
+		if(isNaN(iDto) || iDto <= 0 || iDto > 100){
+			alert('el descuento es incorrecto');
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+
 	window.onload = function(){
 		vacia = document.querySelector('#vacia');
 		
@@ -74,42 +109,49 @@
 		<h2>ofertas</h2>
 	</header>
 	<main class="container">
-		<div id="productos">
-			<table id="tabla_datos" class="datos">
-				<thead>
-					<tr>
-						<th>descripcion</th>
-						<th>precio</th>
-						<th>fabricante</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="producto" items="${productos}">
-						<tr id="${producto.idProducto}" draggable="true" class="moviles">
-							<td>${producto.producto}</td>
-							<td>${producto.precio}</td>
-							<td>${producto.fabricante}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<div id="ofertas">
+		<div id="tabla_contenedor">
+		  <table id="tabla_datos" class="datos">
+			<thead>
+			  <tr>
+				<th>descripcion</th>
+				<th>precio</th>
+				<th>fabricante</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <c:forEach var="producto" items="${productos}">
+				<tr id="${producto.idProducto}" draggable="true" class="moviles">
+				  <td>${producto.producto}</td>
+				  <td>${producto.precio}</td>
+				  <td>${producto.fabricante}</td>
+				</tr>
+			  </c:forEach>
+			</tbody>
+		  </table>
+	  
+		  <div id="ofertas">
+			<div>
+			  <input type="text"	 id="input_descuento" placeholder="descuento" min="0" max="100" step="0.1">
+			</div>
 			<table id="tabla_ofertas" class="ofertas">
-				<thead>
-					<tr>
-						<th>descripcion</th>
-						<th>precio</th>
-						<th>fabricante</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr id="vacia">
-						<td colspan="3"></td>
-					</tr>
-				</tbody>
+			  <thead>
+				<tr>
+				  <th>descripcion</th>
+				  <th>precio</th>
+				  <th>%</th>
+				  <th>precio %</th>
+				  <th>fabricante</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr id="vacia">
+				  <td colspan="5"></td>
+				</tr>
+			  </tbody>
 			</table>
+		  </div>
 		</div>
-	</main>
+	  </main>
+	  
 </body>
 </html>
