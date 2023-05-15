@@ -38,10 +38,10 @@ public class GestionClientesImpl implements GestionClientes {
 
 	@Override
 	public boolean eliminar(Cliente entidad) {
-		if (entidad != null) {
+		try {
 			clid.delete(entidad);
 			return true;
-		} else {
+		} catch(Exception e) {
 			return false;
 		}
 	}

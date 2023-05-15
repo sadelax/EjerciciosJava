@@ -7,6 +7,7 @@ import java.util.TreeSet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
 import modelo.Cliente;
@@ -96,11 +97,18 @@ public class ClienteDaoJPA implements ClienteDao {
 
 	@Override
 	public void delete(Cliente entidad) {
-		em = EMF.getEmf().createEntityManager();		
+		em = EMF.getEmf().createEntityManager();
+		Cliente borrar = em.find(Cliente.class, entidad.getIdCliente());
 		if(entidad != null) {
 			em.getTransaction().begin();
-			em.remove(entidad);
-			em.getTransaction().commit();
+			em.remove(borrar);
+			try {
+				em.getTransaction().commit();
+			}catch (RollbackException e) {
+				//lanzar una excepcion propia ClienteNoEliminableException
+				e.printStackTrace();
+				throw e;
+			}
 		}
 		em.close();
 	}
