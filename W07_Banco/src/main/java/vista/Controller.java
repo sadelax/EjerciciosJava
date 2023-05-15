@@ -78,25 +78,25 @@ public class Controller extends HttpServlet {
 			}
 				break;
 				
-//			case "/eliminar":
-//			{
-//				Integer id = Integer.parseInt(req.getParameter("id"));
-//				Cliente cli = negCli.cuentasCliente(id);
-//				negCli.eliminar(cli);
-//				
-//				if(negCli.eliminar(cli)) {
-//					req.setAttribute("eliminado", "si");
-//					req.setAttribute("clientes", cli);
-//					req.getSession().setAttribute("clientes", null);
-//				} else {
-//					req.setAttribute("eliminado", "no");
-//				}
-//				
-//				Set<Cliente> clientes = negCli.findAllClientes();
-//				req.setAttribute("clientes", clientes);
-//				req.getRequestDispatcher("/WEB-INF/vistas/listado_clientes.jsp").forward(req, resp);
-//			}
-//				break;
+			case "/eliminar":
+			{
+				Integer id = Integer.parseInt(req.getParameter("id"));
+				Cliente cli = negCli.cuentasCliente(id);
+				negCli.eliminar(cli);
+				
+				if(negCli.eliminar(cli)) {
+					req.setAttribute("eliminado", "si");
+					req.setAttribute("clientes", cli);
+					req.getSession().setAttribute("clientes", null);
+				} else {
+					req.setAttribute("eliminado", "no");
+				}
+				
+				Set<Cliente> clientes = negCli.findAllClientes();
+				req.setAttribute("clientes", clientes);
+				req.getRequestDispatcher("/WEB-INF/vistas/listado_clientes.jsp").forward(req, resp);
+			}
+				break;
 
 
 			// case cuentas de clientes
