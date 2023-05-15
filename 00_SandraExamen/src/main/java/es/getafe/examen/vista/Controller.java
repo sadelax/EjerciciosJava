@@ -88,6 +88,25 @@ public class Controller extends HttpServlet {
 				}
 			}
 			break;
+		case "/ofertas":
+			String idsParam = req.getParameter("id_prods");
+			String dtosParam = req.getParameter("descuentos");
+			if(idsParam != null && dtosParam != null) {
+				String[] ids = idsParam.split(",");
+				String[] dtos = dtosParam.split(",");
+				try {
+					int[] idsProds = new int[ids.length];
+					double[] dtosProds = new double[dtos.length];
+					for(int i = 0; i < ids.length; i++) {
+						idsProds[i] = Integer.parseInt(ids[i]);
+						dtosProds[i] = Double.parseDouble(dtos[i]);
+					}
+					
+				} catch (NumberFormatException e) {
+					// TODO: handle exception
+				}
+			}
+			break;
 		}
 	}
 	

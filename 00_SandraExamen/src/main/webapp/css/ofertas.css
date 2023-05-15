@@ -244,3 +244,11 @@ main table{
 	border-spacing: 0;
 	border-collapse: separate;
   }
+
+#frm_envio {
+  display: flex;
+}
+
+#frm_envio button {
+  flex: 1;
+}

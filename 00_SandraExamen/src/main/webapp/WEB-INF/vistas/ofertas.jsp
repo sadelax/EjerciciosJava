@@ -78,10 +78,22 @@
 		}
 	}
 
-	function enviar(ev){
+
+	function enviar(ev) {
+		var idsOfertas = new Array();
+		var descuentos = new Array();
 		ev.preventDefault();
-		// falta código aquí
-	}
+		var filas = document.querySelectorAll('#tabla_ofertas tbody tr');
+		for (var i=0; i<filas.length; i++){
+			idsOfertas[i] = filas[i].id;
+			var tdDcto = filas[i].querySelector('td:nth-child(3)').textContent;
+			descuentos[i] = tdDcto.substring(0, tdDcto.length - 1);
+		}
+		document.querySelector('#id_prods').value = idsOfertas;
+		document.querySelector('#descuentos').value = descuentos;
+		this.submit();
+}
+
 
 	window.onload = function(){
 		vacia = document.querySelector('#vacia');
@@ -162,12 +174,12 @@
 				</tr>
 			  </tbody>
 			</table>
-			<form id="frm_envio" action="${home}/ofertas" method="post">
-				<input id="id_prods" name="id_prods" type="hidden">
-				<input id="descuentos" name="descuentos" type="hidden">
-				<button type="submit"></button>
-			</form>
-		  </div>
+				<form id="frm_envio" action="${home}/ofertas" method="post">
+					<input id="id_prods" name="id_prods" type="hidden"> <input
+						id="descuentos" name="descuentos" type="hidden">
+					<button type="submit">enviar</button>
+				</form>
+			</div>
 		</div>
 	  </main>
 	  
