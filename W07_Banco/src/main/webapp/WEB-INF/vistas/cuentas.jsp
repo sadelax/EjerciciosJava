@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>cuentas asociadas a ${cli.nombre}</title>
-<link rel="stylesheet" href="${css}/index.css">
+<link rel="stylesheet" href="${css}/cuentas.css">
 <script>
 	function seleccionaCliente(ev) {
 		var id = ev.currentTarget.id;
@@ -37,30 +37,44 @@
 			</ul>
 		</nav>
 		<hr>
-		<h2>consulta de cuentas</h2>
+		<h2>${cli.nombre} ${cli.apellido1} ${cli.apellido2}</h2>
 	</header>
 	<main class="cuerpo">
-		<div id="tabla-cuentas">
+		<div id="menu-extracto">
+			<form id="buscar-extracto" action="${home}/extracto" method="get">
+				<div class="select-cuenta-container">
+					<label for="select-cuenta">selecciona cuenta:</label> <select
+						name="select-cuenta" id="select-cuenta">
+						<c:forEach var="cuenta" items="${cli.cuentas}">
+							<option value="${cli.cuentas}">${cuenta.numeroCuenta}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div id="contenedor-inputs">
+					<label id="mes">mes:</label> <input class="mes" id="mes" type="text"
+						name="mes" maxlength="2" size="4"> <label id="anyo">año:</label>
+					<input class="anyo" id="anyo" type="text" name="anyo" maxlength="4"
+						size="4"> <input id="buscar_ext" class="boton"
+						type="submit" value="buscar">
+				</div>
+			</form>
+		</div>
+
+		<div id="tabla-resultados-extracto">
 			<table id="tabla_datos">
 				<thead>
 					<tr>
-						<th colspan=2>cuentas de ${cli.nombre} ${cli.apellido1}
-							${cli.apellido2}</th>
+						<th>tarjeta</th>
+						<th>fecha</th>
+						<th>tipo</th>
+						<th>proveedor</th>
+						<th>importe</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="cuenta" items="${cli.cuentas}">
-						<tr id="${cli.cuentas}">
-							<td>${cuenta}</td>
-							<td><a href="${home}/extractos?id=${cli.cuentas}">consultar
-									extracto</a></td>
-						</tr>
-					</c:forEach>
+
 				</tbody>
 				<tfoot>
-					<tr>
-						<td colspan=2>cantidad cuentas: ${cli.cuentas.size()}</td>
-					</tr>
 				</tfoot>
 			</table>
 		</div>

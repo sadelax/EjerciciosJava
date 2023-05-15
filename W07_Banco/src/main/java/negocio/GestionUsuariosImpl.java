@@ -25,4 +25,10 @@ public class GestionUsuariosImpl implements GestionUsuarios {
 		return ud.findAll();
 	}
 
+	@Override
+	public boolean eliminar(Usuario entidad) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -31,4 +31,7 @@ public interface GeneraExtracto extends Serializable{
 	// Debera retornar una lista con los movimientos del extracto pero solo de la tarjeta indicada
 	// AYUDA: puede extraerse del extracto recibido, no hace falta volver a los daos
 	public List<Movimiento> getMovimientos(Extracto ext, Tarjeta tjta);
+	
+	// obtiene la cuenta
+	public Cuenta getCuenta(int id);
 }

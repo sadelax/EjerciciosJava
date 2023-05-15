@@ -10,14 +10,23 @@ import modelo.Movimiento;
 import modelo.Tarjeta;
 import persistencia.ClienteDao;
 import persistencia.ClienteDaoJPA;
+import persistencia.CuentaDao;
+import persistencia.CuentaDaoJPA;
 import persistencia.ExtractoDao;
 import persistencia.ExtractoDaoJPA;
 
 @SuppressWarnings("serial")
 public class GeneraExtractoImpl implements GeneraExtracto {
 
-	private ClienteDao cd = new ClienteDaoJPA();
-	private ExtractoDao ed = new ExtractoDaoJPA();
+	private ClienteDao cd;
+	private ExtractoDao ed;
+	private CuentaDao cued;
+	
+	public GeneraExtractoImpl() {
+		cd = new ClienteDaoJPA();
+		ed  = new ExtractoDaoJPA();
+		cued = new CuentaDaoJPA();
+	}
 	
 	@Override
 	public List<Cliente> getClientes(String nombre) {
@@ -56,6 +65,11 @@ public class GeneraExtractoImpl implements GeneraExtracto {
 			}
 		}
 		return movimientos;
+	}
+
+	@Override
+	public Cuenta getCuenta(int id) {
+		return cued.findByIdEager(id);
 	}
 
 }

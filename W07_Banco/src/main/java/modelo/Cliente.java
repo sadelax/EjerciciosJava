@@ -115,8 +115,7 @@ public class Cliente implements Comparable<Cliente> {
 
 	@Override
 	public String toString() {
-		return "[" + idCliente + ", " + nombre + ", " + apellido1 + ", " + apellido2 + ", " + nif + ", " + genero + ", "
-				+ municipio + ", " + provincia + "]";
+		return idCliente + ":" + nombre;
 	}
 
 	@Override

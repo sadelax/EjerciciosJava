@@ -31,7 +31,8 @@
 			<ul>
 				<li><a href="${home}/menu_principal">&#127968;</a></li>
 				<li><a href="${home}/listado_usuarios">listado de usuarios</a></li>
-				<li id="nav-act"><a href="${home}/listado_clientes">listado de clientes</a></li>
+				<li id="nav-act"><a href="${home}/listado_clientes">listado
+						de clientes</a></li>
 				<li><a href="${home}/registro_cliente">registrar nuevo
 						cliente</a></li>
 				<li><a href="${home}/cerrar_sesion">cerrar sesión</a></li>
@@ -43,9 +44,8 @@
 	<main class="cuerpo">
 		<form id="buscar-cliente" action="${home}/listado_clientes"
 			method="get">
-			<label for="valor">buscar cliente:</label>
-			<input class="input_reg" id="valor" type="text" name="valor"
-				placeholder="&#128269;"/>
+			<label for="valor">buscar cliente:</label> <input class="input_reg"
+				id="valor" type="text" name="valor" placeholder="&#128269;" />
 			<div id="botones">
 				<input id="buscar-cliente" class="boton" type="submit"
 					value="buscar">
@@ -54,6 +54,13 @@
 				</p>
 			</div>
 		</form>
+
+		<p id="error">
+			<c:choose>
+				<c:when test="${eliminado eq 'si'}">cliente eliminado correctamente</c:when>
+				<c:when test="${eliminado eq 'no'}">imposible eliminar: el cliente tiene cuentas a su nombre</c:when>
+			</c:choose>
+		</p>
 
 		<div id="tabla-clientes">
 			<table id="tabla_datos">
@@ -73,7 +80,7 @@
 							<td>${cliente.apellido1}</td>
 							<td>${cliente.nif}</td>
 							<td><a href="${home}/cuentas?id=${cliente.idCliente}">consultar</a></td>
-							<td><a href="#">&#128465;</a></td>
+							<td><a href="${home}/eliminar?id=${cliente.idCliente}">eliminar</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

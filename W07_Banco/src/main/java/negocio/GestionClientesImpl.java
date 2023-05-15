@@ -25,7 +25,6 @@ public class GestionClientesImpl implements GestionClientes {
 	public boolean registro(Cliente entidad) {
 		if (entidad != null) {
 			clid.save(entidad);
-			System.out.println(entidad);
 			return true;
 		} else {
 			return false;
@@ -35,5 +34,15 @@ public class GestionClientesImpl implements GestionClientes {
 	@Override
 	public List<Cliente> buscar(String valor) {
 		return clid.findByValue(valor);
+	}
+
+	@Override
+	public boolean eliminar(Cliente entidad) {
+		if (entidad != null) {
+			clid.delete(entidad);
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

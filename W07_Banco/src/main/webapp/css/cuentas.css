@@ -1,0 +1,107 @@
+*{
+  box-sizing: border-box;
+  font-family: courier;
+}
+body{
+  background-color: white;
+}
+
+nav ul {
+  list-style: none; /* para quitar los puntos de la lista */
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block; /* para hacer que los elementos sean en línea */
+}
+
+nav a {
+  display: block; /* para hacer que los elementos sean clicables en toda su área */
+  padding: 10px;
+  text-decoration: none;
+  text-decoration: underline; /* subrayado en el texto del enlace */
+}
+
+nav li#nav-act > a{
+	text-decoration: none;
+}
+
+nav li:last-child {
+  float: right;
+}
+
+a{
+  color: black;
+}
+
+header h2{
+  text-align: center;
+}
+
+#menu-extracto {
+  text-align: center;
+}
+	
+#contenedor-inputs label,
+#contenedor-inputs input[type="text"],
+#contenedor-inputs input[type="submit"] {
+		display: inline-block;
+		vertical-align: middle;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+	
+	
+	#contenedor-inputs input[type="text"] {
+		max-width: 50px;
+	}
+#contenedor-inputs input[type="submit"] {
+  margin-left: 20px;
+}
+
+#botones > p{
+  text-align: center;
+  margin-top: 30px;
+}
+
+p{
+  width: 75%;
+  margin: auto;
+}
+
+p#error{
+  margin: 10px auto;
+  font-family: courier;
+	color: red;
+	text-align: center;
+	font-size: 0.9em;
+}
+
+main table{
+  margin: auto;
+  width: 700px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+tr, th, td{
+  text-align: center;
+  width: 30px;
+  padding: 10px;
+    transition: all 0.5s linear;
+}
+tr:hover{
+  background-color: salmon;
+  text-align: center;
+  width: 30px;
+  padding: 10px;
+}
+
+#tabla_datos thead th#1{
+  background-color: white;
+  border-bottom: 1px solid black;
+}
