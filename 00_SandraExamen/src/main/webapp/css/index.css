@@ -11,13 +11,19 @@ main form{
   width: 300px;
   margin: auto;
 }
+
+main select{
+  text-align: center;
+  font-size: 35px;
+}
+
 main form div input{
   margin: 10px;  
 }
 
 main form select{
   text-align: center;
-  font-size: 35px;
+  font-size: 18px;
 }
 
 nav ul {
@@ -70,8 +76,6 @@ nav a {
 }
 a{
   color: black;
-}
-header nav{
 }
 
 header h2{
@@ -178,7 +182,7 @@ p#campos_obligatorios:hover{
   font-size: 40px;
 }
 
-main form{
+main select{
   width: 70%;
   margin: auto;
   margin-bottom: 30px;

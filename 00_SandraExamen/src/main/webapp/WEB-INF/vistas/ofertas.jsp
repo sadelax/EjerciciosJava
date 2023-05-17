@@ -127,6 +127,8 @@
 				<li><a href="${home}/registro_fabricante">alta nuevo fabricante</a></li>
 				<li><a href="${home}/registro_producto">agregar nuevo producto</a></li>
 				<li><a href="${home}/productos_fabricante">productos por fabricante</a></li>
+				<li><a href="${home}/productos_fabricante_html">productos por fabricante HTML</a></li>
+				<li><a href="${home}/productos_fabricante_json">productos por fabricante JSON</a></li>
 				<li><a href="${home}/ofertas">ofertones</a></li>
 			</ul>
 		</nav>

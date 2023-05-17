@@ -43,6 +43,12 @@ public class Controller extends HttpServlet {
 			req.setAttribute("fabs", fabricante);
 			req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante.jsp").forward(req, resp);
 			break;
+		case "/productos_fabricante_html":
+			fabricante = neg.getFabricantesActivos();
+			System.out.println(fabricante.size());
+			req.setAttribute("fabs", fabricante);
+			req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-html.jsp").forward(req, resp);
+			break;
 		case "/ofertas":
 			Set<Producto> productos = neg.getProductos();
 			System.out.println(productos);
@@ -83,6 +89,19 @@ public class Controller extends HttpServlet {
 					Fabricante fab = neg.getFabricanteConProductos(id);
 					sesion.setAttribute("fab", fab);
 					resp.sendRedirect(context + "/home/productos_fabricante");
+				} catch (NumberFormatException e) {
+					resp.sendRedirect(context + "/home/cerrar_sesion");
+				}
+			}
+			break;
+		case "/productos_fabricante_html_respuesta":
+			idFab = req.getParameter("idFabricante");
+			if(idFab != null) {
+				try {
+					id = Integer.parseInt(idFab);
+					Fabricante fab = neg.getFabricanteConProductos(id);
+					sesion.setAttribute("fab", fab);
+					req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-html-respuesta.jsp").forward(req, resp);
 				} catch (NumberFormatException e) {
 					resp.sendRedirect(context + "/home/cerrar_sesion");
 				}
