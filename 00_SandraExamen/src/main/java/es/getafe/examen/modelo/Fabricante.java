@@ -9,13 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "fabricantes")
 public class Fabricante implements Comparable<Fabricante> {
 
+	@Expose
 	@Id
 	@Column(name = "id_fabricante")
 	private int idFabricante;
+	@Expose
 	private String fabricante;
 	@OneToMany(mappedBy = "fabricante")
 	private Set<Producto> productos;

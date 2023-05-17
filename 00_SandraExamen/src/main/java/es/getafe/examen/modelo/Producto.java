@@ -11,16 +11,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name = "productos")
 public class Producto implements Comparable<Producto> {
 
+	@Expose
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_producto")
 	private int idProducto;
+	@Expose
 	private String producto;
+	@Expose
 	private double precio;
+	@Expose
 	@ManyToOne
 	@JoinColumn(name = "fk_fabricante")
 	private Fabricante fabricante;

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import es.getafe.examen.modelo.Fabricante;
 import es.getafe.examen.modelo.Producto;
 import es.getafe.examen.negocio.Tienda;
@@ -48,6 +51,12 @@ public class Controller extends HttpServlet {
 			System.out.println(fabricante.size());
 			req.setAttribute("fabs", fabricante);
 			req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-html.jsp").forward(req, resp);
+			break;
+		case "/productos_fabricante_json":
+			fabricante = neg.getFabricantesActivos();
+			System.out.println(fabricante.size());
+			req.setAttribute("fabs", fabricante);
+			req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-json.jsp").forward(req, resp);
 			break;
 		case "/ofertas":
 			Set<Producto> productos = neg.getProductos();
@@ -102,6 +111,25 @@ public class Controller extends HttpServlet {
 					Fabricante fab = neg.getFabricanteConProductos(id);
 					sesion.setAttribute("fab", fab);
 					req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-html-respuesta.jsp").forward(req, resp);
+				} catch (NumberFormatException e) {
+					resp.sendRedirect(context + "/home/cerrar_sesion");
+				}
+			}
+			break;
+		case "/productos_fabricante_json_respuesta":
+			idFab = req.getParameter("idFabricante");
+			if(idFab != null) {
+				try {
+					id = Integer.parseInt(idFab);
+					Fabricante fab = neg.getFabricanteConProductos(id);
+					sesion.setAttribute("fab", fab);
+					
+					Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+					String json = gson.toJson(fab.getProductos());
+										
+					resp.getWriter().println(json);
+					
+//					req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-html-respuesta.jsp").forward(req, resp);
 				} catch (NumberFormatException e) {
 					resp.sendRedirect(context + "/home/cerrar_sesion");
 				}
