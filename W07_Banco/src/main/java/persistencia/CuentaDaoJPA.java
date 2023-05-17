@@ -34,7 +34,7 @@ public class CuentaDaoJPA implements CuentaDao {
 	public Cuenta findByIdEager(Integer id) {
 		Cuenta c;
 		em = EMF.getEmf().createEntityManager();
-		String jpql = "SELECT c FROM Cuenta c LEFT JOIN FETCH c.tarjetas WHERE idCuenta = :id";
+		String jpql = "SELECT c FROM Cuenta c LEFT JOIN FETCH c.tarjetas WHERE c.idCuenta = :id";
 		TypedQuery<Cuenta> q = em.createQuery(jpql, Cuenta.class);
 		q.setParameter("id", id);
 		try {

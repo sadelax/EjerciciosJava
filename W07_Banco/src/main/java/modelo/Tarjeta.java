@@ -2,6 +2,7 @@ package modelo;
 
 import java.text.Collator;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -95,6 +96,25 @@ public class Tarjeta implements Comparable<Tarjeta> {
 
 	public void setMesVenc(int mesVenc) {
 		this.mesVenc = mesVenc;
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(idTarjeta);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tarjeta other = (Tarjeta) obj;
+		return idTarjeta == other.idTarjeta;
 	}
 
 	@Override

@@ -10,15 +10,15 @@ import javax.persistence.TypedQuery;
 
 import modelo.Cuenta;
 import modelo.Extracto;
+import util.EMF;
 
 public class ExtractoDaoJPA implements ExtractoDao {
 	
-	private EntityManagerFactory emf;
 	private EntityManager em;
 
 	@Override
 	public void save(Extracto entidad) {
-		em = emf.createEntityManager();
+		em = EMF.getEmf().createEntityManager();
 		em.getTransaction().begin();
 		em.merge(entidad);
 		em.getTransaction().commit();
@@ -28,7 +28,7 @@ public class ExtractoDaoJPA implements ExtractoDao {
 
 	@Override
 	public Extracto findById(Integer id) {
-		em = emf.createEntityManager();
+		em = EMF.getEmf().createEntityManager();
 		Extracto e = em.find(Extracto.class, id);
 		em.close();
 		return e;
@@ -37,9 +37,10 @@ public class ExtractoDaoJPA implements ExtractoDao {
 	@Override
 	public Extracto findByIdEager(Integer id) {
 		Extracto encontrado;
-		em = emf.createEntityManager();
-		String jpql = "SELECT e FROM Extracto e LEFT JOIN FETCH e.movimientos WHERE idExtracto = :id";
+		em = EMF.getEmf().createEntityManager();
+		String jpql = "SELECT e FROM Extracto e LEFT JOIN FETCH e.movimientos WHERE e.idExtracto = :id";
 		TypedQuery<Extracto> q = em.createQuery(jpql, Extracto.class);
+		q.setParameter("id", id);
 		try {
 			encontrado = q.getSingleResult();
 		} catch (NoResultException e) {
@@ -52,7 +53,7 @@ public class ExtractoDaoJPA implements ExtractoDao {
 	@Override
 	public Set<Extracto> findAll() {
 		Set<Extracto> listado;
-		em = emf.createEntityManager();
+		em = EMF.getEmf().createEntityManager();
 		String jpql = "SELECT e FROM Extracto e";
 		TypedQuery<Extracto> q = em.createQuery(jpql, Extracto.class);
 		try {
@@ -66,7 +67,7 @@ public class ExtractoDaoJPA implements ExtractoDao {
 
 	@Override
 	public void delete(Extracto entidad) {
-		em = emf.createEntityManager();
+		em = EMF.getEmf().createEntityManager();
 		em.getTransaction().begin();
 		em.remove(entidad);
 		em.getTransaction().commit();
@@ -76,7 +77,7 @@ public class ExtractoDaoJPA implements ExtractoDao {
 	@Override
 	public Extracto extractoFechaEager(Cuenta c, int anyo, int mes) {
 		Extracto generado;
-		em = emf.createEntityManager();
+		em = EMF.getEmf().createEntityManager();
 		String jpql = "SELECT e FROM Extracto e "
 				+ "JOIN FETCH e.movimientos "
 				+ "JOIN FETCH e.cuenta cue "

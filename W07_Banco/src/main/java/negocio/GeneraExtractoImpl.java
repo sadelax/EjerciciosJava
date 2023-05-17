@@ -58,12 +58,16 @@ public class GeneraExtractoImpl implements GeneraExtracto {
 
 	@Override
 	public List<Movimiento> getMovimientos(Extracto ext, Tarjeta tjta) {
+		Extracto e = ed.findByIdEager(ext.getIdExtracto());
 		List<Movimiento> movimientos = new LinkedList<>();
-		for (Movimiento movimiento : ext.getMovimientos()) {
-			if (movimiento.getTarjeta() == tjta) {
+		for (Movimiento movimiento : e.getMovimientos()) {
+			if (movimiento.getTarjeta().equals(tjta)) {
 				movimientos.add(movimiento);
+			} else {
+				System.out.println("movimiento.getTarjeta not equals a tarjeta sus tostring lol");
 			}
 		}
+		System.out.println("movimientos neg" + movimientos);
 		return movimientos;
 	}
 

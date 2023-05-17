@@ -41,23 +41,25 @@
 	</header>
 	<main class="cuerpo">
 		<div id="menu-extracto">
+		
 			<form id="buscar-extracto" action="${home}/extracto" method="get">
 				<div class="select-cuenta-container">
-					<label for="select-cuenta">selecciona cuenta:</label> <select
-						name="select-cuenta" id="select-cuenta">
+					<label for="select-cuenta">selecciona cuenta:</label>
+					<select name="select-cuenta" id="select-cuenta">
 						<c:forEach var="cuenta" items="${cli.cuentas}">
-							<option value="${cli.cuentas}">${cuenta.numeroCuenta}</option>
+							<option value="${cuenta.idCuenta}">${cuenta.numeroCuenta}</option>
 						</c:forEach>
 					</select>
 				</div>
 				<div id="contenedor-inputs">
-					<label id="mes">mes:</label> <input class="mes" id="mes" type="text"
-						name="mes" maxlength="2" size="4"> <label id="anyo">año:</label>
-					<input class="anyo" id="anyo" type="text" name="anyo" maxlength="4"
-						size="4"> <input id="buscar_ext" class="boton"
-						type="submit" value="buscar">
+					<label id="mes">mes:</label>
+					<input class="mes" id="mes" type="text" name="mes" maxlength="2" size="4">
+					<label id="anyo">año:</label>
+					<input class="anyo" id="anyo" type="text" name="anyo" maxlength="4" size="4">
+					<input id="buscar_ext" class="boton" type="submit" value="buscar">
 				</div>
 			</form>
+			
 		</div>
 
 		<div id="tabla-resultados-extracto">
@@ -66,13 +68,24 @@
 					<tr>
 						<th>tarjeta</th>
 						<th>fecha</th>
-						<th>tipo</th>
-						<th>proveedor</th>
+						<th>descripción</th>
 						<th>importe</th>
 					</tr>
 				</thead>
 				<tbody>
-
+					<c:forEach var="tarjeta" items="${tarjetaMovs.keySet()}">				
+						<c:forEach var="movimiento" items="${tarjetaMovs.get(tarjeta)}">
+							<tr>
+								<td>${tarjeta.getPan()}</td>
+								<td>${movimiento.getFechaFormat()}</td>
+								<td>${movimiento.getTipo().getTipo()} en ${movimiento.getProveedor()}</td>
+								<td><fmt:formatNumber type="currency" value="${movimiento.getImporte()}"/></td>
+							</tr>
+						</c:forEach>
+					</c:forEach>
+				
+				
+				
 				</tbody>
 				<tfoot>
 				</tfoot>

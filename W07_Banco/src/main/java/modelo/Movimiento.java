@@ -4,6 +4,7 @@ import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,6 +56,12 @@ public class Movimiento implements Comparable<Movimiento> {
 	public void setExtracto(Extracto extracto) {
 		this.extracto = extracto;
 	}
+	public TipoMovimiento getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoMovimiento tipo) {
+		this.tipo = tipo;
+	}
 	public Tarjeta getTarjeta() {
 		return tarjeta;
 	}
@@ -89,11 +96,27 @@ public class Movimiento implements Comparable<Movimiento> {
 	public String toString() {
 		return "[" + idMovimiento + "]";
 	}
+	
+	
+	
 	@Override
-	public int compareTo(Movimiento o) {
-		if(this.equals(o)) return 0;
-		Collator col = Collator.getInstance(new Locale("es"));
-		
-		return col.compare(this.fecha, o.fecha);
+	public int hashCode() {
+		return Objects.hash(idMovimiento);
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Movimiento other = (Movimiento) obj;
+		return idMovimiento == other.idMovimiento;
+	}
+	@Override
+	public int compareTo(Movimiento o) {		
+		return this.fecha.compareTo(o.fecha);
+	}
+	
 }

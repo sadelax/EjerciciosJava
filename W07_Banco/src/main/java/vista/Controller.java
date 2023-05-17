@@ -4,8 +4,6 @@ import static vista.Util.isNotEmpty;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -25,6 +23,7 @@ import modelo.Movimiento;
 import modelo.Tarjeta;
 import modelo.Usuario;
 import negocio.GeneraExtracto;
+import negocio.GeneraExtractoImpl;
 import negocio.GestionClientes;
 import negocio.GestionClientesImpl;
 import negocio.GestionUsuarios;
@@ -105,18 +104,58 @@ public class Controller extends HttpServlet {
 				Cliente cli = negCli.cuentasCliente(id);
 				
 				req.setAttribute("cli", cli);
+								
+				req.getRequestDispatcher("/WEB-INF/vistas/cuentas.jsp").forward(req, resp);
+			}
+				break;			
+			case "/extracto":
+			{
+				Cuenta cuenta = null;
+				Extracto ext = null;
 				
-				// mostrar el extracto
-//				int mes = Integer.parseInt(req.getParameter("mes"));
-//				int anyo = Integer.parseInt(req.getParameter("anyo"));
-//				Cuenta cue = negExt.getCuenta(id);
-//				Extracto ext = negExt.generaExtracto(cue, anyo, mes);
+				String idCuentaParam = req.getParameter("select-cuenta");
+				String mesParam = req.getParameter("mes");
+				String anyoParam = req.getParameter("anyo");
 				
-				// TODO
+				System.out.println("paramjsp " + idCuentaParam);
+				
+				
+				// generar extracto:
+				if(isNotEmpty(idCuentaParam) && isNotEmpty(mesParam) && isNotEmpty(anyoParam)) {
+					System.out.println("hola");
+					int idCuenta = Integer.parseInt(idCuentaParam);
+					System.out.println("dentro" + idCuenta);
+					int mes = Integer.parseInt(mesParam);
+					int anyo = Integer.parseInt(anyoParam);
+					System.out.println("holaaa");
+					cuenta = negExt.getCuenta(idCuenta);
+					System.out.println(cuenta);
+					ext = negExt.generaExtracto(cuenta, anyo, mes);
+				} else {
+					System.out.println("no entra");
+				}
+				System.out.println(ext);
+				Map<Tarjeta, Set<Movimiento>> tarjetaMovs = new LinkedHashMap<>();
+				System.out.println("mapa ok");
+				
+				double importe = 0;
+				for (Tarjeta tarjeta : cuenta.getTarjetas()) {
+					tarjetaMovs.put(tarjeta, new TreeSet<>(negExt.getMovimientos(ext, tarjeta)));
+					System.out.println("get movimientos " + negExt.getMovimientos(ext, tarjeta));
+					System.out.println("11");
+					for (Movimiento movimiento : negExt.getMovimientos(ext, tarjeta)) {
+						importe += movimiento.getImporte();
+						System.out.println("importe " + importe);
+						System.out.println("fecha" + movimiento.getFechaFormat());
+					}
+					importe = 0;
+				}
+				req.setAttribute("tarjetaMovs", tarjetaMovs);
 				
 				req.getRequestDispatcher("/WEB-INF/vistas/cuentas.jsp").forward(req, resp);
 			}
-				break;				
+				
+				break;
 			case "/registro_cliente":
 				req.getRequestDispatcher("/WEB-INF/vistas/registro_cliente.jsp").forward(req, resp);
 				break;
@@ -241,6 +280,7 @@ public class Controller extends HttpServlet {
 
 		negUser = new GestionUsuariosImpl();
 		negCli = new GestionClientesImpl();
+		negExt = new GeneraExtractoImpl();
 
 	}
 }

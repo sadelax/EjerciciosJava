@@ -72,9 +72,9 @@ public class ClienteDaoJPA implements ClienteDao {
 		try {
 			c = q.getSingleResult();
 		} catch (NoResultException e) {
+			e.printStackTrace();
 			c = null;
 		}
-		c = q.getSingleResult();
 		em.close();
 		return c;
 	}
