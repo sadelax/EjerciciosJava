@@ -40,7 +40,6 @@
 
 		// esto es realizar la petición, con previo encabezado ^
 		req.send(params);
-
 	}
 
 	function cargaTabla(req) {

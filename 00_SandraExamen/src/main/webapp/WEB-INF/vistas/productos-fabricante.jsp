@@ -76,7 +76,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan=7>cantidad productos: ${productos.size()}</td>
+							<td colspan=7>cantidad productos: ${fab.productos.size()}</td>
 						</tr>
 					</tfoot>
 				</table>

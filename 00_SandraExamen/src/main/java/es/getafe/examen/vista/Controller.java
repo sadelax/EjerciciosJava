@@ -126,10 +126,12 @@ public class Controller extends HttpServlet {
 					
 					Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 					String json = gson.toJson(fab.getProductos());
-										
-					resp.getWriter().println(json);
+									
+//					alternativa a las siguientes líneas
+//					resp.getWriter().println(json);
 					
-//					req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-html-respuesta.jsp").forward(req, resp);
+					req.setAttribute("json", json);
+					req.getRequestDispatcher("/WEB-INF/vistas/productos-fabricante-json-respuesta.jsp").forward(req, resp);
 				} catch (NumberFormatException e) {
 					resp.sendRedirect(context + "/home/cerrar_sesion");
 				}
