@@ -1,0 +1,20 @@
+@import url("listados.css");
+
+#contPrincipal{
+  width:90%!important;
+  margin: 0px auto;
+}
+#productos, #ofertas{
+  float: left;
+  width: 45%;
+}
+
+#ofertas{
+  margin-left: 15px;
+  width: 50%;
+}
+
+a{
+  display: block;
+  clear:both;
+}
