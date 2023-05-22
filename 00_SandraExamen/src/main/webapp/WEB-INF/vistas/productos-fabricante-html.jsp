@@ -70,6 +70,7 @@
 				<li><a href="${home}/productos_fabricante_json">productos
 						por fabricante JSON</a></li>
 				<li><a href="${home}/ofertas">ofertones</a></li>
+				<li><a href="${home}/cerrar_sesion">cerrar sesión</a></li>
 			</ul>
 		</nav>
 		<hr>
@@ -94,9 +95,7 @@
 		</form>
 
 		<div id="id_tabla">
-				
-				
-				
+			
 		</div>
 	</main>
 </body>

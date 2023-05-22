@@ -96,7 +96,7 @@ public class Controller extends HttpServlet {
 			}
 				break;
 
-
+				
 			// case cuentas de clientes
 			case "/cuentas":
 			{
