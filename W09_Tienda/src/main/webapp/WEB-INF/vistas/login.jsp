@@ -1,61 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>Login</title>
-<link rel="stylesheet" type="text/css" href="${css}/formularios.css">
-<script type="text/javascript">
-	function validaForm(ev) {
-		ev.preventDefault();
-		var usuario = document.getElementById("usr").value;
-		var password = document.getElementById("pwd").value;
-		var mensaje = document.getElementById("error");
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>login</title>
+	<link rel="stylesheet" href="${css}/index.css">
+	<script>
 
-		if (!usuario.trim() || !password.trim()) {
-			mensaje.textContent = "Todos los campos son obligatorios";
-		} else if (!checkPassword(password)) {
-			mensaje.innerHTML = "Password incorrecta <br/> Minimo 8 caracteres y al menos 1 minuscula, 1 mayuscula y 1 numero";
-		} else {
-			mensaje.textContent = '';
-			// 		ev.currentTarget.submit();
-			this.submit();
-		}
-	}
+ 		function validaForm(ev){
 
-	function checkPassword(pass) {
-		// 	var myregex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-		// 	return myregex.test(pass); 
-		return true;
-	}
+			ev.preventDefault();
+ 			console.log("has hecho submit");
 
-	window.onload = function() {
-		document.getElementById("frm_login").addEventListener("submit",
-				validaForm);
-	};
-</script>
+ 			var usuario = document.getElementById("user").value;
+ 			var pwd = document.getElementById("pwd").value;
+ 			var error = document.getElementById("error");
+
+ 			if(!usuario.trim() || !pwd.trim()) {
+ 				error.textContent = "todos los campos son obligatorios";
+ 			} else {
+ 				error.textContent = "";
+ 				this.submit(); // esto lo envÃ­a a java
+ 			}
+ 		}
+
+// 		window.onload = function(){
+// 			document.getElementById("frm_log").addEventListener("submit", validaForm);
+// 		}
+	</script>
 </head>
 <body>
-	<header class="cabecera">
-		<h1>Acceso Usuarios</h1>
+	<header id="cabecera">
+		<h2>&#11088; acceso usuarios &#11088;</h2>
 	</header>
-	<div id="contPrincipal">
-		<form id="form_login" action="${home}/login" method="post">
-			<input id="usr" name="usuario" type="text" placeholder="Usuario" autofocus="autofocus"> 
-			<input id="pwd" name="password" type="password" placeholder="Password"> 
-			<button class="boton" type="submit">Login</button>
+	<div id="formulario">
+		<form id="frm_log" action="${home}/login" method="post" autocomplete="off">
+			<input id="user" type="text" name="usuario" placeholder="usuario (*)"></input>
+			<input id="pwd" type="password" name="password" placeholder="password (*)"></input>
+			<div id="botones">
+				<input id="login" class="boton" type="submit" value="login">
+				<p>¿no estás registrado? <a href="${home}/registro">regístrate</a></p>
+			</div>
 		</form>
-		<a id="registro" href="${home}/registro">Registrarse</a>
-		<div id="mensajes">
-			<p id="error">
-				<c:if test="${error eq 'login'}">
-				Credenciales incorrectas
-			</c:if>
-			</p>
-		</div>
+		<p id="error">
+			<c:choose>
+				<c:when test="${error eq 'no_user_reg'}">
+					usuario y/o contraseña incorrectos
+				</c:when>
+				<c:when test="${error eq 'campos_vacios_login'}">
+					(*) campos obligatorios
+				</c:when>
+			</c:choose>
+		</p>
 	</div>
 </body>
 </html>

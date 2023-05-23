@@ -9,14 +9,15 @@ import es.getafe.examen.negocio.Tienda;
 import es.getafe.examen.negocio.TiendaImpl;
 
 import static es.getafe.examen.vista.Util.isNotEmpty;
-public class LoginAction implements Action {
+
+public class RegistroAction implements Action {
 
 	private Tienda neg;
-	
-	public LoginAction() {
+
+	public RegistroAction() {
 		neg = new TiendaImpl();
 	}
-	
+
 	@Override
 	public String get(String path, HttpServletRequest req, HttpServletResponse resp) {
 		return path;
@@ -24,24 +25,37 @@ public class LoginAction implements Action {
 
 	@Override
 	public String post(String path, HttpServletRequest req, HttpServletResponse resp) {
+		String nombreP = req.getParameter("nombre");
 		String usuarioP = req.getParameter("usuario");
+		String emailP = req.getParameter("email");
 		String passwordP = req.getParameter("password");
-
+		String password2P = req.getParameter("password-bis");
+		
+		req.setAttribute("nombre", nombreP);
+		req.setAttribute("usuario", usuarioP);
+		
 		HttpSession sesion = req.getSession();
 		
 		String vista;
 		
-		if (isNotEmpty(usuarioP) && isNotEmpty(passwordP)) {
-			Usuario usr = neg.validaLogin(usuarioP, passwordP);
-			if (usr != null) {
-				sesion.setAttribute("usuario", usr);
-				vista = "redirect:menu_principal";
+		if (isNotEmpty(nombreP) && isNotEmpty(usuarioP) && isNotEmpty(passwordP) && isNotEmpty(password2P)) {
+		
+			if (passwordP.equals(password2P)) {
+				
+				Usuario nuevo = new Usuario(nombreP, usuarioP, passwordP, emailP);
+				
+				if(neg.agregaUsuario(nuevo)) {
+					vista = "redirect:registro_ok";
+				} else {
+					sesion.setAttribute("error", "ya_existe");
+					vista = "redirect:" + path;
+				}
 			} else {
-				sesion.setAttribute("error", "login");
+				sesion.setAttribute("error", "no_match_pwd");
 				vista = "redirect:" + path;
 			}
 		} else {
-			sesion.setAttribute("error", "login");
+			sesion.setAttribute("error", "campos_vacios");
 			vista = "redirect:" + path;
 		}
 		return vista;

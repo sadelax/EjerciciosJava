@@ -1,9 +1,0 @@
-@import url("listados.css");
-
-#contPrincipal{
-  width: 500px!important;;
-}
-
-td, th{
-  text-align: center;
-}

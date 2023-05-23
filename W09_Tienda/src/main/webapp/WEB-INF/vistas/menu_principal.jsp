@@ -1,33 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tienda</title>
-<link rel="stylesheet" type="text/css" href="${css}/index.css">
+<meta charset="ISO-8859-1">
+<title>menú principal</title>
+<link rel="stylesheet" href="${css}/index.css">
 </head>
 <body>
+<body>
 	<header class="cabecera">
-	<h2>Menu Principal</h2>
+		<nav>
+			<ul>
+				<li><a href="${home}/listado_productos">listado de productos</a></li>
+				<li><a href="${home}/registro_fabricante">alta nuevo fabricante</a></li>
+				<li><a href="${home}/registro_producto">agregar nuevo producto</a></li>
+				<li><a href="${home}/productos_fabricante">productos por fabricante</a></li>
+				<li><a href="${home}/productos_fabricante_html">productos por fabricante HTML</a></li>
+				<li><a href="${home}/productos_fabricante_json">productos por fabricante JSON</a></li>
+				<li><a href="${home}/ofertas">ofertones</a></li>
+				<li><a href="${home}/cerrar_sesion">cerrar sesión</a></li>
+			</ul>
+		</nav>
+		<hr>
+		<h2>menú principal</h2>
 	</header>
-	<div id="contPrincipal">
-		<ul>
-			<li><a href="${home}/listado_productos">Productos</a></li>
-			<li><a href="${home}/registro_producto">Crear Producto</a></li>
-			<li><a href="${home}/productos_fabricante">Productos por Fabricante</a></li>
-			<li><a href="${home}/productos_fabricante_html">Productos por Fabricante HTML</a></li>
-			<li><a href="${home}/productos_fabricante_json">Productos por Fabricante JSON</a></li>
-			<li><a href="${home}/ofertas">Registro de Ofertas</a></li>
-			<hr />
-			<li><a href="${home}/registro_fabricante">Crear Fabricante</a></li>
-			<li><a href="${home}/listado_fabricantes">Fabricantes Activos</a></li>
-			<hr />
-			<li><a href="${home}/cerrar_sesion">Cerrar Sesion</a></li>
-		</ul>
-	</div>
+	<main class="cuerpo">
+	</main>
+</body>
 </body>
 </html>

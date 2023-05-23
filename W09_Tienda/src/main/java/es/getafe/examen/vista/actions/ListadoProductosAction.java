@@ -34,7 +34,7 @@ public class ListadoProductosAction implements Action {
 		} else {
 			prods = neg.getProductos("");
 		}
-		sesion.setAttribute("prods", prods);
+		sesion.setAttribute("productos", prods);
 		return "redirect:" + path;
 	}
 
