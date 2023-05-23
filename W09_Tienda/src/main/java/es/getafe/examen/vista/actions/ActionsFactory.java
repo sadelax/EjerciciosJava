@@ -49,7 +49,8 @@ public class ActionsFactory {
 		actions.put("GET-POST/listado_productos", new ListadoProductosAction());
 		actions.put("GET-POST/registro", new RegistroAction());
 		actions.put("GET/registro_ok", actions.get("GET/menu_principal"));
-		actions.put("GET/productos_fabricante", new ProductosFabricanteAction());
+		actions.put("GET/productos_fabricante_html", new ProductosFabricanteAction());
+		actions.put("GET-POST/productos_fabricante_html_respuesta", new ProductosFabricanteAction());
 		actions.put("URL_INCORRECTA", new CerrarSesionAction());
 		actions.put("GET/cerrar_sesion", actions.get("URL_INCORRECTA"));
 

@@ -43,8 +43,6 @@ public class Controller extends HttpServlet {
 		
 		String vista = actual.execute(req, resp);
 		
-		System.out.println(vista);
-		
 		if (vista.startsWith("redirect")) {
 			resp.sendRedirect(context + "/home/" + vista.substring(9));
 		} else {

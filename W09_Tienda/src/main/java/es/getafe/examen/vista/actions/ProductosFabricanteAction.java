@@ -22,6 +22,7 @@ public class ProductosFabricanteAction implements Action {
 	public String get(String path, HttpServletRequest req, HttpServletResponse resp) {
 		Set<Fabricante> fabs  = neg.getFabricantesActivos();
 		req.setAttribute("fabs", fabs);
+		System.out.println("path en productosfabricanteaction.java" + path);
 		return path;
 	}
 
@@ -37,7 +38,7 @@ public class ProductosFabricanteAction implements Action {
 				id = Integer.parseInt(idFabStr);
 				Fabricante fab = neg.getFabricanteConProductos(id);
 				sesion.setAttribute("fab", fab);
-				vista = "redirect:productos_fabricante_html";
+				vista = "redirect:productos_fabricante_html_respuesta";
 			} catch (NumberFormatException e) {
 				vista = "redirect:" + path;
 			}
